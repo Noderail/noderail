@@ -1,22 +1,61 @@
 # Measurement Node Template (v0.1)
 
-> **How to use this template:** Copy this file, rename it to your measurement slug, and fill in each section. A Measurement Node is an instrument, index, or scale for measuring a construct inside a field.
+> **How to use this template:** Copy this file, rename it to your measurement slug (e.g., `my-index.md`), and fill in each section. Delete all instructional text in italics before publishing.
 
 ---
 
-## Lineage Block
+## YAML Frontmatter (required)
 
+```yaml
+---
+node_id: NR-YYYYMMDD-001
+node_type: measurement
+title: "Your Measurement Title"
+status: draft
+version: "0.1"
+license: CC-BY-4.0
+created_by: "Your Name"
+created_at: YYYY-MM-DD
+maintainer: "Your Name"
+field: "Field Name"
+tags: []
+lineage:
+  parents: []
+  adopted_from: []
+  forked_from: []
+  children: []
+citation:
+  cite_as: "LastName, F. (YYYY). Title. NodeRail. https://noderail.org/..."
+  doi: ""
+  url: "https://noderail.org/..."
+measurement:
+  construct: ""
+  validation_status: concept
+  intended_use: []
+---
 ```
-Node type: Measurement
-Field:
-Author(s):
-Version: v0.1
-Status: Draft / Pilot / Validated / Contested / Deprecated
-Lane: Experimental / Official
-Origin node: (if forked or adapted)
-Forked from: (if applicable)
-Cite as:
-```
+
+---
+
+## Cite As
+
+> LastName, F. (YYYY). *Title*. NodeRail. https://noderail.org/...
+
+---
+
+## Lineage Block (human-readable)
+
+| Field | Value |
+|---|---|
+| **Node type** | Measurement |
+| **Field** | *(field name)* |
+| **Author(s)** | *(your name)* |
+| **Version** | v0.1 |
+| **Status** | Draft / Pilot / Validated / Contested / Deprecated |
+| **Lane** | Experimental / Official |
+| **Origin node** | *(node_id if forked or adapted, otherwise "Original")* |
+| **Forked from** | *(node_id if applicable, otherwise "—")* |
+| **Adopted from** | *(external source if adapted, otherwise "—")* |
 
 ---
 
@@ -38,15 +77,24 @@ Cite as:
 
 ---
 
+## Intended Use
+
+- **Personal:** *(yes / no)*
+- **Team:** *(yes / no)*
+- **Org:** *(yes / no)*
+- **Research:** *(yes / no)*
+
+---
+
 ## Items and Indicators
 
-*(List the items, questions, or behavioral indicators that make up this instrument.)*
+*(List the items, questions, or behavioral indicators.)*
 
 ---
 
 ## Scoring Method
 
-*(Explain in plain language how scores are calculated and interpreted.)*
+*(Explain how scores are calculated and interpreted.)*
 
 ---
 
@@ -54,26 +102,35 @@ Cite as:
 
 > **Draft / Pilot / Validated / Contested / Deprecated**
 
-*(Describe the current evidence base for this instrument.)*
+*(Describe the current evidence base.)*
 
 ---
 
 ## Ethics and Misuse Guardrails
 
-- **What not to infer from scores:** *(limits of interpretation)*
-- **Not used for:** *(prohibited applications)*
-- **Privacy notes:** *(data handling requirements)*
+- **What not to infer from scores:**
+- **Not used for:**
+- **Privacy notes:**
+- **Known risks:**
 
 ---
 
 ## Evidence
 
-- **Pilot results:** *(links or descriptions)*
-- **Replications:** *(links or descriptions)*
-- **Case studies:** *(links or descriptions)*
+- **Pilot results:**
+- **Replications:**
+- **Case studies:**
+
+---
+
+## Related Nodes
+
+- **Parent field:**
+- **Frameworks that use this measurement:**
+- **Related measurements:**
 
 ---
 
 ## Changelog
 
-- **v0.1 —** *(initial publication)*
+- **v0.1 —** *(initial publication, YYYY-MM-DD)*

@@ -1,22 +1,65 @@
 # Framework Node Template (v0.1)
 
-> **How to use this template:** Copy this file, rename it to your framework slug, and fill in each section. A Framework Node is a reusable method, model, or operational playbook inside a field.
+> **How to use this template:** Copy this file, rename it to your framework slug (e.g., `my-framework.md`), and fill in each section. A Framework Node is a reusable method, model, or operational playbook inside a field. Delete all instructional text in italics before publishing.
 
 ---
 
-## Lineage Block
+## YAML Frontmatter (required)
 
+Copy this block to the very top of your file, above all other content:
+
+```yaml
+---
+node_id: NR-YYYYMMDD-001        # Format: NR-[date]-[sequence]. e.g. NR-20260301-001
+node_type: framework
+title: "Your Framework Title"
+status: draft                   # draft | published | deprecated
+version: "0.1"
+license: CC-BY-4.0              # recommended default
+
+created_by: "Your Name"
+created_at: YYYY-MM-DD
+maintainer: "Your Name"
+
+field: "Field Name"             # the field this node belongs to
+tags: []                        # e.g. [cognition, measurement, workplace]
+
+lineage:
+  parents: []                   # node_ids this directly extends or builds on
+  adopted_from: []              # external works adapted (paper, repo, URL)
+  forked_from: []               # node_id if explicitly forked from another node
+  children: []                  # filled in later as others extend this node
+
+citation:
+  cite_as: "LastName, F. (YYYY). Title. NodeRail. https://noderail.org/..."
+  doi: ""                       # filled in after Zenodo release
+  url: "https://noderail.org/..."
+---
 ```
-Node type: Framework
-Field:
-Author(s):
-Version: v0.1
-Status: Draft / Pilot / Validated / Contested / Deprecated
-Lane: Experimental / Official
-Origin node: (if forked or adapted)
-Forked from: (if applicable)
-Cite as:
-```
+
+---
+
+## Cite As
+
+> LastName, F. (YYYY). *Title*. NodeRail. https://noderail.org/...
+
+*(Copy the `cite_as` value from your frontmatter here as a blockquote. This makes the citation visible to readers without them needing to inspect the metadata.)*
+
+---
+
+## Lineage Block (human-readable)
+
+| Field | Value |
+|---|---|
+| **Node type** | Framework |
+| **Field** | *(field name)* |
+| **Author(s)** | *(your name)* |
+| **Version** | v0.1 |
+| **Status** | Draft / Pilot / Validated / Contested / Deprecated |
+| **Lane** | Experimental / Official |
+| **Origin node** | *(node_id if forked or adapted, otherwise "Original")* |
+| **Forked from** | *(node_id if applicable, otherwise "—")* |
+| **Adopted from** | *(external source if adapted, otherwise "—")* |
 
 ---
 
@@ -28,23 +71,41 @@ Cite as:
 
 ## Problem It Addresses
 
-*(What specific problem or gap does this framework solve? Why does it exist?)*
+*(What specific problem or gap does this framework solve? Be concrete.)*
 
 ---
 
-## When to Use / When Not to Use
+## When to Use This Framework
 
-*(Describe the conditions under which this framework is appropriate, and where it should not be applied.)*
+*(Describe the conditions, contexts, or triggers that indicate this framework is appropriate.)*
 
 ---
 
-## Inputs → Process → Outputs
+## When NOT to Use This Framework
 
-| | |
-|---|---|
-| **Inputs** | *(what the practitioner or researcher needs to start)* |
-| **Process** | *(the steps, sequence, or method)* |
-| **Outputs** | *(what is produced or decided)* |
+*(Explicitly state the boundaries. What situations is this framework not designed for?)*
+
+---
+
+## Inputs
+
+*(What does a user need to bring to this framework? Data, context, prior knowledge, etc.)*
+
+---
+
+## Steps / Process
+
+1. *(Step 1)*
+2. *(Step 2)*
+3. *(Step 3)*
+
+*(Add or remove steps as needed. Keep each step action-oriented.)*
+
+---
+
+## Outputs
+
+*(What does the framework produce? What does a user have at the end?)*
 
 ---
 
@@ -54,20 +115,22 @@ Cite as:
 
 ---
 
-## Related Measurements
+## Evidence Basis
 
-*(Link to Measurement Nodes that are used with or validated by this framework.)*
+- **Type of evidence:** *(literature / field practice / case study / expert review)*
+- **Key references:** *(links or citations)*
+- **Validation status:** *(concept / pilot / validated)*
 
 ---
 
-## Evidence
+## Related Nodes
 
-- **Case studies:** *(links or descriptions)*
-- **Pilots:** *(links or descriptions)*
-- **Replications:** *(links or descriptions)*
+- **Parent field:** *(link to Field Node)*
+- **Related frameworks:** *(links to other Framework Nodes)*
+- **Measurements used:** *(links to Measurement Nodes)*
 
 ---
 
 ## Changelog
 
-- **v0.1 —** *(initial publication)*
+- **v0.1 —** *(initial publication, YYYY-MM-DD)*

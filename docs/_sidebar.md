@@ -5,7 +5,8 @@
   - [Use Cases](/use-cases)
   - [FAQ](/faq)
   - [Rules](/rules)
-  - [Request Access](/access)
+  - [Roles](/roles)
+  - [Join NodeRail](/access)
 
 - **Reference**
   - [Glossary](/glossary)

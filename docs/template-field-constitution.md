@@ -1,19 +1,65 @@
 # Field Constitution Template (v0.1)
 
-> **How to use this template:** Copy this file, rename it to your field slug (e.g., `hcs-constitution.md`), and fill in each section. This document becomes the canonical governance record for your field on NodeRail.
+> **How to use this template:** Copy this file, rename it to your field slug (e.g., `hcs-constitution.md`), and fill in each section. This document becomes the canonical governance record for your field on NodeRail. Delete all instructional text in italics before publishing.
 
 ---
 
-## Lineage Block
+## YAML Frontmatter (required)
 
+```yaml
+---
+node_id: NR-YYYYMMDD-001
+node_type: field
+title: "Your Field Name"
+status: draft
+version: "0.1"
+license: CC-BY-4.0
+created_by: "Your Name"
+created_at: YYYY-MM-DD
+maintainer: "Your Name"
+tags: []
+scope:
+  domain: ""
+  audience: []
+governance:
+  founder: "Your Name"
+  maintainer_policy: "Founder-maintained (v0.1)"
+  contribution_mode: "open-with-standards"
+lineage:
+  parents: []
+  adopted_from: []
+  forked_from: []
+  children: []
+citation:
+  cite_as: "LastName, F. (YYYY). Field Name (Founder Field v0.1). NodeRail. https://noderail.org/..."
+  doi: ""
+  url: "https://noderail.org/..."
+canonical:
+  constructs: []
+  frameworks: []
+  measurements: []
+  projects: []
+---
 ```
-Field name:
-Founder / Maintainer:
-Version: v0.1
-Created:
-Last updated:
-Cite as:
-```
+
+---
+
+## Cite As
+
+> LastName, F. (YYYY). *Field Name* (Founder Field v0.1). NodeRail. https://noderail.org/...
+
+---
+
+## Lineage Block (human-readable)
+
+| Field | Value |
+|---|---|
+| **Node type** | Field |
+| **Founder / Maintainer** | *(your name)* |
+| **Version** | v0.1 |
+| **Created** | *(YYYY-MM-DD)* |
+| **Last updated** | *(YYYY-MM-DD)* |
+| **Origin** | *(Original / Forked from / Derived from)* |
 
 ---
 
@@ -45,27 +91,27 @@ Cite as:
 
 ## Evidence Standards
 
-- **Accepted evidence types:** *(surveys, behavioral proxies, case studies, replications, etc.)*
-- **What counts as Validated:** *(criteria for moving from Pilot to Validated)*
-- **When to mark Contested:** *(criteria for marking a node as contested)*
+- **Accepted evidence types:**
+- **What counts as Validated:**
+- **When to mark Contested:**
 
 ---
 
 ## Ethics Charter (required)
 
-- **Not used for:** *(prohibited uses)*
-- **Misuse risks:** *(known risks to flag)*
-- **Consent and privacy stance:** *(data collection principles)*
+- **Not used for:**
+- **Misuse risks:**
+- **Consent and privacy stance:**
 
 ---
 
 ## Governance
 
-- **Maintainer:** *(name)*
-- **Stewards:** *(names, optional)*
-- **Contribution rules:** *(how others can publish nodes in this field)*
-- **Official vs Experimental policy:** *(how nodes earn Official status)*
-- **Dispute process:** *(how contested nodes are handled)*
+- **Maintainer:**
+- **Stewards:** *(optional)*
+- **Contribution rules:**
+- **Official vs Experimental policy:**
+- **Dispute process:**
 
 ---
 
@@ -84,4 +130,4 @@ Cite as:
 
 ## Version Notes
 
-- **v0.1 —** *(initial constitution)*
+- **v0.1 —** *(initial constitution, YYYY-MM-DD)*
