@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Roles, NodeRail</title>
+  <meta name="description" content="NodeRail has three roles: Field Founder, Contributor, and Reader. Learn what each role does, how roles transition, and how lineage attribution works across all roles.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://noderail.org/roles.html">
+  <link rel="stylesheet" href="/assets/nr.css">
+  <style>
+    .roles-hero {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 5rem 0 4rem;
+    }
+    .roles-hero h1 { color: var(--nr-white); max-width: 680px; margin-bottom: 1rem; }
+    .roles-hero p { color: #9ca3af; max-width: 560px; font-size: 1.05rem; line-height: 1.75; }
+
+    .roles-body { padding: 4rem 0; }
+
+    /* Role cards */
+    .role-card {
+      background: var(--nr-off); border: 1px solid var(--nr-border);
+      border-radius: var(--nr-radius); padding: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .role-card:last-of-type { margin-bottom: 0; }
+    .role-header {
+      display: flex; align-items: flex-start; gap: 1.25rem; margin-bottom: 1.5rem;
+    }
+    .role-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(45,212,191,0.08); border: 1px solid rgba(45,212,191,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--nr-teal);
+    }
+    .role-icon svg { width: 22px; height: 22px; stroke: currentColor; }
+    .role-header-text h2 { margin-bottom: 0.2rem; font-size: 1.3rem; }
+    .role-header-text .role-for { font-size: 0.82rem; color: var(--nr-muted); }
+    .role-body p { color: var(--nr-muted); line-height: 1.75; margin-bottom: 1.25rem; }
+    .role-body h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--nr-dark); }
+    .role-checklist { list-style: none; padding: 0; margin: 0 0 1.25rem; }
+    .role-checklist li {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.88rem; color: var(--nr-muted); padding: 0.3rem 0; line-height: 1.5;
+    }
+    .role-checklist li svg {
+      width: 14px; height: 14px; stroke: var(--nr-teal); flex-shrink: 0; margin-top: 2px;
+    }
+    .role-cta {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.85rem; font-weight: 600; color: var(--nr-teal);
+      text-decoration: none; margin-top: 0.5rem;
+    }
+    .role-cta:hover { text-decoration: underline; }
+
+    /* Transition table section */
+    .transition-section { padding: 3rem 0; background: var(--nr-off); }
+    .transition-section h2 { text-align: center; margin-bottom: 0.5rem; }
+    .transition-section .section-sub { text-align: center; color: var(--nr-muted); margin-bottom: 2.5rem; font-size: 0.95rem; }
+
+    /* Lineage section */
+    .lineage-section { padding: 4rem 0; }
+    .lineage-section h2 { margin-bottom: 0.5rem; }
+    .lineage-section .section-sub { color: var(--nr-muted); margin-bottom: 2rem; font-size: 0.95rem; }
+    .meta-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;
+    }
+    .meta-card {
+      background: var(--nr-off); border: 1px solid var(--nr-border);
+      border-radius: var(--nr-radius-sm); padding: 1.25rem;
+    }
+    .meta-card code {
+      display: block; font-size: 0.78rem; font-family: monospace;
+      color: var(--nr-teal); background: rgba(45,212,191,0.06);
+      padding: 0.25rem 0.5rem; border-radius: 4px; margin-bottom: 0.5rem;
+    }
+    .meta-card p { font-size: 0.82rem; color: var(--nr-muted); margin: 0; line-height: 1.55; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nr-nav">
+    <div class="nr-nav-inner">
+      <a href="/" class="nr-nav-logo">
+        <img src="/assets/logo.png" alt="NodeRail">
+        NodeRail
+      </a>
+      <div class="nr-nav-links">
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/roles.html" style="font-weight:700;color:var(--nr-dark);">Roles</a>
+        <a href="/about.html">About</a>
+        <a href="/access.html" class="nr-nav-cta">Join NodeRail</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="roles-hero">
+    <div class="nr-container">
+      <div class="nr-eyebrow" style="color:var(--nr-teal);">Who uses NodeRail</div>
+      <h1>Three roles. One shared standard.</h1>
+      <p>NodeRail has three distinct roles. Understanding which role you occupy shapes how you interact with the platform. Roles are not fixed. They are determined by what you publish.</p>
+    </div>
+  </section>
+
+  <!-- ROLE CARDS -->
+  <section class="roles-body">
+    <div class="nr-container">
+
+      <!-- Field Founder -->
+      <div class="role-card">
+        <div class="role-header">
+          <div class="role-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <div class="role-header-text">
+            <h2>Field Founder</h2>
+            <div class="role-for">For researchers, practitioners, and academics building or formalising a new field or discipline</div>
+          </div>
+        </div>
+        <div class="role-body">
+          <p>A Field Founder creates and stewards a Field Node. The canonical home for a body of knowledge. The Founder sets the field's scope, constructs, evidence standards, ethics charter, and governance rules. In v0.1, all fields are founder-maintained, meaning the Founder is the primary steward of what counts as official content within their field.</p>
+          <h4>What a Field Founder does</h4>
+          <ul class="role-checklist">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Publishes the Field Constitution. The canonical governance document</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Defines the core constructs, scope, and evidence standards for the field</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Maintains the field's registries of frameworks, measurements, and projects</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Reviews and approves nodes that seek Official status within the field</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Publishes the first nodes to establish the field's intellectual foundation</li>
+          </ul>
+          <p>NodeRail's first Field Founder is Gao Kabubi, founder of Human Capacity Science (HCS).</p>
+          <a href="#" onclick="goToDocs('/template-field-constitution'); return false;" class="role-cta">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;stroke:currentColor;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Field Constitution Template
+          </a>
+        </div>
+      </div>
+
+      <!-- Contributor -->
+      <div class="role-card">
+        <div class="role-header">
+          <div class="role-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="role-header-text">
+            <h2>Contributor</h2>
+            <div class="role-for">For PhD students, researchers, practitioners, and students with intellectual work that deserves a permanent, citable home</div>
+          </div>
+        </div>
+        <div class="role-body">
+          <p>A Contributor publishes nodes, Frameworks, Measurements, or Projects, linked to an existing field. Contributors extend the field's intellectual infrastructure without needing to create a new field from scratch. Every node a Contributor publishes is attributed to them permanently, with full lineage preserved.</p>
+          <h4>What a Contributor does</h4>
+          <ul class="role-checklist">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Publishes Framework, Measurement, or Project Nodes under a field</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Links their work to parent nodes using the lineage metadata schema</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Fills in the Continuation Hook on Project Nodes so others can build forward</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Forks or extends existing nodes with full attribution back to the origin</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Proposes nodes for Official status within a field</li>
+          </ul>
+          <p>No institutional affiliation is required. A student's dissertation and a professor's framework are evaluated by the same standard.</p>
+          <a href="/access.html" class="role-cta">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;stroke:currentColor;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            Submit your first node
+          </a>
+        </div>
+      </div>
+
+      <!-- Reader -->
+      <div class="role-card">
+        <div class="role-header">
+          <div class="role-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </div>
+          <div class="role-header-text">
+            <h2>Reader</h2>
+            <div class="role-for">For anyone who discovers, cites, or builds on intellectual work, no publishing required</div>
+          </div>
+        </div>
+        <div class="role-body">
+          <p>A Reader discovers, cites, and extends work on NodeRail. Readers do not need to publish anything to get value from the platform. They can browse nodes, cite them in their own work, and use the lineage graph to trace the intellectual history of any idea.</p>
+          <h4>What a Reader does</h4>
+          <ul class="role-checklist">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Discovers nodes through the field index, search, or direct links</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Cites nodes using the "Cite as" block on each node</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Forks or extends nodes, which transitions them to Contributor status</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Evaluates the lineage of a node to understand its intellectual provenance</li>
+          </ul>
+          <a href="#" onclick="goToDocs('/what-is-noderail'); return false;" class="role-cta">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;stroke:currentColor;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            What is NodeRail?
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ROLE TRANSITIONS -->
+  <section class="transition-section">
+    <div class="nr-container">
+      <h2>Role transitions</h2>
+      <p class="section-sub">Roles are not fixed. They are determined entirely by what you publish.</p>
+      <table class="nr-table">
+        <thead>
+          <tr><th>Action</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Browse and cite nodes</td><td>Reader</td></tr>
+          <tr><td>Publish a Framework, Measurement, or Project Node</td><td>Contributor</td></tr>
+          <tr><td>Create and maintain a Field Constitution</td><td>Field Founder</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- LINEAGE METADATA -->
+  <section class="lineage-section">
+    <div class="nr-container">
+      <h2>Lineage and attribution across all roles</h2>
+      <p class="section-sub">Regardless of role, every node on NodeRail carries the same lineage metadata. No matter who extends, forks, or adopts a node, the original contributor retains permanent, visible credit.</p>
+      <div class="meta-grid">
+        <div class="meta-card">
+          <code>created_by</code>
+          <p>The person who originally created this node. Never changes, even after forks or transfers.</p>
+        </div>
+        <div class="meta-card">
+          <code>maintainer</code>
+          <p>The person currently responsible for maintaining the node. May differ from the original author.</p>
+        </div>
+        <div class="meta-card">
+          <code>lineage.parents</code>
+          <p>Node IDs this node directly extends or builds on. Establishes the intellectual chain.</p>
+        </div>
+        <div class="meta-card">
+          <code>lineage.adopted_from</code>
+          <p>External works such as papers or repositories that this node adapts or draws from.</p>
+        </div>
+        <div class="meta-card">
+          <code>lineage.forked_from</code>
+          <p>The node ID this was explicitly forked from. Preserves the fork relationship permanently.</p>
+        </div>
+        <div class="meta-card">
+          <code>lineage.children</code>
+          <p>Nodes that have extended this one. Populated over time as the field grows.</p>
+        </div>
+        <div class="meta-card">
+          <code>citation.cite_as</code>
+          <p>The human-readable citation string for this node. Displayed prominently on every node page.</p>
+        </div>
+        <div class="meta-card">
+          <code>citation.doi</code>
+          <p>The permanent Digital Object Identifier issued via Zenodo on the node's first stable release.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="nr-container">
+      <h2>Ready to contribute?</h2>
+      <p>NodeRail is in early access. Submit your work and join the first cohort of contributors building the platform's founding nodes.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/access.html" class="btn btn-teal">Join NodeRail</a>
+        <a href="/how-it-works.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.25);">How it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="nr-footer">
+    <div class="nr-footer-inner">
+      <div>
+        <div class="nr-footer-logo">NodeRail</div>
+        <p style="font-size:0.8rem;color:#6b7280;margin-top:0.4rem;">Infrastructure for intellectual continuity.</p>
+      </div>
+      <div class="nr-footer-links">
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/roles.html">Roles</a>
+        <a href="/about.html">About</a>
+        <a href="/access.html">Join NodeRail</a>
+        <a href="https://github.com/Noderail/noderail" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function goToDocs(path) {
+      window.location.href = '/#' + path;
+    }
+  </script>
+</body>
+</html>
