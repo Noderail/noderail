@@ -4,51 +4,478 @@
   <meta charset="UTF-8">
   <title>NodeRail — Infrastructure for Intellectual Continuity</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="NodeRail: a home for Fields, Frameworks, Measurements, and Student Projects — built for citation, lineage, and continuity.">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="description" content="NodeRail is a citable, versioned knowledge infrastructure platform. Publish Fields, Frameworks, Measurements, and Projects with permanent DOIs, Git-based lineage tracking, and academic citation capability.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="NodeRail — Infrastructure for Intellectual Continuity">
+  <meta property="og:description" content="Publish nodes. Fork progress. Preserve credit. NodeRail gives researchers and practitioners a permanent, citable home for their intellectual work.">
+  <meta property="og:url" content="https://noderail.org">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NodeRail — Infrastructure for Intellectual Continuity">
+  <meta name="twitter:description" content="Publish nodes. Fork progress. Preserve credit.">
 
-  <!-- Docsify theme -->
+  <!-- Docsify theme (loaded after static content) -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 
-  <!-- Custom styles -->
   <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1a1a2e;
+      background: #ffffff;
+      line-height: 1.65;
+    }
+    a { color: #1a1a2e; text-decoration: none; }
+
+    /* ── Docsify overrides ── */
     :root {
       --theme-color: #1a1a2e;
       --sidebar-nav-link-color: #1a1a2e;
     }
-    .sidebar {
-      background: #f8f8f8;
-    }
-    .cover-main h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-    .cover-main p {
-      font-size: 1.1rem;
-    }
+    .sidebar { background: #f8f8f8; }
+    .cover-main h1 { font-size: 3rem; font-weight: 800; letter-spacing: -1px; }
+    .cover-main p { font-size: 1.1rem; }
     .markdown-section h1,
-    .markdown-section h2 {
-      border-bottom: 2px solid #e8e8e8;
-      padding-bottom: 0.3em;
+    .markdown-section h2 { border-bottom: 2px solid #e8e8e8; padding-bottom: 0.3em; }
+    .app-name img { width: 36px; height: 36px; object-fit: contain; vertical-align: middle; margin-right: 6px; }
+    .app-name-link { display: flex; align-items: center; font-weight: 700; font-size: 1.15rem; }
+
+    /* ── Static landing page ── */
+    #static-landing {
+      display: block;
     }
-    .app-name-link {
-      font-weight: 700;
-      font-size: 1.2rem;
+    /* Hide static landing once Docsify mounts */
+    body.docsify-ready #static-landing {
+      display: none;
+    }
+
+    /* Nav */
+    .nr-nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .nr-nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 1.1rem; color: #1a1a2e;
+    }
+    .nr-nav-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .nr-nav-links { display: flex; gap: 1.5rem; font-size: 0.9rem; }
+    .nr-nav-links a { color: #555; transition: color 0.2s; }
+    .nr-nav-links a:hover { color: #1a1a2e; }
+    .nr-nav-cta {
+      background: #1a1a2e; color: #fff !important;
+      padding: 0.45rem 1.1rem; border-radius: 6px;
+      font-size: 0.88rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .nr-nav-cta:hover { background: #2d2d4e; }
+
+    /* Hero */
+    .nr-hero {
+      max-width: 860px; margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .nr-hero-badge {
+      display: inline-block;
+      background: #f0f0f8; color: #1a1a2e;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 0.3rem 0.8rem;
+      border-radius: 20px; margin-bottom: 1.5rem;
+    }
+    .nr-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800; letter-spacing: -1.5px;
+      line-height: 1.15; margin-bottom: 1.2rem;
+    }
+    .nr-hero p {
+      font-size: 1.15rem; color: #555;
+      max-width: 620px; margin: 0 auto 2.5rem;
+    }
+    .nr-hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: #1a1a2e; color: #fff;
+      padding: 0.75rem 1.8rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #2d2d4e; }
+    .btn-secondary {
+      border: 2px solid #1a1a2e; color: #1a1a2e;
+      padding: 0.72rem 1.8rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: #1a1a2e; color: #fff; }
+
+    /* Status bar */
+    .nr-status {
+      max-width: 860px; margin: 0 auto 3rem;
+      padding: 0 2rem;
+      display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+      font-size: 0.85rem; color: #777;
+    }
+    .nr-status span { display: flex; align-items: center; gap: 0.4rem; }
+    .dot-live { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block; }
+    .dot-beta { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; display: inline-block; }
+
+    /* Divider */
+    .nr-divider { border: none; border-top: 1px solid #e8e8e8; margin: 0 2rem; }
+
+    /* Capabilities */
+    .nr-capabilities {
+      max-width: 960px; margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .nr-capabilities h2 {
+      text-align: center; font-size: 1.6rem; font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .nr-capabilities .sub {
+      text-align: center; color: #777; margin-bottom: 2.5rem; font-size: 0.95rem;
+    }
+    .nr-caps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .nr-cap-card {
+      background: #f8f8fc; border: 1px solid #e8e8f0;
+      border-radius: 12px; padding: 1.5rem;
+    }
+    .nr-cap-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .nr-cap-card p { font-size: 0.88rem; color: #555; }
+
+    /* Node types */
+    .nr-nodes {
+      background: #f8f8fc;
+      padding: 4rem 2rem;
+    }
+    .nr-nodes-inner { max-width: 960px; margin: 0 auto; }
+    .nr-nodes h2 {
+      text-align: center; font-size: 1.6rem; font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .nr-nodes .sub {
+      text-align: center; color: #777; margin-bottom: 2.5rem; font-size: 0.95rem;
+    }
+    .nr-node-table {
+      width: 100%; border-collapse: collapse; font-size: 0.9rem;
+    }
+    .nr-node-table th {
+      text-align: left; padding: 0.75rem 1rem;
+      background: #1a1a2e; color: #fff; font-weight: 600;
+    }
+    .nr-node-table td {
+      padding: 0.75rem 1rem; border-bottom: 1px solid #e8e8e8;
+      vertical-align: top;
+    }
+    .nr-node-table tr:last-child td { border-bottom: none; }
+    .nr-node-table tr:hover td { background: #f0f0f8; }
+    .nr-node-table th:first-child { border-radius: 8px 0 0 0; }
+    .nr-node-table th:last-child { border-radius: 0 8px 0 0; }
+    .tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      padding: 0.2rem 0.6rem; border-radius: 4px;
+      background: #e8e8f8; color: #1a1a2e;
+    }
+
+    /* Founder field */
+    .nr-founder {
+      max-width: 860px; margin: 0 auto;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .nr-founder h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .nr-founder .sub { color: #777; margin-bottom: 2rem; font-size: 0.95rem; }
+    .nr-founder-card {
+      background: #1a1a2e; color: #fff;
+      border-radius: 16px; padding: 2.5rem;
+      text-align: left;
+    }
+    .nr-founder-card .label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #aaa; margin-bottom: 0.5rem;
+    }
+    .nr-founder-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .nr-founder-card p { color: #ccc; font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .nr-founder-card a {
+      display: inline-block; background: #fff; color: #1a1a2e;
+      padding: 0.6rem 1.4rem; border-radius: 6px;
+      font-weight: 700; font-size: 0.88rem;
+    }
+
+    /* How it works */
+    .nr-how {
+      background: #f8f8fc;
+      padding: 4rem 2rem;
+    }
+    .nr-how-inner { max-width: 860px; margin: 0 auto; }
+    .nr-how h2 {
+      text-align: center; font-size: 1.6rem; font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .nr-how .sub {
+      text-align: center; color: #777; margin-bottom: 2.5rem; font-size: 0.95rem;
+    }
+    .nr-steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem; counter-reset: steps;
+    }
+    .nr-step { counter-increment: steps; }
+    .nr-step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #1a1a2e; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem; margin-bottom: 0.75rem;
+    }
+    .nr-step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .nr-step p { font-size: 0.85rem; color: #666; }
+
+    /* CTA */
+    .nr-cta {
+      max-width: 700px; margin: 0 auto;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .nr-cta h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; }
+    .nr-cta p { color: #555; margin-bottom: 2rem; font-size: 1rem; }
+
+    /* Footer */
+    .nr-footer {
+      border-top: 1px solid #e8e8e8;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.82rem; color: #999;
+    }
+    .nr-footer a { color: #777; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nr-nav-links { display: none; }
+      .nr-hero { padding: 3rem 1.5rem 2.5rem; }
     }
   </style>
 </head>
 <body>
-  <div id="app">Loading NodeRail...</div>
 
-  <script>
+<!-- ═══════════════════════════════════════════════════════════════
+     STATIC LANDING PAGE — visible immediately, SEO-crawlable,
+     hidden once Docsify mounts (body.docsify-ready)
+═══════════════════════════════════════════════════════════════ -->
+<div id="static-landing">
+
+  <!-- Nav -->
+  <nav class="nr-nav">
+    <div class="nr-nav-logo">
+      <img src="assets/logo.png" alt="NodeRail logo">
+      NodeRail
+    </div>
+    <div class="nr-nav-links">
+      <a href="#how-it-works">How it works</a>
+      <a href="#node-types">Node types</a>
+      <a href="#founder-field">HCS Field</a>
+      <a href="/#/how" onclick="loadDocsify(event, '/#/how')">Docs</a>
+      <a href="/#/access" class="nr-nav-cta" onclick="loadDocsify(event, '/#/access')">Request Access</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="nr-hero">
+    <div class="nr-hero-badge">v0.1 — Now Live</div>
+    <h1>Infrastructure for<br>Intellectual Continuity</h1>
+    <p>NodeRail gives researchers and practitioners a permanent, citable home for their intellectual work — with DOI versioning, Git-based lineage tracking, and academic citation built in.</p>
+    <div class="nr-hero-actions">
+      <a href="/#/hcs/" class="btn-primary" onclick="loadDocsify(event, '/#/hcs/')">Explore the HCS Field →</a>
+      <a href="/#/how" class="btn-secondary" onclick="loadDocsify(event, '/#/how')">How it works</a>
+    </div>
+  </section>
+
+  <!-- Status bar -->
+  <div class="nr-status">
+    <span><span class="dot-live"></span> Site live at noderail.org</span>
+    <span><span class="dot-live"></span> First Founder Field: HCS published</span>
+    <span><span class="dot-beta"></span> DOI integration: coming in v0.2</span>
+    <span><span class="dot-beta"></span> Open for access requests</span>
+  </div>
+
+  <hr class="nr-divider">
+
+  <!-- Core capabilities -->
+  <section class="nr-capabilities">
+    <h2>What NodeRail Provides</h2>
+    <p class="sub">Three capabilities that no content platform, wiki, or repository currently combines.</p>
+    <div class="nr-caps-grid">
+      <div class="nr-cap-card">
+        <h3>Permanent DOIs &amp; Citation</h3>
+        <p>Every node version receives a permanent Digital Object Identifier via Zenodo integration. Your work becomes a citable academic artifact — not a link that breaks.</p>
+      </div>
+      <div class="nr-cap-card">
+        <h3>Git-Based Lineage Tracking</h3>
+        <p>Every contribution is timestamped and version-controlled. Fork, extend, or adopt any node while preserving a complete, auditable lineage back to the origin.</p>
+      </div>
+      <div class="nr-cap-card">
+        <h3>Structured Node Architecture</h3>
+        <p>Fields, Frameworks, Measurements, and Projects are structured units — not freeform documents. They connect through citations and lineage, so progress compounds instead of disappearing.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="nr-divider">
+
+  <!-- Node types -->
+  <section class="nr-nodes" id="node-types">
+    <div class="nr-nodes-inner">
+      <h2>Four Node Types</h2>
+      <p class="sub">Each node type is a structured, citable unit of intellectual work.</p>
+      <table class="nr-node-table">
+        <thead>
+          <tr>
+            <th>Node Type</th>
+            <th>What it is</th>
+            <th>Who publishes it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag">Field</span></td>
+            <td>Defines a field: scope, constructs, ethics, governance, and a constitution for contributions</td>
+            <td>Field founders</td>
+          </tr>
+          <tr>
+            <td><span class="tag">Framework</span></td>
+            <td>A reusable method, model, or operational playbook inside a field</td>
+            <td>Researchers &amp; practitioners</td>
+          </tr>
+          <tr>
+            <td><span class="tag">Measurement</span></td>
+            <td>An instrument, index, or scale for measuring a construct inside a field</td>
+            <td>Researchers &amp; practitioners</td>
+          </tr>
+          <tr>
+            <td><span class="tag">Project</span></td>
+            <td>A student project, capstone, case study, replication, or pilot with a required Continuation Hook</td>
+            <td>Students &amp; early researchers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Founder Field -->
+  <section class="nr-founder" id="founder-field">
+    <h2>Founder Field</h2>
+    <p class="sub">The first field published on NodeRail, setting the standard for all future fields.</p>
+    <div class="nr-founder-card">
+      <div class="label">Founder Field · Published 2025</div>
+      <h3>Human Capacity Science (HCS)</h3>
+      <p>HCS is the measurement and design of cognitive, emotional, and digital load — so capacity does not silently degrade into burnout, errors, or disengagement. Founded by Gao Kabubi, HCS is the first field to publish a complete Field Constitution, Construct Map, Measurement Philosophy, and Ethics Charter on NodeRail.</p>
+      <a href="/#/hcs/" onclick="loadDocsify(event, '/#/hcs/')">Explore HCS Field →</a>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="nr-how" id="how-it-works">
+    <div class="nr-how-inner">
+      <h2>How NodeRail Works</h2>
+      <p class="sub">Five steps from idea to citable, versioned knowledge infrastructure.</p>
+      <div class="nr-steps">
+        <div class="nr-step">
+          <div class="nr-step-num">1</div>
+          <h3>Create a Field</h3>
+          <p>Define scope, constructs, ethics, and governance using the Field Constitution template.</p>
+        </div>
+        <div class="nr-step">
+          <div class="nr-step-num">2</div>
+          <h3>Publish Nodes</h3>
+          <p>Add Frameworks, Measurements, and Projects inside your Field using structured templates.</p>
+        </div>
+        <div class="nr-step">
+          <div class="nr-step-num">3</div>
+          <h3>Version &amp; Timestamp</h3>
+          <p>Every change is recorded in Git with a permanent timestamp — your contribution is protected.</p>
+        </div>
+        <div class="nr-step">
+          <div class="nr-step-num">4</div>
+          <h3>Issue a DOI</h3>
+          <p>Each release receives a permanent DOI via Zenodo, making your node a citable academic artifact.</p>
+        </div>
+        <div class="nr-step">
+          <div class="nr-step-num">5</div>
+          <h3>Fork &amp; Continue</h3>
+          <p>Others can fork, adopt, or extend your node — with full lineage preserved back to you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="nr-cta">
+    <h2>Ready to publish your first node?</h2>
+    <p>NodeRail v0.1 is live and open for access requests. Submit your request and Gao will review it personally.</p>
+    <div class="nr-hero-actions">
+      <a href="/#/access" class="btn-primary" onclick="loadDocsify(event, '/#/access')">Request Access</a>
+      <a href="/#/" class="btn-secondary" onclick="loadDocsify(event, '/#/')">Read the Docs</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="nr-footer">
+    <p>NodeRail v0.1 &nbsp;·&nbsp; Founded by <a href="/#/hcs/">Gao Kabubi</a> &nbsp;·&nbsp; <a href="https://github.com/Noderail/noderail">GitHub</a> &nbsp;·&nbsp; <a href="/#/access">Request Access</a></p>
+    <p style="margin-top:0.5rem;">Infrastructure for Intellectual Continuity</p>
+  </footer>
+
+</div><!-- /#static-landing -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     DOCSIFY APP — mounts when user navigates to /# routes
+═══════════════════════════════════════════════════════════════ -->
+<div id="app"></div>
+
+<script>
+  // ── Detect if user is navigating to a docs route (hash-based) ──
+  function isDocsRoute() {
+    const hash = window.location.hash;
+    // If hash is non-empty and not just '#/', treat as docs route
+    return hash && hash.length > 2 && hash !== '#/';
+  }
+
+  function showDocsify() {
+    document.getElementById('static-landing').style.display = 'none';
+    document.body.classList.add('docsify-ready');
+    initDocsify();
+  }
+
+  function loadDocsify(e, route) {
+    e.preventDefault();
+    window.location.hash = route.replace('/#', '');
+    showDocsify();
+  }
+
+  // Auto-show Docsify if URL already has a docs hash
+  if (isDocsRoute()) {
+    showDocsify();
+  }
+
+  // Listen for hash changes (back/forward navigation)
+  window.addEventListener('hashchange', function() {
+    if (isDocsRoute() && !document.body.classList.contains('docsify-ready')) {
+      showDocsify();
+    }
+  });
+
+  function initDocsify() {
     window.$docsify = {
-      name: 'NodeRail',
+      name: '<img src="assets/logo.png" alt="NodeRail" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;"> NodeRail',
       repo: 'https://github.com/noderail',
       loadSidebar: true,
-      loadCoverpage: true,
-      coverpage: true,
-      onlyCover: false,
+      loadCoverpage: false,
       subMaxLevel: 3,
       auto2top: true,
       search: {
@@ -57,13 +484,21 @@
         depth: 3
       },
       plugins: []
+    };
+
+    // Dynamically load Docsify scripts
+    function loadScript(src, callback) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.onload = callback;
+      document.body.appendChild(s);
     }
-  </script>
 
-  <!-- Docsify core -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+    loadScript('//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js', function() {
+      loadScript('//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js', null);
+    });
+  }
+</script>
 
-  <!-- Search plugin -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
 </body>
 </html>
