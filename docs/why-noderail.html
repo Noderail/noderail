@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Why NodeRail — The Intellectual Continuity Problem</title>
+  <meta name="description" content="Nine recurring failure modes that cause intellectual work to get lost, fragmented, or forgotten — and how NodeRail addresses each one.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://noderail.org/why-noderail.html">
+  <link rel="stylesheet" href="/assets/nr.css">
+  <style>
+    .why-hero {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 5rem 0 4rem;
+    }
+    .why-hero h1 { color: var(--nr-white); max-width: 700px; margin-bottom: 1rem; }
+    .why-hero p { color: #9ca3af; max-width: 560px; font-size: 1.05rem; }
+
+    /* Problem cards with number */
+    .problem-list { display: flex; flex-direction: column; gap: 0; }
+    .problem-row {
+      display: grid; grid-template-columns: 80px 1fr;
+      border-bottom: 1px solid var(--nr-border);
+      padding: 2rem 0; gap: 2rem; align-items: start;
+      transition: background 0.15s;
+    }
+    .problem-row:first-child { border-top: 1px solid var(--nr-border); }
+    .problem-row:hover { background: var(--nr-off); margin: 0 -2rem; padding: 2rem; }
+    .problem-num {
+      font-size: 2.5rem; font-weight: 800; color: var(--nr-border);
+      line-height: 1; padding-top: 0.2rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .problem-content h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .problem-content p { font-size: 0.9rem; margin-bottom: 0.75rem; }
+    .problem-fix {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; font-weight: 600; color: var(--nr-teal-dim);
+      background: #f0fdfa; padding: 0.3rem 0.75rem; border-radius: 20px;
+    }
+    @media (max-width: 600px) {
+      .problem-row { grid-template-columns: 50px 1fr; gap: 1rem; }
+      .problem-num { font-size: 1.8rem; }
+    }
+
+    /* Contrast section */
+    .contrast-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--nr-border); border-radius: var(--nr-radius); overflow: hidden; }
+    .contrast-col { padding: 2rem; }
+    .contrast-col:first-child { border-right: 1px solid var(--nr-border); }
+    .contrast-col h3 { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .contrast-col h3.bad { color: #ef4444; }
+    .contrast-col h3.good { color: var(--nr-teal-dim); }
+    .contrast-item { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: flex-start; }
+    .contrast-icon { flex-shrink: 0; font-size: 0.9rem; margin-top: 0.1rem; }
+    .contrast-item p { font-size: 0.85rem; margin: 0; }
+    @media (max-width: 600px) { .contrast-grid { grid-template-columns: 1fr; } .contrast-col:first-child { border-right: none; border-bottom: 1px solid var(--nr-border); } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nr-nav">
+    <div class="nr-nav-inner">
+      <a href="/" class="nr-nav-logo">
+        <img src="/assets/logo.png" alt="NodeRail">
+        NodeRail
+      </a>
+      <div class="nr-nav-links">
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html" class="active">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/access.html" class="nr-nav-cta">Request Access</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="why-hero">
+    <div class="nr-container">
+      <div class="nr-eyebrow" style="color:var(--nr-teal);">The Problem</div>
+      <h1>Intellectual work keeps getting lost. NodeRail is built to stop that.</h1>
+      <p>Nine recurring failure modes cause research, frameworks, and student work to fragment, drift, or disappear. Here is each one, and what NodeRail does about it.</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM INDEX -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="problem-list">
+
+        <div class="problem-row">
+          <div class="problem-num">01</div>
+          <div class="problem-content">
+            <h3>Concept Drift</h3>
+            <p>A term's meaning shifts gradually across documents, teams, or time without anyone noticing. Decisions get made on incompatible definitions. By the time the drift is visible, it has already caused damage.</p>
+            <span class="problem-fix">✓ NodeRail fix: Canonical definitions with version history and change logs</span>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-num">02</div>
+          <div class="problem-content">
+            <h3>Documentation Debt</h3>
+            <p>Work accumulates faster than it gets documented. The gap between what was done and what is recorded grows until the knowledge is effectively lost. Teams inherit outputs without the thinking that produced them.</p>
+            <span class="problem-fix">✓ NodeRail fix: Structured node templates that make documentation the default, not an afterthought</span>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-num">03</div>
+          <div class="problem-content">
+            <h3>Founder Dependency</h3>
+            <p>Critical knowledge lives only in one person's head. When they leave, the work cannot be continued without starting over. This is one of the most expensive and most preventable forms of intellectual loss.</p>
+            <span class="problem-fix">✓ NodeRail fix: Stewardship model separates knowledge from its originator</span>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-num">04</div>
+          <div class="problem-content">
+            <h3>Duplicate Definitions</h3>
+            <p>The same construct gets defined differently in different documents. No canonical version exists. Teams operate on conflicting assumptions without realising it.</p>
+            <span class="problem-fix">✓ NodeRail fix: Single canonical node per construct, with explicit supersession when definitions change</span>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-num">05</div>
+          <div class="problem-content">
+            <h3>Dead Docs</h3>
+            <p>Documents exist but are no longer maintained, linked, or trusted. They create noise and false confidence without adding continuity. No one knows which version is current.</p>
+            <span class="problem-fix">✓ NodeRail fix: Version status flags (active, deprecated, superseded) on every node</span>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-num">06</div>
+          <div class="problem-content">
+            <h3>Knowledge Fragmentation</h3>
+            <p>Intellectual work is scattered across chat threads, email, slides, and wikis with no connective structure. Retrieval is impossible at scale. The same insight gets rediscovered repeatedly.</p>
+            <span class="problem-fix">✓ NodeRail fix: Typed links between nodes (supports, depends-on, conflicts-with, supersedes)</span>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-num">07</div>
+          <div class="problem-content">
+            <h3>Version Confusion</h3>
+            <p>Multiple versions of a framework or model circulate without clear lineage. People cite different versions without knowing they disagree. Replication becomes impossible.</p>
+            <span class="problem-fix">✓ NodeRail fix: Permanent DOI per version, with explicit lineage chain</span>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-num">08</div>
+          <div class="problem-content">
+            <h3>Context Loss at Handoff</h3>
+            <p>When a project changes hands, the reasoning behind decisions is lost. The new owner inherits outputs without the thinking that produced them. Every handoff is a partial restart.</p>
+            <span class="problem-fix">✓ NodeRail fix: Rationale and lineage are part of the node structure, not optional metadata</span>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-num">09</div>
+          <div class="problem-content">
+            <h3>Capstone Waste</h3>
+            <p>Students and researchers produce high-quality work that gets graded or reviewed, then archived and forgotten. The next cohort starts from scratch. Decades of potential compound knowledge disappears.</p>
+            <span class="problem-fix">✓ NodeRail fix: Project nodes with mandatory Continuation Hooks so every project is a starting point, not an endpoint</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="nr-divider">
+
+  <!-- CONTRAST SECTION -->
+  <section class="nr-section-alt">
+    <div class="nr-container">
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <div class="nr-eyebrow">The difference</div>
+        <h2>Without NodeRail vs. with NodeRail</h2>
+      </div>
+      <div class="contrast-grid">
+        <div class="contrast-col">
+          <h3 class="bad">Without NodeRail</h3>
+          <div class="contrast-item"><span class="contrast-icon">✗</span><p>Definitions drift across documents with no canonical source</p></div>
+          <div class="contrast-item"><span class="contrast-icon">✗</span><p>Student work is graded and archived, never built upon</p></div>
+          <div class="contrast-item"><span class="contrast-icon">✗</span><p>Frameworks exist in PDFs and slide decks with no version history</p></div>
+          <div class="contrast-item"><span class="contrast-icon">✗</span><p>Research is cited by URL, which breaks within two years</p></div>
+          <div class="contrast-item"><span class="contrast-icon">✗</span><p>Knowledge leaves when people leave</p></div>
+          <div class="contrast-item"><span class="contrast-icon">✗</span><p>Every new project restarts from scratch</p></div>
+        </div>
+        <div class="contrast-col">
+          <h3 class="good">With NodeRail</h3>
+          <div class="contrast-item"><span class="contrast-icon">✓</span><p>Every construct has a canonical, versioned, citable definition</p></div>
+          <div class="contrast-item"><span class="contrast-icon">✓</span><p>Student projects are published nodes with Continuation Hooks</p></div>
+          <div class="contrast-item"><span class="contrast-icon">✓</span><p>Frameworks are versioned nodes with full lineage and DOIs</p></div>
+          <div class="contrast-item"><span class="contrast-icon">✓</span><p>Every node has a permanent DOI that never breaks</p></div>
+          <div class="contrast-item"><span class="contrast-icon">✓</span><p>Stewardship model keeps knowledge alive after people move on</p></div>
+          <div class="contrast-item"><span class="contrast-icon">✓</span><p>Every project is a starting point for the next one</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--nr-dark);padding:4rem 0;text-align:center;">
+    <div class="nr-container">
+      <h2 style="color:var(--nr-white);margin-bottom:1rem;">Ready to build infrastructure that compounds?</h2>
+      <p style="color:#9ca3af;max-width:480px;margin:0 auto 2rem;">NodeRail is in early access. Submit a request and Gao Kabubi will review it personally.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/access.html" class="btn btn-teal">Request Access →</a>
+        <a href="/how-it-works.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.25);">How it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="nr-footer">
+    <div class="nr-footer-inner">
+      <div>
+        <div class="nr-footer-logo">NodeRail</div>
+        <p style="font-size:0.82rem;margin-top:0.25rem;">Infrastructure for Intellectual Continuity</p>
+        <p style="font-size:0.78rem;margin-top:1rem;color:#aaa;">v0.1 &nbsp;·&nbsp; &copy; 2026 NodeRail</p>
+      </div>
+      <div class="nr-footer-links">
+        <a href="/">Home</a>
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/access.html">Request Access</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

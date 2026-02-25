@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>How NodeRail Works — From Idea to Citable Infrastructure</title>
+  <meta name="description" content="A full walkthrough of the NodeRail system: how nodes are created, versioned, linked, and issued permanent DOIs via Zenodo.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://noderail.org/how-it-works.html">
+  <link rel="stylesheet" href="/assets/nr.css">
+  <style>
+    .how-hero {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 5rem 0 4rem;
+    }
+    .how-hero h1 { color: var(--nr-white); max-width: 700px; margin-bottom: 1rem; }
+    .how-hero p { color: #9ca3af; max-width: 560px; font-size: 1.05rem; }
+
+    /* Big step layout */
+    .big-step {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      padding: 4rem 0; border-bottom: 1px solid var(--nr-border);
+      align-items: center;
+    }
+    .big-step:last-child { border-bottom: none; }
+    .big-step.reverse { direction: rtl; }
+    .big-step.reverse > * { direction: ltr; }
+    .step-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--nr-teal-dim); margin-bottom: 0.5rem;
+    }
+    .step-big-num {
+      font-size: 5rem; font-weight: 800; color: var(--nr-border);
+      line-height: 1; margin-bottom: 1rem; letter-spacing: -0.04em;
+    }
+    .big-step h2 { font-size: 1.6rem; margin-bottom: 0.75rem; }
+    .big-step p { font-size: 0.95rem; margin-bottom: 1rem; }
+    .step-detail { background: var(--nr-off); border-radius: var(--nr-radius); padding: 1.5rem; }
+    .step-detail-item { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; align-items: flex-start; }
+    .step-detail-item:last-child { margin-bottom: 0; }
+    .step-detail-item .sd-icon { flex-shrink: 0; font-size: 0.9rem; margin-top: 0.15rem; }
+    .step-detail-item p { font-size: 0.85rem; margin: 0; }
+    @media (max-width: 760px) {
+      .big-step { grid-template-columns: 1fr; gap: 2rem; }
+      .big-step.reverse { direction: ltr; }
+      .step-big-num { font-size: 3rem; }
+    }
+
+    /* Code block */
+    .nr-code-block {
+      background: var(--nr-dark); color: #e2e8f0;
+      border-radius: var(--nr-radius); padding: 1.5rem;
+      font-family: var(--nr-mono); font-size: 0.82rem; line-height: 1.8;
+      overflow-x: auto; border: 1px solid rgba(255,255,255,0.08);
+    }
+    .nr-code-block .k { color: #2dd4bf; }
+    .nr-code-block .v { color: #fbbf24; }
+    .nr-code-block .c { color: #6b7280; }
+    .nr-code-block .s { color: #86efac; }
+
+    /* Continuity standard */
+    .standard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .standard-item {
+      background: var(--nr-dark); color: var(--nr-white);
+      border-radius: var(--nr-radius); padding: 1.5rem;
+    }
+    .standard-item .si-num { font-size: 1.5rem; font-weight: 800; color: var(--nr-teal); margin-bottom: 0.5rem; }
+    .standard-item h4 { color: var(--nr-white); margin-bottom: 0.4rem; }
+    .standard-item p { font-size: 0.83rem; color: #9ca3af; }
+    @media (max-width: 760px) { .standard-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 500px) { .standard-grid { grid-template-columns: 1fr; } }
+
+    /* Link types */
+    .link-type-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+    .link-type-pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.82rem; font-weight: 600;
+      border: 1.5px solid;
+    }
+    .lt-supports { border-color: #22c55e; color: #166534; background: #dcfce7; }
+    .lt-depends { border-color: #3b82f6; color: #1e40af; background: #dbeafe; }
+    .lt-conflicts { border-color: #ef4444; color: #991b1b; background: #fee2e2; }
+    .lt-supersedes { border-color: #f59e0b; color: #92400e; background: #fef3c7; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nr-nav">
+    <div class="nr-nav-inner">
+      <a href="/" class="nr-nav-logo">
+        <img src="/assets/logo.png" alt="NodeRail">
+        NodeRail
+      </a>
+      <div class="nr-nav-links">
+        <a href="/how-it-works.html" class="active">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/access.html" class="nr-nav-cta">Request Access</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="how-hero">
+    <div class="nr-container">
+      <div class="nr-eyebrow" style="color:var(--nr-teal);">How it works</div>
+      <h1>From idea to citable, versioned knowledge infrastructure in five steps</h1>
+      <p>NodeRail is built on three primitives: structured nodes, Git-based version lineage, and permanent DOIs. Here is how they work together.</p>
+    </div>
+  </section>
+
+  <!-- FIVE STEPS -->
+  <section class="nr-section">
+    <div class="nr-container">
+
+      <div class="big-step">
+        <div>
+          <div class="step-label">Step 1</div>
+          <div class="step-big-num">01</div>
+          <h2>Create a Field Node</h2>
+          <p>A Field is the top-level unit in NodeRail. It defines the scope, core constructs, ethics, governance rules, and contribution standards for a domain of knowledge. Think of it as the constitution for a field.</p>
+          <p>Every Field has a Field Founder — the person responsible for its initial architecture. The Field Constitution template ensures every field is structured consistently and can be extended by others.</p>
+          <div class="step-detail">
+            <div class="step-detail-item"><span class="sd-icon">📋</span><p>Field Constitution: scope, constructs, ethics, governance</p></div>
+            <div class="step-detail-item"><span class="sd-icon">🔑</span><p>Canonical Construct Map: every term defined and versioned</p></div>
+            <div class="step-detail-item"><span class="sd-icon">⚖️</span><p>Contribution Standards: who can add nodes and how</p></div>
+          </div>
+        </div>
+        <div>
+          <div class="nr-code-block">
+<span class="c"># Field Node structure</span>
+<span class="k">field:</span>
+  <span class="k">name:</span> <span class="s">"Human Capacity Science"</span>
+  <span class="k">id:</span> <span class="s">"hcs"</span>
+  <span class="k">version:</span> <span class="v">"0.1.0"</span>
+  <span class="k">founder:</span> <span class="s">"Gao Kabubi"</span>
+  <span class="k">status:</span> <span class="s">"draft"</span>
+
+<span class="k">constructs:</span>
+  - <span class="k">name:</span> <span class="s">"Cognitive Load"</span>
+    <span class="k">canonical_def:</span> <span class="s">"v1.0"</span>
+  - <span class="k">name:</span> <span class="s">"Capacity Degradation"</span>
+    <span class="k">canonical_def:</span> <span class="s">"v1.0"</span>
+
+<span class="k">governance:</span>
+  <span class="k">contribution_model:</span> <span class="s">"invite-only"</span>
+  <span class="k">review_required:</span> <span class="v">true</span>
+  <span class="k">doi_on_release:</span> <span class="v">true</span></div>
+        </div>
+      </div>
+
+      <div class="big-step reverse">
+        <div>
+          <div class="step-label">Step 2</div>
+          <div class="step-big-num">02</div>
+          <h2>Publish Nodes Inside the Field</h2>
+          <p>Once a Field exists, contributors can publish three types of nodes inside it: Frameworks, Measurements, and Projects. Each node type has a structured template that ensures consistency and citability.</p>
+          <div class="step-detail">
+            <div class="step-detail-item"><span class="sd-icon">🔧</span><p><strong>Framework:</strong> A reusable method, model, or operational playbook</p></div>
+            <div class="step-detail-item"><span class="sd-icon">📏</span><p><strong>Measurement:</strong> An instrument, index, or scale for measuring a construct</p></div>
+            <div class="step-detail-item"><span class="sd-icon">🎓</span><p><strong>Project:</strong> A capstone, case study, or pilot with a Continuation Hook</p></div>
+          </div>
+        </div>
+        <div>
+          <div class="nr-code-block">
+<span class="c"># Framework Node structure</span>
+<span class="k">framework:</span>
+  <span class="k">name:</span> <span class="s">"Capacity Audit Protocol"</span>
+  <span class="k">id:</span> <span class="s">"hcs-fw-001"</span>
+  <span class="k">version:</span> <span class="v">"1.0.0"</span>
+  <span class="k">field:</span> <span class="s">"hcs"</span>
+  <span class="k">author:</span> <span class="s">"Gao Kabubi"</span>
+
+<span class="k">constructs_used:</span>
+  - <span class="s">"Cognitive Load"</span>
+  - <span class="s">"Capacity Degradation"</span>
+
+<span class="k">links:</span>
+  - <span class="k">type:</span> <span class="s">"supports"</span>
+    <span class="k">target:</span> <span class="s">"hcs-m-001"</span>
+  - <span class="k">type:</span> <span class="s">"depends-on"</span>
+    <span class="k">target:</span> <span class="s">"hcs"</span></div>
+        </div>
+      </div>
+
+      <div class="big-step">
+        <div>
+          <div class="step-label">Step 3</div>
+          <div class="step-big-num">03</div>
+          <h2>Version and Timestamp Every Change</h2>
+          <p>NodeRail uses Git as its version control backbone. Every change to every node is committed with a timestamp, author attribution, and a change log entry. Nothing is ever overwritten — only superseded.</p>
+          <p>This creates a complete, auditable lineage for every piece of intellectual work on the platform. You can always see what changed, when, and why.</p>
+          <div class="step-detail">
+            <div class="step-detail-item"><span class="sd-icon">🕐</span><p>Every commit is timestamped and attributed</p></div>
+            <div class="step-detail-item"><span class="sd-icon">🔀</span><p>Forks preserve the full lineage back to the origin node</p></div>
+            <div class="step-detail-item"><span class="sd-icon">📜</span><p>Change logs are required for every version increment</p></div>
+          </div>
+        </div>
+        <div>
+          <div class="nr-code-block">
+<span class="c"># Git lineage example</span>
+<span class="c"># $ git log --oneline hcs-fw-001.md</span>
+
+<span class="v">a3f9c2b</span> <span class="s">v1.1.0: Add digital load construct</span>
+<span class="v">7e2d1a4</span> <span class="s">v1.0.1: Fix measurement reference</span>
+<span class="v">2b8f6c9</span> <span class="s">v1.0.0: Initial publication</span>
+
+<span class="c"># Each version is a citable snapshot</span>
+<span class="c"># Forks point back to origin commit</span>
+
+<span class="k">lineage:</span>
+  <span class="k">origin:</span> <span class="s">"2b8f6c9"</span>
+  <span class="k">forked_from:</span> <span class="v">null</span>
+  <span class="k">forked_by:</span>
+    - <span class="s">"hcs-fw-002 (v1.0.0)"</span></div>
+        </div>
+      </div>
+
+      <div class="big-step reverse">
+        <div>
+          <div class="step-label">Step 4</div>
+          <div class="step-big-num">04</div>
+          <h2>Issue a Permanent DOI</h2>
+          <p>When a node reaches a stable version, a GitHub Release is created and Zenodo automatically archives the snapshot and issues a permanent Digital Object Identifier (DOI). The node becomes a citable academic artifact.</p>
+          <p>Two DOIs are issued: one for the specific version, and one that always points to the latest version. Both are permanent and will resolve for decades.</p>
+          <div class="step-detail">
+            <div class="step-detail-item"><span class="sd-icon">🔗</span><p>Version DOI: cites this exact snapshot forever</p></div>
+            <div class="step-detail-item"><span class="sd-icon">🔄</span><p>Concept DOI: always points to the latest version</p></div>
+            <div class="step-detail-item"><span class="sd-icon">📚</span><p>Indexed in OpenAIRE, Crossref, and Google Scholar</p></div>
+          </div>
+        </div>
+        <div>
+          <div class="nr-code-block">
+<span class="c"># Citation for NodeRail v0.1</span>
+
+<span class="k">citation:</span>
+  <span class="k">author:</span> <span class="s">"Kabubi, G."</span>
+  <span class="k">year:</span> <span class="v">2026</span>
+  <span class="k">title:</span> <span class="s">"Human Capacity Science</span>
+<span class="s">    (Founder Field v0.1)"</span>
+  <span class="k">publisher:</span> <span class="s">"NodeRail"</span>
+  <span class="k">doi:</span> <span class="s">"10.5281/zenodo.18764766"</span>
+  <span class="k">url:</span> <span class="s">"https://doi.org/10.5281/</span>
+<span class="s">    zenodo.18764766"</span>
+
+<span class="c"># Resolves permanently</span>
+<span class="c"># Indexed in OpenAIRE</span>
+<span class="c"># Archived in Software Heritage</span></div>
+        </div>
+      </div>
+
+      <div class="big-step">
+        <div>
+          <div class="step-label">Step 5</div>
+          <div class="step-big-num">05</div>
+          <h2>Fork, Extend, and Continue</h2>
+          <p>Any node on NodeRail can be forked by another researcher or practitioner. The fork preserves the full lineage back to the origin, so the original author always gets credit. The field grows without losing its roots.</p>
+          <p>Project nodes have a required Continuation Hook — a structured section that explicitly invites the next person to build on the work. This turns every project into a starting point, not an endpoint.</p>
+          <div class="step-detail">
+            <div class="step-detail-item"><span class="sd-icon">🌿</span><p>Forks are first-class nodes with their own DOIs</p></div>
+            <div class="step-detail-item"><span class="sd-icon">🔁</span><p>Continuation Hooks on Project nodes invite the next researcher</p></div>
+            <div class="step-detail-item"><span class="sd-icon">🏆</span><p>Original authors receive attribution in all derivative work</p></div>
+          </div>
+        </div>
+        <div>
+          <div class="step-detail" style="background:var(--nr-off);">
+            <p style="font-size:0.82rem;font-weight:700;margin-bottom:1rem;color:var(--nr-dark);">Four link types between nodes</p>
+            <div class="link-type-row">
+              <span class="link-type-pill lt-supports">✓ supports</span>
+              <span class="link-type-pill lt-depends">↳ depends-on</span>
+              <span class="link-type-pill lt-conflicts">✗ conflicts-with</span>
+              <span class="link-type-pill lt-supersedes">↑ supersedes</span>
+            </div>
+            <p style="font-size:0.82rem;margin-top:1.25rem;">Links are directional, versioned, and part of the node's permanent record. They allow the field to grow as a connected graph, not a pile of documents.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTINUITY STANDARD -->
+  <section class="nr-section-alt">
+    <div class="nr-container">
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <div class="nr-eyebrow">The standard</div>
+        <h2>NodeRail Continuity Standard v0.1</h2>
+        <p style="max-width:560px;margin:0.75rem auto 0;">The minimum requirements for a node to be considered continuity-grade. Every node published on NodeRail must meet all six criteria.</p>
+      </div>
+      <div class="standard-grid">
+        <div class="standard-item">
+          <div class="si-num">01</div>
+          <h4>Structured</h4>
+          <p>Uses the official node template for its type. No freeform documents.</p>
+        </div>
+        <div class="standard-item">
+          <div class="si-num">02</div>
+          <h4>Versioned</h4>
+          <p>Has a semantic version number and a change log for every increment.</p>
+        </div>
+        <div class="standard-item">
+          <div class="si-num">03</div>
+          <h4>Attributed</h4>
+          <p>Has a named author and a named steward. Authorship is never anonymous.</p>
+        </div>
+        <div class="standard-item">
+          <div class="si-num">04</div>
+          <h4>Citable</h4>
+          <p>Has a permanent DOI issued via Zenodo on every stable release.</p>
+        </div>
+        <div class="standard-item">
+          <div class="si-num">05</div>
+          <h4>Linked</h4>
+          <p>Has at least one typed link to another node in its field.</p>
+        </div>
+        <div class="standard-item">
+          <div class="si-num">06</div>
+          <h4>Continuable</h4>
+          <p>Has a Continuation Hook: an explicit invitation for the next contributor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--nr-dark);padding:4rem 0;text-align:center;">
+    <div class="nr-container">
+      <h2 style="color:var(--nr-white);margin-bottom:1rem;">Ready to publish your first node?</h2>
+      <p style="color:#9ca3af;max-width:480px;margin:0 auto 2rem;">NodeRail is in early access. The process takes less than five minutes.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/access.html" class="btn btn-teal">Request Access →</a>
+        <a href="/use-cases.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.25);">See use cases</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="nr-footer">
+    <div class="nr-footer-inner">
+      <div>
+        <div class="nr-footer-logo">NodeRail</div>
+        <p style="font-size:0.82rem;margin-top:0.25rem;">Infrastructure for Intellectual Continuity</p>
+        <p style="font-size:0.78rem;margin-top:1rem;color:#aaa;">v0.1 &nbsp;·&nbsp; &copy; 2026 NodeRail</p>
+      </div>
+      <div class="nr-footer-links">
+        <a href="/">Home</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/access.html">Request Access</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

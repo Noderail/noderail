@@ -7,755 +7,496 @@
   <meta name="description" content="NodeRail is versioned knowledge infrastructure for researchers, practitioners, and students. Publish Fields, Frameworks, Measurements, and Projects with permanent DOIs, Git-based lineage tracking, and academic citation built in.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="NodeRail — Infrastructure for Intellectual Continuity">
-  <meta property="og:description" content="NodeRail gives researchers, practitioners, and students a permanent, citable home for their intellectual work. DOI versioning, Git-based lineage tracking, and academic citation built in.">
+  <meta property="og:description" content="NodeRail gives researchers, practitioners, and students a permanent, citable home for their intellectual work.">
   <meta property="og:url" content="https://noderail.org">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://noderail.org/assets/banner.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NodeRail — Infrastructure for Intellectual Continuity">
-  <meta name="twitter:description" content="Versioned knowledge infrastructure for researchers, practitioners, and students.">
   <link rel="canonical" href="https://noderail.org/">
-
-  <!-- Docsify theme (preloaded, hidden until needed) -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="/assets/nr.css">
 
   <style>
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: auto; overflow: auto; scroll-behavior: smooth; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: #1a1a2e;
-      background: #fff;
-      line-height: 1.65;
+    /* ── Landing-specific ── */
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem 2rem 3rem;
+      background: var(--nr-dark);
+      color: var(--nr-white);
+      position: relative; overflow: hidden;
     }
-    a { color: #1a1a2e; text-decoration: none; }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(45,212,191,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 1080px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--nr-teal);
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow .dot-pulse {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--nr-teal);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1.1; color: var(--nr-white);
+      max-width: 820px; margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--nr-teal); }
+    .hero-sub {
+      font-size: 1.1rem; color: #9ca3af;
+      max-width: 560px; margin-bottom: 2.5rem; line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem; }
+    .hero-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: rgba(255,255,255,0.08); border-radius: var(--nr-radius);
+      overflow: hidden; max-width: 820px;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.04); padding: 1.5rem;
+      transition: background 0.2s;
+    }
+    .hero-card:hover { background: rgba(255,255,255,0.08); }
+    .hero-card-icon { font-size: 1.4rem; margin-bottom: 0.75rem; }
+    .hero-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--nr-white); margin-bottom: 0.4rem; }
+    .hero-card p { font-size: 0.82rem; color: #9ca3af; line-height: 1.5; }
+    @media (max-width: 700px) {
+      .hero-cards { grid-template-columns: 1fr; }
+      .hero { padding: 3rem 1.5rem 2.5rem; min-height: auto; }
+    }
 
-    /* ── Docsify overrides ── */
-    :root { --theme-color: #1a1a2e; }
-    .sidebar { background: #f8f8f8; }
-    .markdown-section h1,
-    .markdown-section h2 { border-bottom: 2px solid #e8e8e8; padding-bottom: 0.3em; }
-    .app-name-link { display: flex; align-items: center; font-weight: 700; font-size: 1.1rem; gap: 8px; }
-    .app-name-link img { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
+    /* ── Problem strip ── */
+    .problem-strip {
+      background: var(--nr-off); border-top: 1px solid var(--nr-border);
+      border-bottom: 1px solid var(--nr-border); padding: 2rem 0;
+      overflow: hidden;
+    }
+    .problem-strip-inner { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+    .problem-strip-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--nr-muted); margin-bottom: 1rem;
+    }
+    .problem-tags { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .problem-tag {
+      font-size: 0.8rem; padding: 0.35rem 0.85rem; border-radius: 20px;
+      border: 1px solid var(--nr-border); color: var(--nr-muted);
+      background: var(--nr-white); white-space: nowrap;
+      transition: all 0.15s; cursor: default;
+    }
+    .problem-tag:hover { border-color: var(--nr-dark); color: var(--nr-dark); }
 
-    /* ── Landing page ── */
-    #static-landing { display: block; overflow: visible; }
+    /* ── How it works preview ── */
+    .steps-row {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+      position: relative;
+    }
+    .steps-row::before {
+      content: '';
+      position: absolute; top: 20px; left: 10%; right: 10%; height: 1px;
+      background: var(--nr-border); z-index: 0;
+    }
+    .step-item { text-align: center; padding: 0 1rem; position: relative; z-index: 1; }
+    .step-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--nr-dark); color: var(--nr-white);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.85rem; margin: 0 auto 1rem;
+      border: 3px solid var(--nr-white);
+    }
+    .step-item h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .step-item p { font-size: 0.78rem; color: var(--nr-muted); }
+    @media (max-width: 700px) {
+      .steps-row { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .steps-row::before { display: none; }
+    }
+
+    /* ── Node types ── */
+    .node-type-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .node-type-card {
+      border: 1px solid var(--nr-border); border-radius: var(--nr-radius);
+      padding: 1.5rem; transition: all 0.2s;
+    }
+    .node-type-card:hover { border-color: var(--nr-dark); box-shadow: var(--nr-shadow); transform: translateY(-2px); }
+    .node-type-card .nt-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--nr-teal-dim); margin-bottom: 0.75rem;
+    }
+    .node-type-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .node-type-card p { font-size: 0.83rem; }
+    @media (max-width: 900px) { .node-type-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .node-type-grid { grid-template-columns: 1fr; } }
+
+    /* ── Founder field ── */
+    .founder-card {
+      background: var(--nr-dark); color: var(--nr-white);
+      border-radius: var(--nr-radius); padding: 3rem;
+      display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .founder-card::after {
+      content: '';
+      position: absolute; right: -60px; top: -60px;
+      width: 240px; height: 240px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(45,212,191,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .founder-card .fc-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--nr-teal); margin-bottom: 0.75rem;
+    }
+    .founder-card h3 { font-size: 1.5rem; font-weight: 800; color: var(--nr-white); margin-bottom: 0.75rem; }
+    .founder-card p { color: #9ca3af; font-size: 0.9rem; line-height: 1.7; }
+    .founder-card .fc-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    @media (max-width: 700px) { .founder-card { grid-template-columns: 1fr; } }
+
+    /* ── CTA section ── */
+    .cta-section {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 5rem 0; text-align: center;
+    }
+    .cta-section h2 { color: var(--nr-white); margin-bottom: 1rem; }
+    .cta-section p { color: #9ca3af; max-width: 520px; margin: 0 auto 2.5rem; }
+
+    /* ── Explore links ── */
+    .explore-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    }
+    .explore-card {
+      border: 1px solid var(--nr-border); border-radius: var(--nr-radius);
+      padding: 1.5rem; transition: all 0.2s; display: block;
+      text-decoration: none; color: inherit;
+    }
+    .explore-card:hover { border-color: var(--nr-dark); box-shadow: var(--nr-shadow); transform: translateY(-2px); }
+    .explore-card .ec-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .explore-card h3 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .explore-card p { font-size: 0.83rem; }
+    .explore-card .ec-arrow { color: var(--nr-muted); font-size: 0.85rem; margin-top: 0.75rem; display: block; }
+    @media (max-width: 700px) { .explore-grid { grid-template-columns: 1fr; } }
+
+    /* ── Docsify ── */
+    #app { display: none; }
     body.docs-mode #static-landing { display: none; }
     body.docs-mode #app { display: block; }
-    #app { display: none; }
-
-    /* Nav */
-    .nr-nav {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 60px;
-      background: #fff; border-bottom: 1px solid #e8e8e8;
-    }
-    .nr-nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      font-weight: 700; font-size: 1.1rem; color: #1a1a2e;
-      text-decoration: none; flex-shrink: 0;
-    }
-    .nr-nav-logo img {
-      width: 40px; height: 32px;
-      object-fit: contain;
-      display: block; flex-shrink: 0;
-    }
-    .nr-nav-links { display: flex; gap: 1.5rem; font-size: 0.9rem; align-items: center; }
-    .nr-nav-links a { color: #555; transition: color 0.2s; white-space: nowrap; }
-    .nr-nav-links a:hover { color: #1a1a2e; }
-    .nr-nav-cta {
-      background: #1a1a2e; color: #fff !important;
-      padding: 0.45rem 1.1rem; border-radius: 6px;
-      font-size: 0.88rem; font-weight: 600;
-    }
-
-    /* Hero */
-    .nr-hero {
-      max-width: 860px; margin: 0 auto;
-      padding: 5rem 2rem 3rem; text-align: center;
-    }
-    .nr-hero-badge {
-      display: inline-block; background: #f0f0f8; color: #1a1a2e;
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
-      text-transform: uppercase; padding: 0.3rem 0.8rem;
-      border-radius: 20px; margin-bottom: 1.5rem;
-    }
-    .nr-hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 800; letter-spacing: -1.5px;
-      line-height: 1.15; margin-bottom: 1.2rem;
-    }
-    .nr-hero p {
-      font-size: 1.1rem; color: #555;
-      max-width: 620px; margin: 0 auto 2.5rem;
-    }
-    .nr-hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: #1a1a2e; color: #fff;
-      padding: 0.75rem 1.8rem; border-radius: 8px;
-      font-weight: 600; font-size: 0.95rem;
-    }
-    .btn-primary:hover { background: #2d2d4e; }
-    .btn-secondary {
-      border: 2px solid #1a1a2e; color: #1a1a2e;
-      padding: 0.72rem 1.8rem; border-radius: 8px;
-      font-weight: 600; font-size: 0.95rem;
-    }
-    .btn-secondary:hover { background: #1a1a2e; color: #fff; }
-
-    /* Status bar */
-    .nr-status {
-      max-width: 860px; margin: 0 auto 3rem;
-      padding: 0 2rem;
-      display: flex; gap: 1.5rem 2rem;
-      justify-content: center; flex-wrap: wrap;
-      font-size: 0.85rem; color: #777;
-    }
-    .nr-status-item { display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-    .dot-live { background: #22c55e; }
-    .dot-beta { background: #f59e0b; }
-
-    /* Divider */
-    .nr-divider { border: none; border-top: 1px solid #e8e8e8; margin: 0 2rem; }
-
-    /* Section base */
-    .nr-section { max-width: 960px; margin: 0 auto; padding: 4rem 2rem; }
-    .nr-section-alt { background: #f8f8fc; padding: 4rem 2rem; }
-    .nr-section-alt .nr-section-inner { max-width: 960px; margin: 0 auto; }
-    .nr-section h2, .nr-section-inner h2 {
-      text-align: center; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem;
-    }
-    .nr-section .sub, .nr-section-inner .sub {
-      text-align: center; color: #777; margin-bottom: 2.5rem; font-size: 0.95rem;
-    }
-
-    /* Capabilities */
-    .nr-caps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-    .nr-cap-card { background: #f8f8fc; border: 1px solid #e8e8f0; border-radius: 12px; padding: 1.5rem; }
-    .nr-cap-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .nr-cap-card p { font-size: 0.88rem; color: #555; }
-
-    /* Node types table */
-    .nr-node-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    .nr-node-table th { text-align: left; padding: 0.75rem 1rem; background: #1a1a2e; color: #fff; font-weight: 600; }
-    .nr-node-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #e8e8e8; vertical-align: top; }
-    .nr-node-table tr:last-child td { border-bottom: none; }
-    .nr-node-table tr:hover td { background: #f0f0f8; }
-    .nr-node-table th:first-child { border-radius: 8px 0 0 0; }
-    .nr-node-table th:last-child { border-radius: 0 8px 0 0; }
-    .tag { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; background: #e8e8f8; color: #1a1a2e; }
-
-    /* Founder field */
-    .nr-founder-card { background: #1a1a2e; color: #fff; border-radius: 16px; padding: 2.5rem; text-align: left; position: relative; }
-    .nr-founder-card .label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin-bottom: 0.5rem; }
-    .nr-founder-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; }
-    .nr-founder-card p { color: #ccc; font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.5rem; }
-    .nr-founder-card a { display: inline-block; background: #fff; color: #1a1a2e; padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 700; font-size: 0.88rem; }
-    .draft-badge {
-      display: inline-block; background: #f59e0b; color: #1a1a2e;
-      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em;
-      text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px;
-      margin-left: 0.6rem; vertical-align: middle;
-    }
-
-    /* How it works */
-    .nr-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-    .nr-step-num { width: 36px; height: 36px; border-radius: 50%; background: #1a1a2e; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; margin-bottom: 0.75rem; }
-    .nr-step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .nr-step p { font-size: 0.85rem; color: #666; }
-
-    /* Problem Index */
-    .nr-problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
-    .nr-problem-item { border-left: 3px solid #1a1a2e; padding: 0.8rem 1rem; background: #fff; border-radius: 0 8px 8px 0; }
-    .nr-problem-item h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; }
-    .nr-problem-item p { font-size: 0.82rem; color: #666; }
-
-    /* Glossary */
-    .nr-glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
-    .nr-glossary-item { border: 1px solid #e8e8f0; border-radius: 10px; padding: 1.2rem; }
-    .nr-glossary-item h4 { font-size: 0.9rem; font-weight: 700; color: #1a1a2e; margin-bottom: 0.3rem; }
-    .nr-glossary-item p { font-size: 0.82rem; color: #555; }
-    .nr-glossary-item .related { font-size: 0.75rem; color: #999; margin-top: 0.4rem; }
-
-    /* FAQ */
-    .nr-faq { max-width: 720px; margin: 0 auto; }
-    .nr-faq-item { border-bottom: 1px solid #e8e8e8; padding: 1.2rem 0; }
-    .nr-faq-item:last-child { border-bottom: none; }
-    .nr-faq-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .nr-faq-item p { font-size: 0.88rem; color: #555; }
-
-    /* Use Cases */
-    .nr-use-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-    .nr-use-card { border: 1px solid #e8e8f0; border-radius: 12px; padding: 1.5rem; }
-    .nr-use-card .uc-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1a1a2e; margin-bottom: 0.5rem; }
-    .nr-use-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .nr-use-card p { font-size: 0.85rem; color: #555; }
-
-    /* Standard */
-    .nr-standard-box { background: #1a1a2e; color: #fff; border-radius: 16px; padding: 2.5rem; }
-    .nr-standard-box h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .nr-standard-box .std-sub { color: #aaa; font-size: 0.88rem; margin-bottom: 1.5rem; }
-    .nr-standard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-    .nr-standard-item { background: rgba(255,255,255,0.07); border-radius: 8px; padding: 1rem; }
-    .nr-standard-item h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .nr-standard-item p { font-size: 0.78rem; color: #bbb; }
-
-    /* Resources */
-    .nr-resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
-    .nr-resource-card { border: 1px solid #e8e8f0; border-radius: 12px; padding: 1.5rem; text-align: center; }
-    .nr-resource-card .rc-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .nr-resource-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .nr-resource-card p { font-size: 0.82rem; color: #777; margin-bottom: 1rem; }
-    .rc-soon { display: inline-block; font-size: 0.72rem; font-weight: 700; background: #f0f0f8; color: #999; padding: 0.2rem 0.6rem; border-radius: 4px; }
-
-    /* CTA */
-    .nr-cta { max-width: 700px; margin: 0 auto; padding: 5rem 2rem; text-align: center; }
-    .nr-cta h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; }
-    .nr-cta p { color: #555; margin-bottom: 2rem; font-size: 1rem; }
-
-    /* Footer */
-    .nr-footer { border-top: 1px solid #e8e8e8; padding: 2rem; text-align: center; font-size: 0.82rem; color: #999; }
-    .nr-footer a { color: #777; }
-
-    /* Responsive */
-    @media (max-width: 640px) {
-      .nr-nav-links { display: none; }
-      .nr-hero { padding: 3rem 1.5rem 2rem; }
-      .nr-status { gap: 0.75rem 1.2rem; }
-    }
+    :root { --theme-color: #1a1a2e; }
+    .sidebar { background: #f8f8f8; }
+    .app-name-link { display: flex; align-items: center; font-weight: 700; font-size: 1.1rem; gap: 8px; }
+    .app-name-link img { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
   </style>
 
-  <!-- JSON-LD Schema Markup -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "name": "NodeRail",
-        "url": "https://noderail.org",
-        "logo": "https://noderail.org/assets/logo.png",
-        "description": "NodeRail is versioned knowledge infrastructure for researchers, practitioners, and students. Publish Fields, Frameworks, Measurements, and Projects with permanent DOIs and Git-based lineage tracking.",
-        "founder": {
-          "@type": "Person",
-          "name": "Gao Kabubi"
-        }
-      },
-      {
-        "@type": "WebSite",
-        "name": "NodeRail",
-        "url": "https://noderail.org",
-        "description": "Infrastructure for Intellectual Continuity"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is NodeRail?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "NodeRail is versioned knowledge infrastructure. It gives researchers, practitioners, and students a permanent, citable home for their intellectual work, with DOI versioning, Git-based lineage tracking, and academic citation built in."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What problem does NodeRail solve?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "NodeRail solves intellectual continuity failure: the pattern where ideas, definitions, frameworks, and research get lost, duplicated, or fragmented across tools, teams, and time. It provides structured, versioned, citable infrastructure so intellectual work compounds instead of restarting."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How is NodeRail different from a wiki or docs platform?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Wikis and docs platforms store text. NodeRail stores structured intellectual units (nodes) with version lineage, DOI citation, governance metadata, and explicit links between concepts. Every node is citable, forkable, and traceable to its origin."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Who should use NodeRail?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "NodeRail is built for researchers building new fields, practitioners documenting frameworks and methods, students publishing capstone and project work, and organisations that need institutional knowledge to compound rather than reset."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is intellectual continuity?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Intellectual continuity is the property of a body of knowledge that allows it to be extended, built upon, and cited over time without losing its lineage, definitions, or authorship trail. It is the opposite of documentation debt, concept drift, and knowledge fragmentation."
-            }
-          }
-        ]
-      }
-    ]
-  }
+  {"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"NodeRail","url":"https://noderail.org","logo":"https://noderail.org/assets/logo.png","description":"NodeRail is versioned knowledge infrastructure for researchers, practitioners, and students.","founder":{"@type":"Person","name":"Gao Kabubi"}},{"@type":"WebSite","name":"NodeRail","url":"https://noderail.org","description":"Infrastructure for Intellectual Continuity"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is NodeRail?","acceptedAnswer":{"@type":"Answer","text":"NodeRail is versioned knowledge infrastructure. It gives researchers, practitioners, and students a permanent, citable home for their intellectual work, with DOI versioning, Git-based lineage tracking, and academic citation built in."}},{"@type":"Question","name":"What problem does NodeRail solve?","acceptedAnswer":{"@type":"Answer","text":"NodeRail solves intellectual continuity failure: the pattern where ideas, definitions, frameworks, and research get lost, duplicated, or fragmented across tools, teams, and time."}},{"@type":"Question","name":"How is NodeRail different from a wiki?","acceptedAnswer":{"@type":"Answer","text":"Wikis store text. NodeRail stores structured intellectual units with version lineage, DOI citation, governance metadata, and explicit links between concepts."}}]}]}
   </script>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════
+<!-- ══════════════════════════════════════
      STATIC LANDING PAGE
-═══════════════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <div id="static-landing">
 
+  <!-- NAV -->
   <nav class="nr-nav">
-    <a href="/" class="nr-nav-logo">
-      <img src="assets/logo.png" alt="NodeRail">
-      NodeRail
-    </a>
-    <div class="nr-nav-links">
-      <a href="#how-it-works">How it works</a>
-      <a href="#glossary">Glossary</a>
-      <a href="#use-cases">Use cases</a>
-      <a href="#faq">FAQ</a>
-      <a href="#" onclick="goToDocs(''); return false;">Docs</a>
-      <a href="#" class="nr-nav-cta" onclick="goToDocs('/access'); return false;">Request Access</a>
+    <div class="nr-nav-inner">
+      <a href="/" class="nr-nav-logo">
+        <img src="/assets/logo.png" alt="NodeRail">
+        NodeRail
+      </a>
+      <div class="nr-nav-links">
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="#" onclick="goToDocs(''); return false;">Docs</a>
+        <a href="/access.html" class="nr-nav-cta">Request Access</a>
+      </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <section class="nr-hero">
-    <div class="nr-hero-badge">v0.1 · Now Live</div>
-    <h1>Infrastructure for<br>Intellectual Continuity</h1>
-    <p>NodeRail gives researchers, practitioners, and students a permanent, citable home for their intellectual work. DOI versioning, Git-based lineage tracking, and academic citation built in.</p>
-    <div class="nr-hero-actions">
-      <a href="#how-it-works" class="btn-primary">See how it works</a>
-      <a href="#" class="btn-secondary" onclick="goToDocs(''); return false;">Read the Docs</a>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span class="dot-pulse"></span>
+        v0.1 · Now Live · DOI Issued
+      </div>
+      <h1>Infrastructure for<br><em>Intellectual Continuity</em></h1>
+      <p class="hero-sub">NodeRail gives researchers, practitioners, and students a permanent, citable home for their intellectual work. DOI versioning, Git-based lineage tracking, and academic citation built in.</p>
+      <div class="hero-actions">
+        <a href="/how-it-works.html" class="btn btn-teal">See how it works →</a>
+        <a href="/why-noderail.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.25);">Why NodeRail</a>
+        <a href="#" onclick="goToDocs(''); return false;" class="btn btn-outline" style="color:#9ca3af;border-color:rgba(255,255,255,0.15);font-size:0.85rem;">Read the Docs</a>
+      </div>
+      <div class="hero-cards">
+        <div class="hero-card">
+          <div class="hero-card-icon">🔗</div>
+          <h3>Permanent DOIs</h3>
+          <p>Every node version receives a DOI via Zenodo. Your work becomes a citable artifact, not a link that breaks.</p>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-icon">🌿</div>
+          <h3>Git Lineage</h3>
+          <p>Every contribution is timestamped and version-controlled. Fork, extend, or adopt with full lineage preserved.</p>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-icon">🏗</div>
+          <h3>Structured Nodes</h3>
+          <p>Fields, Frameworks, Measurements, and Projects are structured units that connect and compound over time.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="nr-status">
-    <span class="nr-status-item"><span class="dot dot-live"></span> Site live at noderail.org</span>
-    <span class="nr-status-item"><span class="dot dot-live"></span> DOI issued: 10.5281/zenodo.18764766</span>
-    <span class="nr-status-item"><span class="dot dot-beta"></span> Open for access requests</span>
+  <!-- PROBLEM STRIP -->
+  <div class="problem-strip">
+    <div class="problem-strip-inner">
+      <div class="problem-strip-label">NodeRail addresses these failure modes</div>
+      <div class="problem-tags">
+        <span class="problem-tag">Concept Drift</span>
+        <span class="problem-tag">Documentation Debt</span>
+        <span class="problem-tag">Founder Dependency</span>
+        <span class="problem-tag">Dead Docs</span>
+        <span class="problem-tag">Knowledge Fragmentation</span>
+        <span class="problem-tag">Version Confusion</span>
+        <span class="problem-tag">Context Loss at Handoff</span>
+        <span class="problem-tag">Capstone Waste</span>
+        <span class="problem-tag">Duplicate Definitions</span>
+      </div>
+    </div>
   </div>
 
-  <hr class="nr-divider">
-
-  <!-- WHAT IS NODERAIL -->
-  <section class="nr-section" id="what-is-noderail">
-    <h2>What is NodeRail?</h2>
-    <p class="sub">A direct answer, not a pitch.</p>
-    <div style="max-width:720px;margin:0 auto;">
-      <p style="font-size:1rem;color:#333;margin-bottom:1.2rem;">NodeRail is <strong>versioned knowledge infrastructure</strong>. It is a system for publishing, linking, and preserving intellectual work in structured units called nodes, each with a permanent identifier, a version history, and an explicit lineage back to its origin.</p>
-      <p style="font-size:1rem;color:#333;margin-bottom:1.2rem;">Most tools store documents. NodeRail stores <strong>intellectual continuity</strong>: the property that allows a body of work to be extended, built upon, and cited over time without losing its definitions, authorship, or lineage.</p>
-      <p style="font-size:1rem;color:#333;">NodeRail is not a wiki, a note-taking app, a research database, or a CMS. It is infrastructure for fields, frameworks, measurements, and projects that need to compound rather than restart.</p>
-    </div>
-  </section>
-
-  <hr class="nr-divider">
-
-  <!-- WHAT NODERAIL PROVIDES -->
+  <!-- HOW IT WORKS PREVIEW -->
   <section class="nr-section">
-    <h2>What NodeRail Provides</h2>
-    <p class="sub"></p>
-    <div class="nr-caps-grid">
-      <div class="nr-cap-card">
-        <h3>Permanent DOIs &amp; Citation</h3>
-        <p>Every node version receives a permanent Digital Object Identifier via Zenodo integration. Your work becomes a citable academic artifact, not a link that breaks.</p>
+    <div class="nr-container">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <div class="nr-eyebrow">How it works</div>
+        <h2>Five steps from idea to citable infrastructure</h2>
       </div>
-      <div class="nr-cap-card">
-        <h3>Git-Based Lineage Tracking</h3>
-        <p>Every contribution is timestamped and version-controlled. Fork, extend, or adopt any node while preserving a complete, auditable lineage back to the origin.</p>
+      <div class="steps-row">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <h4>Create a Field</h4>
+          <p>Define scope, constructs, ethics, and governance</p>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <h4>Publish Nodes</h4>
+          <p>Add Frameworks, Measurements, and Projects</p>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <h4>Version It</h4>
+          <p>Every change is timestamped in Git</p>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <h4>Issue a DOI</h4>
+          <p>Each release receives a permanent DOI via Zenodo</p>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <h4>Fork &amp; Continue</h4>
+          <p>Others extend your work with full lineage preserved</p>
+        </div>
       </div>
-      <div class="nr-cap-card">
-        <h3>Structured Node Architecture</h3>
-        <p>Fields, Frameworks, Measurements, and Projects are structured units, not freeform documents. They connect through citations and lineage, so progress compounds.</p>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="/how-it-works.html" class="btn btn-outline">Full walkthrough →</a>
       </div>
     </div>
   </section>
 
   <hr class="nr-divider">
 
-  <!-- FOUR NODE TYPES -->
-  <section class="nr-section-alt" id="node-types">
-    <div class="nr-section-inner">
-      <h2>Four Node Types</h2>
-      <p class="sub">Each node type is a structured, citable unit of intellectual work.</p>
-      <table class="nr-node-table">
-        <thead>
-          <tr><th>Node Type</th><th>What it is</th><th>Who publishes it</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="tag">Field</span></td><td>Defines a field: scope, constructs, ethics, governance, and a constitution for contributions</td><td>Field founders</td></tr>
-          <tr><td><span class="tag">Framework</span></td><td>A reusable method, model, or operational playbook inside a field</td><td>Researchers &amp; practitioners</td></tr>
-          <tr><td><span class="tag">Measurement</span></td><td>An instrument, index, or scale for measuring a construct inside a field</td><td>Researchers &amp; practitioners</td></tr>
-          <tr><td><span class="tag">Project</span></td><td>A student project, capstone, case study, replication, or pilot with a required Continuation Hook</td><td>Students &amp; early researchers</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- FOUNDER FIELD (HCS as draft) -->
-  <section class="nr-section" id="founder-field" style="text-align:center;">
-    <h2>Founder Field</h2>
-    <p class="sub">The first field being built on NodeRail, setting the standard for all future fields.</p>
-    <div class="nr-founder-card">
-      <div class="label">Founder Field · In Development <span class="draft-badge">Draft</span></div>
-      <h3>Human Capacity Science (HCS)</h3>
-      <p>HCS is the measurement and design of cognitive, emotional, and digital load so capacity does not silently degrade into burnout, errors, or disengagement. Founded by Gao Kabubi, HCS is the first field to be built on NodeRail, with a complete Field Constitution, Construct Map, Measurement Philosophy, and Ethics Charter in development. The field is not yet open for public contribution.</p>
-      <a href="#" onclick="goToDocs('/hcs/'); return false;">Preview HCS Field →</a>
-    </div>
-  </section>
-
-  <hr class="nr-divider">
-
-  <!-- HOW IT WORKS -->
-  <section class="nr-section-alt" id="how-it-works">
-    <div class="nr-section-inner">
-      <h2>How NodeRail Works</h2>
-      <p class="sub">Five steps from idea to citable, versioned knowledge infrastructure.</p>
-      <div class="nr-steps">
-        <div class="nr-step"><div class="nr-step-num">1</div><h3>Create a Field</h3><p>Define scope, constructs, ethics, and governance using the Field Constitution template.</p></div>
-        <div class="nr-step"><div class="nr-step-num">2</div><h3>Publish Nodes</h3><p>Add Frameworks, Measurements, and Projects inside your Field using structured templates.</p></div>
-        <div class="nr-step"><div class="nr-step-num">3</div><h3>Version &amp; Timestamp</h3><p>Every change is recorded in Git with a permanent timestamp. Your contribution is protected.</p></div>
-        <div class="nr-step"><div class="nr-step-num">4</div><h3>Issue a DOI</h3><p>Each release receives a permanent DOI via Zenodo, making your node a citable academic artifact.</p></div>
-        <div class="nr-step"><div class="nr-step-num">5</div><h3>Fork &amp; Continue</h3><p>Others can fork, adopt, or extend your node, with full lineage preserved back to you.</p></div>
+  <!-- NODE TYPES -->
+  <section class="nr-section-alt">
+    <div class="nr-container">
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <div class="nr-eyebrow">Node types</div>
+        <h2>Four structured units of intellectual work</h2>
       </div>
-    </div>
-  </section>
-
-  <hr class="nr-divider">
-
-  <!-- PROBLEM INDEX -->
-  <section class="nr-section" id="problem-index">
-    <h2>The Intellectual Continuity Problem Index</h2>
-    <p class="sub">Nine recurring failure modes that NodeRail is designed to prevent.</p>
-    <div class="nr-problem-grid">
-      <div class="nr-problem-item">
-        <h4>Concept Drift</h4>
-        <p>A term's meaning shifts gradually across documents, teams, or time without anyone noticing. Decisions get made on incompatible definitions.</p>
-      </div>
-      <div class="nr-problem-item">
-        <h4>Documentation Debt</h4>
-        <p>Work accumulates faster than it gets documented. The gap between what was done and what is recorded grows until the knowledge is effectively lost.</p>
-      </div>
-      <div class="nr-problem-item">
-        <h4>Founder Dependency</h4>
-        <p>Critical knowledge lives only in one person's head. When they leave, the work cannot be continued without starting over.</p>
-      </div>
-      <div class="nr-problem-item">
-        <h4>Duplicate Definitions</h4>
-        <p>The same construct gets defined differently in different documents. No canonical version exists. Teams operate on conflicting assumptions.</p>
-      </div>
-      <div class="nr-problem-item">
-        <h4>Dead Docs</h4>
-        <p>Documents exist but are no longer maintained, linked, or trusted. They create noise and false confidence without adding continuity.</p>
-      </div>
-      <div class="nr-problem-item">
-        <h4>Knowledge Fragmentation</h4>
-        <p>Intellectual work is scattered across chat threads, email, slides, and wikis with no connective structure. Retrieval is impossible at scale.</p>
-      </div>
-      <div class="nr-problem-item">
-        <h4>Version Confusion</h4>
-        <p>Multiple versions of a framework or model circulate without clear lineage. People cite different versions without knowing they disagree.</p>
-      </div>
-      <div class="nr-problem-item">
-        <h4>Context Loss at Handoff</h4>
-        <p>When a project changes hands, the reasoning behind decisions is lost. The new owner inherits outputs without the thinking that produced them.</p>
-      </div>
-      <div class="nr-problem-item">
-        <h4>Capstone Waste</h4>
-        <p>Students and researchers produce high-quality work that gets graded or reviewed, then archived and forgotten. The next cohort starts from scratch.</p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="nr-divider">
-
-  <!-- GLOSSARY -->
-  <section class="nr-section-alt" id="glossary">
-    <div class="nr-section-inner">
-      <h2>NodeRail Glossary</h2>
-      <p class="sub">The vocabulary of intellectual continuity infrastructure.</p>
-      <div class="nr-glossary-grid">
-        <div class="nr-glossary-item">
-          <h4>Intellectual Continuity</h4>
-          <p>The property of a body of knowledge that allows it to be extended, built upon, and cited over time without losing its lineage, definitions, or authorship trail.</p>
-          <div class="related">Related: Version Lineage, Continuity Debt</div>
+      <div class="node-type-grid">
+        <div class="node-type-card">
+          <div class="nt-label">Field</div>
+          <h3>Field Node</h3>
+          <p>Defines a domain: scope, constructs, ethics, governance, and a constitution for contributions.</p>
         </div>
-        <div class="nr-glossary-item">
-          <h4>Node</h4>
-          <p>A structured, citable unit of intellectual work on NodeRail. Each node has a type (Field, Framework, Measurement, or Project), a version history, and a permanent identifier.</p>
-          <div class="related">Related: Field Infrastructure, Link Type</div>
+        <div class="node-type-card">
+          <div class="nt-label">Framework</div>
+          <h3>Framework Node</h3>
+          <p>A reusable method, model, or operational playbook inside a field. Citable and forkable.</p>
         </div>
-        <div class="nr-glossary-item">
-          <h4>Canonical Definition</h4>
-          <p>The authoritative, versioned definition of a term or construct within a field. A canonical definition has an owner, a version number, and a change log.</p>
-          <div class="related">Related: Concept Drift, Stewardship</div>
+        <div class="node-type-card">
+          <div class="nt-label">Measurement</div>
+          <h3>Measurement Node</h3>
+          <p>An instrument, index, or scale for measuring a construct. Versioned and linked to its field.</p>
         </div>
-        <div class="nr-glossary-item">
-          <h4>Concept Drift</h4>
-          <p>The gradual, untracked shift in the meaning of a term or construct across documents, teams, or time. One of the most common and costly forms of intellectual continuity failure.</p>
-          <div class="related">Related: Canonical Definition, Taxonomy Drift</div>
-        </div>
-        <div class="nr-glossary-item">
-          <h4>Version Lineage</h4>
-          <p>The traceable chain of versions of a node, from its origin to its current state. Version lineage preserves the authorship trail and allows anyone to see how a concept evolved.</p>
-          <div class="related">Related: Node, Intellectual Continuity</div>
-        </div>
-        <div class="nr-glossary-item">
-          <h4>Field Infrastructure</h4>
-          <p>The structured system of definitions, governance, contribution standards, and citation norms that allows a field of knowledge to grow coherently over time.</p>
-          <div class="related">Related: Node, Stewardship</div>
-        </div>
-        <div class="nr-glossary-item">
-          <h4>Taxonomy Drift</h4>
-          <p>The gradual misalignment of a classification system as new terms are added without governance. Related to concept drift but applies to the structure of categories, not just individual terms.</p>
-          <div class="related">Related: Concept Drift, Canonical Definition</div>
-        </div>
-        <div class="nr-glossary-item">
-          <h4>Link Type</h4>
-          <p>The explicit relationship between two nodes. NodeRail supports four link types: supports, depends-on, conflicts-with, and supersedes. Links are directional and versioned.</p>
-          <div class="related">Related: Node, Version Lineage</div>
-        </div>
-        <div class="nr-glossary-item">
-          <h4>Stewardship</h4>
-          <p>The responsibility for maintaining, updating, and governing a node over time. A steward is not necessarily the original author, but is accountable for the node's continuity.</p>
-          <div class="related">Related: Field Infrastructure, Canonical Definition</div>
-        </div>
-        <div class="nr-glossary-item">
-          <h4>Continuity Debt</h4>
-          <p>The accumulated gap between the intellectual work that has been done and the work that has been properly documented, versioned, and linked. Continuity debt compounds over time.</p>
-          <div class="related">Related: Documentation Debt, Intellectual Continuity</div>
+        <div class="node-type-card">
+          <div class="nt-label">Project</div>
+          <h3>Project Node</h3>
+          <p>A capstone, case study, or pilot with a required Continuation Hook so work compounds.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <hr class="nr-divider">
-
-  <!-- USE CASES -->
-  <section class="nr-section" id="use-cases">
-    <h2>Who NodeRail Is For</h2>
-    <p class="sub">NodeRail is built for anyone whose intellectual work needs to compound, not reset.</p>
-    <div class="nr-use-grid">
-      <div class="nr-use-card">
-        <div class="uc-label">Researchers &amp; Field Builders</div>
-        <h3>Build a field that compounds</h3>
-        <p>Publish a Field Constitution, define constructs, and create a citable home for your methodology. Every contribution is versioned, attributed, and linkable from day one.</p>
+  <!-- FOUNDER FIELD -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <div class="nr-eyebrow">Founder Field</div>
+        <h2>The first field being built on NodeRail</h2>
       </div>
-      <div class="nr-use-card">
-        <div class="uc-label">Practitioners &amp; Consultants</div>
-        <h3>Document frameworks that survive handoffs</h3>
-        <p>Publish frameworks and methods as structured nodes with canonical definitions. When you hand off a project, the reasoning survives with the output.</p>
-      </div>
-      <div class="nr-use-card">
-        <div class="uc-label">Students &amp; Early Researchers</div>
-        <h3>Turn capstone work into citable infrastructure</h3>
-        <p>Publish project nodes that future students can build on. Your work gets a DOI, a lineage record, and a Continuation Hook so the next cohort can extend rather than restart.</p>
-      </div>
-      <div class="nr-use-card">
-        <div class="uc-label">Universities &amp; Research Centres</div>
-        <h3>Stop losing compounding value every semester</h3>
-        <p>NodeRail gives institutions a continuity layer for academic project ecosystems. Student work becomes institutional knowledge, not a graded PDF in a folder.</p>
-      </div>
-      <div class="nr-use-card">
-        <div class="uc-label">Think Tanks &amp; Policy Organisations</div>
-        <h3>Preserve institutional memory across staff turnover</h3>
-        <p>When staff rotate, frameworks and definitions should not leave with them. NodeRail makes institutional knowledge portable, versioned, and citable.</p>
-      </div>
-      <div class="nr-use-card">
-        <div class="uc-label">Interdisciplinary Teams</div>
-        <h3>Align definitions across disciplines</h3>
-        <p>When fields overlap, terminology conflicts. NodeRail's canonical definition system and link types let teams surface and resolve definitional conflicts explicitly.</p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="nr-divider">
-
-  <!-- CONTINUITY STANDARD -->
-  <section class="nr-section-alt" id="standard">
-    <div class="nr-section-inner">
-      <h2>NodeRail Continuity Standard v0.1</h2>
-      <p class="sub">A lightweight public standard for structuring intellectual work so it can compound over time.</p>
-      <div class="nr-standard-box">
-        <h3>Minimum requirements for a NodeRail node</h3>
-        <p class="std-sub">Any node published on NodeRail must meet these six requirements to qualify as continuity-grade intellectual infrastructure.</p>
-        <div class="nr-standard-grid">
-          <div class="nr-standard-item">
-            <h4>1. Node Metadata</h4>
-            <p>Every node must declare: node_id, node_type, title, status, created_by, created_at, version, and license.</p>
-          </div>
-          <div class="nr-standard-item">
-            <h4>2. Canonical Definition</h4>
-            <p>Every construct or term introduced in a node must have a canonical definition with an owner and a version number.</p>
-          </div>
-          <div class="nr-standard-item">
-            <h4>3. Version Lineage</h4>
-            <p>Every node must declare its lineage: parent nodes, adopted sources, and forked origins. Lineage cannot be empty without explicit justification.</p>
-          </div>
-          <div class="nr-standard-item">
-            <h4>4. Change Log</h4>
-            <p>Every version update must include a change note explaining what changed and why. Silent updates are not permitted.</p>
-          </div>
-          <div class="nr-standard-item">
-            <h4>5. Link Relations</h4>
-            <p>Nodes that depend on, support, conflict with, or supersede other nodes must declare those relationships explicitly using NodeRail link types.</p>
-          </div>
-          <div class="nr-standard-item">
-            <h4>6. Stewardship</h4>
-            <p>Every node must have a named steward responsible for its maintenance. Stewardship can be transferred but cannot be vacant.</p>
+      <div class="founder-card">
+        <div>
+          <div class="fc-label">Founder Field &nbsp;·&nbsp; <span style="background:#fef3c7;color:#92400e;padding:0.15rem 0.5rem;border-radius:4px;font-size:0.7rem;">DRAFT</span></div>
+          <h3>Human Capacity Science (HCS)</h3>
+          <p>HCS is the measurement and design of cognitive, emotional, and digital load so capacity does not silently degrade into burnout, errors, or disengagement. Founded by Gao Kabubi. The first field to be built on NodeRail, with a complete Field Constitution, Construct Map, Measurement Philosophy, and Ethics Charter in development.</p>
+          <div class="fc-actions">
+            <a href="#" onclick="goToDocs('/hcs/'); return false;" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.25);font-size:0.85rem;">Preview HCS Field →</a>
           </div>
         </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-size:0.75rem;color:#6b7280;margin-bottom:0.5rem;">DOI</div>
+          <div style="font-family:var(--nr-mono);font-size:0.78rem;color:#9ca3af;">10.5281/zenodo<br>.18764766</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <hr class="nr-divider">
-
-  <!-- FAQ -->
-  <section class="nr-section" id="faq">
-    <h2>Frequently Asked Questions</h2>
-    <p class="sub">Direct answers to the most common questions about NodeRail.</p>
-    <div class="nr-faq">
-      <div class="nr-faq-item">
-        <h4>What is NodeRail?</h4>
-        <p>NodeRail is versioned knowledge infrastructure. It gives researchers, practitioners, and students a permanent, citable home for their intellectual work, with DOI versioning, Git-based lineage tracking, and academic citation built in.</p>
+  <!-- EXPLORE PAGES -->
+  <section class="nr-section-alt">
+    <div class="nr-container">
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <div class="nr-eyebrow">Explore NodeRail</div>
+        <h2>Go deeper on any dimension</h2>
       </div>
-      <div class="nr-faq-item">
-        <h4>What problem does NodeRail solve?</h4>
-        <p>NodeRail solves intellectual continuity failure: the pattern where ideas, definitions, frameworks, and research get lost, duplicated, or fragmented across tools, teams, and time. It provides structured, versioned, citable infrastructure so intellectual work compounds instead of restarting.</p>
-      </div>
-      <div class="nr-faq-item">
-        <h4>How is NodeRail different from a wiki?</h4>
-        <p>Wikis store text. NodeRail stores structured intellectual units (nodes) with version lineage, DOI citation, governance metadata, and explicit links between concepts. Every node is citable, forkable, and traceable to its origin. A wiki page has no lineage, no canonical definition system, and no DOI.</p>
-      </div>
-      <div class="nr-faq-item">
-        <h4>How is NodeRail different from a knowledge management tool?</h4>
-        <p>Knowledge management tools organise information for retrieval. NodeRail organises intellectual work for continuity: the ability to extend, build upon, and cite work over time without losing its lineage. The difference is between storage and compounding.</p>
-      </div>
-      <div class="nr-faq-item">
-        <h4>What is intellectual continuity?</h4>
-        <p>Intellectual continuity is the property of a body of knowledge that allows it to be extended, built upon, and cited over time without losing its lineage, definitions, or authorship trail. It is the opposite of documentation debt, concept drift, and knowledge fragmentation.</p>
-      </div>
-      <div class="nr-faq-item">
-        <h4>Who should use NodeRail?</h4>
-        <p>NodeRail is built for researchers building new fields, practitioners documenting frameworks and methods, students publishing capstone and project work, and organisations that need institutional knowledge to compound rather than reset.</p>
-      </div>
-      <div class="nr-faq-item">
-        <h4>Is NodeRail free?</h4>
-        <p>NodeRail v0.1 is in early access. Submit a request and Gao Kabubi will review it personally. Pricing and access tiers will be announced with v0.2.</p>
-      </div>
-      <div class="nr-faq-item">
-        <h4>Can students use NodeRail for capstone projects?</h4>
-        <p>Yes. The Project node type is specifically designed for student capstones, applied research, and pilots. Each project node includes a Continuation Hook so future students can extend the work rather than start over.</p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="nr-divider">
-
-  <!-- RESOURCES -->
-  <section class="nr-section-alt" id="resources">
-    <div class="nr-section-inner">
-      <h2>Resources</h2>
-      <p class="sub">Ways to understand, evaluate, and share NodeRail.</p>
-      <div class="nr-resources-grid">
-        <div class="nr-resource-card">
-          <div class="rc-icon">📄</div>
-          <h3>Platform Brief</h3>
-          <p>A one-page overview of NodeRail for partners, institutions, and collaborators.</p>
-          <span class="rc-soon">Coming soon</span>
-        </div>
-        <div class="nr-resource-card">
-          <div class="rc-icon">🎥</div>
-          <h3>Intro Video</h3>
-          <p>A short founder walkthrough: what NodeRail is, why it exists, and how it works.</p>
-          <span class="rc-soon">Coming soon</span>
-        </div>
-        <div class="nr-resource-card">
-          <div class="rc-icon">📊</div>
-          <h3>Overview Deck</h3>
-          <p>A shareable presentation covering the problem, the method, and the v0.1 state.</p>
-          <span class="rc-soon">Coming soon</span>
-        </div>
-        <div class="nr-resource-card">
-          <div class="rc-icon">📋</div>
-          <h3>Continuity Audit Checklist</h3>
-          <p>A self-assessment tool to identify where intellectual continuity is breaking in your work or organisation.</p>
-          <span class="rc-soon">Coming soon</span>
-        </div>
+      <div class="explore-grid">
+        <a href="/why-noderail.html" class="explore-card">
+          <div class="ec-icon">🧩</div>
+          <h3>Why NodeRail</h3>
+          <p>The nine failure modes of intellectual continuity and how NodeRail addresses each one.</p>
+          <span class="ec-arrow">Explore →</span>
+        </a>
+        <a href="/how-it-works.html" class="explore-card">
+          <div class="ec-icon">⚙️</div>
+          <h3>How it Works</h3>
+          <p>A full walkthrough of the NodeRail system: nodes, lineage, DOIs, and the Continuity Standard.</p>
+          <span class="ec-arrow">Explore →</span>
+        </a>
+        <a href="/use-cases.html" class="explore-card">
+          <div class="ec-icon">👥</div>
+          <h3>Use Cases</h3>
+          <p>How researchers, students, universities, consultants, and policy organisations use NodeRail.</p>
+          <span class="ec-arrow">Explore →</span>
+        </a>
+        <a href="/reference.html" class="explore-card">
+          <div class="ec-icon">📖</div>
+          <h3>Reference</h3>
+          <p>The NodeRail Glossary, Problem Index, Continuity Standard, and FAQ in one place.</p>
+          <span class="ec-arrow">Explore →</span>
+        </a>
+        <a href="#" onclick="goToDocs(''); return false;" class="explore-card">
+          <div class="ec-icon">📄</div>
+          <h3>Documentation</h3>
+          <p>Full technical documentation including node templates, governance rules, and contribution guides.</p>
+          <span class="ec-arrow">Explore →</span>
+        </a>
+        <a href="/access.html" class="explore-card">
+          <div class="ec-icon">🚀</div>
+          <h3>Request Access</h3>
+          <p>NodeRail is in early access. Submit a request and Gao Kabubi will review it personally.</p>
+          <span class="ec-arrow">Apply →</span>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="nr-cta">
-    <h2>Ready to publish your first node?</h2>
-    <p>NodeRail v0.1 is live and open for access requests. Submit your request and Gao will review it personally.</p>
-    <div class="nr-hero-actions">
-      <a href="#" class="btn-primary" onclick="goToDocs('/access'); return false;">Request Access</a>
-      <a href="#" class="btn-secondary" onclick="goToDocs(''); return false;">Read the Docs</a>
+  <section class="cta-section">
+    <div class="nr-container">
+      <h2>Ready to publish your first node?</h2>
+      <p>NodeRail is in early access. The process takes less than five minutes. Access is not a gate — it is a handshake.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/access.html" class="btn btn-teal">Request Access →</a>
+        <a href="/how-it-works.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.25);">How it works</a>
+      </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="nr-footer">
-    <p>NodeRail v0.1 &nbsp;·&nbsp; Founded by Gao Kabubi &nbsp;·&nbsp; <a href="https://github.com/Noderail/noderail" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="#" onclick="goToDocs('/access'); return false;">Request Access</a></p>
-    <p style="margin-top:0.5rem;">Infrastructure for Intellectual Continuity</p>
+    <div class="nr-footer-inner">
+      <div>
+        <div class="nr-footer-logo">NodeRail</div>
+        <p style="font-size:0.82rem;margin-top:0.25rem;">Infrastructure for Intellectual Continuity</p>
+        <p style="font-size:0.78rem;margin-top:1rem;color:#aaa;">DOI: <a href="https://doi.org/10.5281/zenodo.18764766" target="_blank" style="color:#aaa;">10.5281/zenodo.18764766</a> &nbsp;·&nbsp; v0.1 &nbsp;·&nbsp; &copy; 2026 NodeRail</p>
+      </div>
+      <div class="nr-footer-links">
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/access.html">Request Access</a>
+      </div>
+    </div>
   </footer>
 
-</div><!-- /#static-landing -->
+</div><!-- end #static-landing -->
 
-
-<!-- ═══════════════════════════════════════════════════
-     DOCSIFY APP
-═══════════════════════════════════════════════════ -->
-<div id="app">
-  <p style="padding:3rem 2rem;text-align:center;color:#999;font-size:0.9rem;">Loading documentation…</p>
-</div>
+<!-- ══════════════════════════════════════
+     DOCSIFY APP (loaded on demand)
+══════════════════════════════════════ -->
+<div id="app"></div>
 
 <script>
   function goToDocs(path) {
     document.body.classList.add('docs-mode');
-    var route = path || '/';
-    window.location.hash = route;
-    if (!window._docsifyLoaded) {
-      window._docsifyLoaded = true;
-      bootDocsify();
+    if (path && path !== '') {
+      window.location.hash = path;
     }
+    loadDocsify();
   }
 
-  function bootDocsify() {
+  function loadDocsify() {
+    if (window._docsifyLoaded) return;
+    window._docsifyLoaded = true;
+
     window.$docsify = {
-      name: '<img src="assets/logo.png" alt="NodeRail" style="width:28px;height:28px;object-fit:contain;vertical-align:middle;margin-right:6px;"> NodeRail',
-      repo: 'https://github.com/noderail',
+      name: '<img src="/assets/logo.png" style="width:28px;height:28px;object-fit:contain;vertical-align:middle;margin-right:8px;" alt="NodeRail"> NodeRail',
+      repo: 'https://github.com/Noderail/noderail',
       loadSidebar: true,
-      loadCoverpage: false,
-      subMaxLevel: 3,
-      auto2top: true,
-      search: {
-        placeholder: 'Search nodes...',
-        noData: 'No results found.',
-        depth: 3
-      }
+      subMaxLevel: 2,
+      themeColor: '#1a1a2e',
+      homepage: 'README.md',
+      notFoundPage: true,
     };
 
-    function loadScript(src, cb) {
-      var s = document.createElement('script');
-      s.src = src;
-      if (cb) s.onload = cb;
-      document.body.appendChild(s);
-    }
+    const theme = document.createElement('link');
+    theme.rel = 'stylesheet';
+    theme.href = '//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css';
+    document.head.appendChild(theme);
 
-    loadScript('//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js', function() {
-      loadScript('//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js', null);
-    });
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js';
+    document.head.appendChild(script);
   }
 
+  // If URL has a hash path, load docs immediately
   if (window.location.hash && window.location.hash.length > 1) {
-    goToDocs(window.location.hash.replace('#', ''));
+    document.body.classList.add('docs-mode');
+    loadDocsify();
   }
 </script>
-
 </body>
 </html>

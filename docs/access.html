@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Request Access — NodeRail Early Access</title>
+  <meta name="description" content="NodeRail is in early access. Submit a request and Gao Kabubi will review it personally. Access is not a gate — it is a handshake.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://noderail.org/access.html">
+  <link rel="stylesheet" href="/assets/nr.css">
+  <style>
+    .access-hero {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 5rem 0 4rem;
+    }
+    .access-hero h1 { color: var(--nr-white); max-width: 640px; margin-bottom: 1rem; }
+    .access-hero p { color: #9ca3af; max-width: 520px; font-size: 1.05rem; }
+
+    .access-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: start; padding: 4rem 0;
+    }
+    @media (max-width: 760px) { .access-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    /* Form */
+    .access-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label { font-size: 0.85rem; font-weight: 600; color: var(--nr-text); }
+    .form-input, .form-select, .form-textarea {
+      padding: 0.75rem 1rem; border: 1.5px solid var(--nr-border);
+      border-radius: var(--nr-radius-sm); font-family: var(--nr-font);
+      font-size: 0.9rem; color: var(--nr-text); background: var(--nr-white);
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none; border-color: var(--nr-dark);
+    }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-hint { font-size: 0.78rem; color: var(--nr-muted); }
+    .form-submit {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 0.85rem 2rem; border-radius: var(--nr-radius-sm);
+      font-weight: 700; font-size: 0.95rem; border: none;
+      cursor: pointer; font-family: var(--nr-font);
+      transition: background 0.15s, transform 0.15s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: #2d2d4e; transform: translateY(-1px); }
+
+    /* What to expect */
+    .expect-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .expect-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .expect-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--nr-off); border: 1px solid var(--nr-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .expect-item h4 { margin-bottom: 0.25rem; }
+    .expect-item p { font-size: 0.85rem; }
+
+    /* Criteria */
+    .criteria-box {
+      background: var(--nr-off); border: 1px solid var(--nr-border);
+      border-radius: var(--nr-radius); padding: 1.5rem; margin-top: 2rem;
+    }
+    .criteria-box h4 { margin-bottom: 1rem; }
+    .criteria-item { display: flex; gap: 0.6rem; margin-bottom: 0.6rem; font-size: 0.85rem; color: var(--nr-muted); }
+    .criteria-item:last-child { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nr-nav">
+    <div class="nr-nav-inner">
+      <a href="/" class="nr-nav-logo">
+        <img src="/assets/logo.png" alt="NodeRail">
+        NodeRail
+      </a>
+      <div class="nr-nav-links">
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/access.html" class="nr-nav-cta active" style="background:#2d2d4e;">Request Access</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="access-hero">
+    <div class="nr-container">
+      <div class="nr-eyebrow" style="color:var(--nr-teal);">Early Access</div>
+      <h1>Access is not a gate. It is a handshake.</h1>
+      <p>NodeRail is in early access. Tell us about your work and Gao Kabubi will review your request personally. The process takes less than five minutes.</p>
+    </div>
+  </section>
+
+  <!-- FORM + INFO -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="access-layout">
+
+        <!-- FORM -->
+        <div>
+          <h2 style="margin-bottom:0.5rem;">Submit a request</h2>
+          <p style="margin-bottom:2rem;font-size:0.9rem;">We will respond within 48 hours.</p>
+
+          <form class="access-form" action="https://formspree.io/f/noderail" method="POST">
+            <div class="form-group">
+              <label class="form-label" for="name">Full name</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="you@institution.edu" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="role">Your role</label>
+              <select class="form-select" id="role" name="role" required>
+                <option value="" disabled selected>Select your role</option>
+                <option>Researcher / Academic</option>
+                <option>Student (Undergraduate)</option>
+                <option>Student (Postgraduate)</option>
+                <option>Practitioner / Consultant</option>
+                <option>University / Research Centre</option>
+                <option>Policy Organisation</option>
+                <option>Field Founder</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="work">What intellectual work do you want to publish on NodeRail?</label>
+              <textarea class="form-textarea" id="work" name="work" placeholder="Describe the field, framework, project, or measurement you are working on..." required></textarea>
+              <span class="form-hint">Be specific. This helps us understand how NodeRail can best support your work.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="hear">How did you hear about NodeRail?</label>
+              <input class="form-input" type="text" id="hear" name="hear" placeholder="LinkedIn, colleague, search, etc.">
+            </div>
+            <button type="submit" class="form-submit">Submit Request →</button>
+          </form>
+        </div>
+
+        <!-- WHAT TO EXPECT -->
+        <div>
+          <h2 style="margin-bottom:2rem;">What happens next</h2>
+          <div class="expect-list">
+            <div class="expect-item">
+              <div class="expect-icon">📬</div>
+              <div>
+                <h4>We review your request</h4>
+                <p>Gao Kabubi reviews every request personally. We respond within 48 hours.</p>
+              </div>
+            </div>
+            <div class="expect-item">
+              <div class="expect-icon">🤝</div>
+              <div>
+                <h4>A brief conversation</h4>
+                <p>For most requests, we schedule a 20-minute call to understand your work and help you structure your first node.</p>
+              </div>
+            </div>
+            <div class="expect-item">
+              <div class="expect-icon">🚀</div>
+              <div>
+                <h4>You publish your first node</h4>
+                <p>We walk you through the node template and help you publish your first structured, citable piece of intellectual work.</p>
+              </div>
+            </div>
+            <div class="expect-item">
+              <div class="expect-icon">🔗</div>
+              <div>
+                <h4>Your DOI is issued</h4>
+                <p>On your first stable release, Zenodo issues a permanent DOI. Your work is now citable in academic contexts.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="criteria-box">
+            <h4>Who gets access first</h4>
+            <div class="criteria-item"><span>→</span> Researchers building new fields or sub-fields</div>
+            <div class="criteria-item"><span>→</span> Students with capstone or dissertation work ready to publish</div>
+            <div class="criteria-item"><span>→</span> Practitioners with frameworks they want to make citable</div>
+            <div class="criteria-item"><span>→</span> Universities or research centres with cohort-level research programmes</div>
+            <div class="criteria-item"><span>→</span> Anyone who has already identified a specific intellectual continuity problem in their work</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="nr-footer">
+    <div class="nr-footer-inner">
+      <div>
+        <div class="nr-footer-logo">NodeRail</div>
+        <p style="font-size:0.82rem;margin-top:0.25rem;">Infrastructure for Intellectual Continuity</p>
+        <p style="font-size:0.78rem;margin-top:1rem;color:#aaa;">v0.1 &nbsp;·&nbsp; &copy; 2026 NodeRail</p>
+      </div>
+      <div class="nr-footer-links">
+        <a href="/">Home</a>
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

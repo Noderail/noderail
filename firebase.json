@@ -10,21 +10,52 @@
       ],
       "rewrites": [
         {
-          "source": "**",
+          "source": "/docs/**",
+          "destination": "/index.html"
+        },
+        {
+          "source": "/hcs/**",
           "destination": "/index.html"
         }
       ],
       "headers": [
+        {
+          "source": "**/*.html",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=300"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            }
+          ]
+        },
+        {
+          "source": "**/*.css",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=86400"
+            }
+          ]
+        },
+        {
+          "source": "**/*.png",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=604800"
+            }
+          ]
+        },
         {
           "source": "**",
           "headers": [
             {
               "key": "X-Content-Type-Options",
               "value": "nosniff"
-            },
-            {
-              "key": "Cache-Control",
-              "value": "public, max-age=3600"
             }
           ]
         }

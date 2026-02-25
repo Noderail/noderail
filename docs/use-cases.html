@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NodeRail Use Cases — Who It's For and How They Use It</title>
+  <meta name="description" content="How researchers, students, universities, consultants, policy organisations, and field founders use NodeRail to build intellectual infrastructure that compounds.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://noderail.org/use-cases.html">
+  <link rel="stylesheet" href="/assets/nr.css">
+  <style>
+    .uc-hero {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 5rem 0 4rem;
+    }
+    .uc-hero h1 { color: var(--nr-white); max-width: 700px; margin-bottom: 1rem; }
+    .uc-hero p { color: #9ca3af; max-width: 560px; font-size: 1.05rem; }
+
+    /* Use case layout */
+    .uc-block {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 3rem;
+      padding: 3.5rem 0; border-bottom: 1px solid var(--nr-border);
+      align-items: start;
+    }
+    .uc-block:first-child { border-top: 1px solid var(--nr-border); }
+    .uc-sidebar { position: sticky; top: 80px; }
+    .uc-audience {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--nr-teal-dim); margin-bottom: 0.5rem;
+    }
+    .uc-block h2 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+    .uc-block .uc-tagline { font-size: 1rem; color: var(--nr-muted); font-style: italic; margin-bottom: 0; }
+    .uc-content h3 { font-size: 1rem; margin-bottom: 0.5rem; margin-top: 1.5rem; }
+    .uc-content h3:first-child { margin-top: 0; }
+    .uc-content p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .uc-scenario {
+      background: var(--nr-off); border-radius: var(--nr-radius);
+      padding: 1.5rem; margin-top: 1.5rem;
+      border-left: 3px solid var(--nr-teal);
+    }
+    .uc-scenario .sc-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--nr-teal-dim); margin-bottom: 0.5rem;
+    }
+    .uc-scenario p { font-size: 0.88rem; margin: 0; color: var(--nr-text); }
+    .uc-nodes-used { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    @media (max-width: 760px) {
+      .uc-block { grid-template-columns: 1fr; gap: 1.5rem; }
+      .uc-sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nr-nav">
+    <div class="nr-nav-inner">
+      <a href="/" class="nr-nav-logo">
+        <img src="/assets/logo.png" alt="NodeRail">
+        NodeRail
+      </a>
+      <div class="nr-nav-links">
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html" class="active">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/access.html" class="nr-nav-cta">Request Access</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="uc-hero">
+    <div class="nr-container">
+      <div class="nr-eyebrow" style="color:var(--nr-teal);">Use cases</div>
+      <h1>NodeRail is for anyone whose intellectual work should compound, not disappear</h1>
+      <p>Six distinct audiences. One shared problem: work that gets lost, fragmented, or forgotten. One shared solution: infrastructure that makes it permanent.</p>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="nr-section">
+    <div class="nr-container">
+
+      <!-- 1. Researchers -->
+      <div class="uc-block">
+        <div class="uc-sidebar">
+          <div class="uc-audience">Audience 01</div>
+          <h2>Researchers Building New Fields</h2>
+          <p class="uc-tagline">"I need my definitions to outlast my PhD."</p>
+          <div class="uc-nodes-used">
+            <span class="nr-tag nr-tag-teal">Field</span>
+            <span class="nr-tag nr-tag-teal">Framework</span>
+            <span class="nr-tag nr-tag-teal">Measurement</span>
+          </div>
+        </div>
+        <div class="uc-content">
+          <h3>The problem</h3>
+          <p>Researchers who are building new fields face a structural problem: their definitions, frameworks, and measurement instruments live in PDFs, slide decks, and personal notes. When they move institutions, graduate, or shift focus, the infrastructure they built either gets lost or becomes inaccessible to the next generation of researchers in the field.</p>
+          <h3>How NodeRail helps</h3>
+          <p>NodeRail gives researchers a permanent, citable home for the intellectual infrastructure of their field. A Field node defines the scope, constructs, and governance. Framework and Measurement nodes hold the methods and instruments. Every node has a DOI, so it can be cited in papers, grant applications, and future work.</p>
+          <p>When other researchers want to build on the work, they fork the relevant nodes with full lineage preserved. The original researcher gets attribution in every derivative work, and the field grows as a connected graph rather than a pile of disconnected papers.</p>
+          <div class="uc-scenario">
+            <div class="sc-label">Scenario</div>
+            <p>A postdoctoral researcher at a cognitive science lab publishes a Measurement node for a new attention assessment instrument. Two years later, a clinical researcher at a different institution forks the node to adapt it for a hospital setting. The original researcher's DOI appears in the clinical paper's citation. The field now has two validated versions of the instrument, both traceable to the same origin.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Students -->
+      <div class="uc-block">
+        <div class="uc-sidebar">
+          <div class="uc-audience">Audience 02</div>
+          <h2>Students and Early Researchers</h2>
+          <p class="uc-tagline">"My capstone should be a starting point, not an endpoint."</p>
+          <div class="uc-nodes-used">
+            <span class="nr-tag nr-tag-teal">Project</span>
+            <span class="nr-tag nr-tag-teal">Framework</span>
+          </div>
+        </div>
+        <div class="uc-content">
+          <h3>The problem</h3>
+          <p>Students produce some of the most original and undervalued intellectual work in any institution. Capstone projects, dissertations, and research papers represent months of rigorous thinking. Almost all of it gets archived and forgotten. The next cohort starts from scratch, unaware that the work was already done.</p>
+          <h3>How NodeRail helps</h3>
+          <p>NodeRail's Project node is designed specifically for student work. It has a required Continuation Hook — a structured section that explicitly documents what was found, what was not resolved, and what the next researcher should explore. This turns every project into a starting point for the next one.</p>
+          <p>Every Project node receives a DOI, making student work citable in academic contexts. Students graduate with a permanent, citable record of their intellectual contribution — not just a grade.</p>
+          <div class="uc-scenario">
+            <div class="sc-label">Scenario</div>
+            <p>A final-year management student publishes a Project node documenting a study on remote work productivity. The Continuation Hook notes three unresolved questions about longitudinal effects. The following year, a master's student finds the node, cites it, and builds a follow-up study. Both students have citable, permanent records. The institution has two years of compounding research instead of two isolated projects.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Universities -->
+      <div class="uc-block">
+        <div class="uc-sidebar">
+          <div class="uc-audience">Audience 03</div>
+          <h2>Universities and Research Centres</h2>
+          <p class="uc-tagline">"We need our research output to compound across cohorts."</p>
+          <div class="uc-nodes-used">
+            <span class="nr-tag nr-tag-teal">Field</span>
+            <span class="nr-tag nr-tag-teal">Project</span>
+            <span class="nr-tag nr-tag-teal">Measurement</span>
+          </div>
+        </div>
+        <div class="uc-content">
+          <h3>The problem</h3>
+          <p>Universities and research centres face a structural knowledge loss problem. Each cohort of students and researchers produces valuable work that is poorly connected to what came before and what will come after. Institutional knowledge resets with every graduation cycle. Research centres struggle to demonstrate cumulative impact to funders and accreditation bodies.</p>
+          <h3>How NodeRail helps</h3>
+          <p>NodeRail gives institutions a structured repository where research output compounds across cohorts. A department can maintain a Field node that defines its core constructs and research standards. Student projects are published as Project nodes with Continuation Hooks. Frameworks developed by faculty become citable, versioned nodes that students can build on.</p>
+          <p>The result is a demonstrable research lineage: funders and accreditation bodies can see not just individual outputs but how knowledge has grown and connected over time.</p>
+          <div class="uc-scenario">
+            <div class="sc-label">Scenario</div>
+            <p>A business school's innovation research centre creates a Field node for its core research domain. Over three years, 40 student projects are published as Project nodes, all linked to the Field and to each other through Continuation Hooks. The centre can now demonstrate to its accreditation body a structured, compounding body of research with full lineage and permanent DOIs for every output.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Practitioners -->
+      <div class="uc-block">
+        <div class="uc-sidebar">
+          <div class="uc-audience">Audience 04</div>
+          <h2>Practitioners and Consultants</h2>
+          <p class="uc-tagline">"My frameworks deserve to be cited, not just copied."</p>
+          <div class="uc-nodes-used">
+            <span class="nr-tag nr-tag-teal">Framework</span>
+            <span class="nr-tag nr-tag-teal">Measurement</span>
+          </div>
+        </div>
+        <div class="uc-content">
+          <h3>The problem</h3>
+          <p>Experienced practitioners and consultants develop frameworks, models, and methods over years of applied work. These frameworks often circulate informally — in slide decks, blog posts, and workshop materials — without any formal record of authorship, version history, or citation trail. When others adapt the work, the original creator gets no credit.</p>
+          <h3>How NodeRail helps</h3>
+          <p>NodeRail gives practitioners a way to publish their frameworks as citable, versioned nodes. A Framework node documents the method, its theoretical basis, its application context, and its version history. When clients or other practitioners use or adapt the framework, they cite the DOI. The practitioner builds a citable body of work that is as rigorous as academic output.</p>
+          <div class="uc-scenario">
+            <div class="sc-label">Scenario</div>
+            <p>An organisational design consultant publishes a Framework node for a team structure model developed over eight years of client work. The node receives a DOI. A business school professor cites it in a course. A client references it in an internal report. The consultant now has a citable, permanent record of the intellectual work — not just a slide deck.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Policy -->
+      <div class="uc-block">
+        <div class="uc-sidebar">
+          <div class="uc-audience">Audience 05</div>
+          <h2>Policy Organisations</h2>
+          <p class="uc-tagline">"Policy frameworks need version control too."</p>
+          <div class="uc-nodes-used">
+            <span class="nr-tag nr-tag-teal">Field</span>
+            <span class="nr-tag nr-tag-teal">Framework</span>
+          </div>
+        </div>
+        <div class="uc-content">
+          <h3>The problem</h3>
+          <p>Policy frameworks, standards, and guidelines evolve over time, but the version history is rarely preserved in a structured, citable form. When a framework is updated, it is often unclear what changed, why, and what the previous version said. Stakeholders cite different versions without realising they are in disagreement.</p>
+          <h3>How NodeRail helps</h3>
+          <p>NodeRail's versioning and DOI system is ideal for policy frameworks that need to evolve transparently. Each version of a framework is a separate, citable node. The supersedes link type explicitly documents when one version replaces another. Stakeholders can always cite the exact version they are working from, and the full history is permanently accessible.</p>
+          <div class="uc-scenario">
+            <div class="sc-label">Scenario</div>
+            <p>A public health organisation publishes its workforce capacity assessment framework as a NodeRail Framework node. When the framework is updated two years later, the new version supersedes the old one with an explicit link. Practitioners who cited the original version can still access it via its permanent DOI, while new practitioners cite the current version. The policy history is transparent and permanent.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Field Founders -->
+      <div class="uc-block">
+        <div class="uc-sidebar">
+          <div class="uc-audience">Audience 06</div>
+          <h2>Field Founders</h2>
+          <p class="uc-tagline">"I am building a discipline, not just a body of work."</p>
+          <div class="uc-nodes-used">
+            <span class="nr-tag nr-tag-teal">Field</span>
+            <span class="nr-tag nr-tag-teal">Framework</span>
+            <span class="nr-tag nr-tag-teal">Measurement</span>
+            <span class="nr-tag nr-tag-teal">Project</span>
+          </div>
+        </div>
+        <div class="uc-content">
+          <h3>The problem</h3>
+          <p>Some researchers and practitioners are not just contributing to an existing field — they are building a new one. This is the hardest intellectual work: defining scope, establishing canonical constructs, setting governance standards, and creating the infrastructure that will allow others to contribute coherently. Without the right infrastructure, new fields fragment before they can mature.</p>
+          <h3>How NodeRail helps</h3>
+          <p>NodeRail's Field node is designed for field founders. It provides a structured template for the Field Constitution, Construct Map, Ethics Charter, and Contribution Standards. The Field founder is the steward of the canonical definitions. Others can publish Framework, Measurement, and Project nodes inside the field, but the core architecture is protected and versioned.</p>
+          <p>NodeRail itself was built by a field founder. The first Founder Field — Human Capacity Science — is being built on NodeRail by Gao Kabubi. It is the proof of concept for the entire platform.</p>
+          <div class="uc-scenario">
+            <div class="sc-label">Scenario</div>
+            <p>A researcher identifies a gap at the intersection of cognitive science and digital work design. She uses NodeRail to publish a Field node for the new domain, with a complete Field Constitution and Construct Map. Over two years, three other researchers publish Framework nodes inside the field. A university research centre adopts the field as its primary research domain. The field now has a permanent, citable foundation — not just a collection of papers.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--nr-dark);padding:4rem 0;text-align:center;">
+    <div class="nr-container">
+      <h2 style="color:var(--nr-white);margin-bottom:1rem;">Which one are you?</h2>
+      <p style="color:#9ca3af;max-width:480px;margin:0 auto 2rem;">NodeRail is in early access. Tell us about your work and we will help you get started.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/access.html" class="btn btn-teal">Request Access →</a>
+        <a href="/how-it-works.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.25);">How it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="nr-footer">
+    <div class="nr-footer-inner">
+      <div>
+        <div class="nr-footer-logo">NodeRail</div>
+        <p style="font-size:0.82rem;margin-top:0.25rem;">Infrastructure for Intellectual Continuity</p>
+        <p style="font-size:0.78rem;margin-top:1rem;color:#aaa;">v0.1 &nbsp;·&nbsp; &copy; 2026 NodeRail</p>
+      </div>
+      <div class="nr-footer-links">
+        <a href="/">Home</a>
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/access.html">Request Access</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

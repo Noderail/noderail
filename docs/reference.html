@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NodeRail Reference — Glossary, Standard, and FAQ</title>
+  <meta name="description" content="The NodeRail reference: Glossary of 10 core terms, the Continuity Standard v0.1, and answers to the most common questions about NodeRail.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://noderail.org/reference.html">
+  <link rel="stylesheet" href="/assets/nr.css">
+  <style>
+    .ref-hero {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 4rem 0 3rem;
+    }
+    .ref-hero h1 { color: var(--nr-white); font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 0.75rem; }
+    .ref-hero p { color: #9ca3af; }
+
+    /* Tab nav */
+    .ref-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--nr-border); margin-bottom: 3rem; }
+    .ref-tab {
+      padding: 0.75rem 1.5rem; font-size: 0.9rem; font-weight: 600;
+      color: var(--nr-muted); border-bottom: 2px solid transparent;
+      cursor: pointer; transition: all 0.15s; margin-bottom: -2px;
+      background: none; border-top: none; border-left: none; border-right: none;
+      font-family: var(--nr-font);
+    }
+    .ref-tab:hover { color: var(--nr-dark); }
+    .ref-tab.active { color: var(--nr-dark); border-bottom-color: var(--nr-dark); }
+    .ref-panel { display: none; }
+    .ref-panel.active { display: block; }
+
+    /* Glossary */
+    .glossary-list { display: flex; flex-direction: column; gap: 0; }
+    .glossary-item {
+      display: grid; grid-template-columns: 220px 1fr;
+      padding: 1.5rem 0; border-bottom: 1px solid var(--nr-border);
+      gap: 2rem; align-items: start;
+    }
+    .glossary-item:first-child { border-top: 1px solid var(--nr-border); }
+    .glossary-term { font-size: 1rem; font-weight: 700; color: var(--nr-dark); }
+    .glossary-def { font-size: 0.9rem; }
+    .glossary-related { font-size: 0.78rem; color: var(--nr-light-muted); margin-top: 0.5rem; }
+    @media (max-width: 600px) { .glossary-item { grid-template-columns: 1fr; gap: 0.5rem; } }
+
+    /* Standard */
+    .standard-list { display: flex; flex-direction: column; gap: 1rem; }
+    .standard-row {
+      display: grid; grid-template-columns: 60px 1fr;
+      gap: 1.5rem; align-items: start;
+      padding: 1.5rem; border: 1px solid var(--nr-border); border-radius: var(--nr-radius);
+      transition: all 0.15s;
+    }
+    .standard-row:hover { border-color: var(--nr-dark); box-shadow: var(--nr-shadow); }
+    .standard-check {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--nr-dark); color: var(--nr-white);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem; flex-shrink: 0;
+    }
+    .standard-row h4 { margin-bottom: 0.35rem; }
+    .standard-row p { font-size: 0.88rem; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nr-nav">
+    <div class="nr-nav-inner">
+      <a href="/" class="nr-nav-logo">
+        <img src="/assets/logo.png" alt="NodeRail">
+        NodeRail
+      </a>
+      <div class="nr-nav-links">
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html" class="active">Reference</a>
+        <a href="/access.html" class="nr-nav-cta">Request Access</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="ref-hero">
+    <div class="nr-container">
+      <div class="nr-eyebrow" style="color:var(--nr-teal);">Reference</div>
+      <h1>NodeRail Reference</h1>
+      <p>Glossary, Continuity Standard, and FAQ in one place.</p>
+    </div>
+  </section>
+
+  <!-- TABS + CONTENT -->
+  <section class="nr-section">
+    <div class="nr-container">
+
+      <div class="ref-tabs">
+        <button class="ref-tab active" onclick="showTab('glossary', this)">Glossary</button>
+        <button class="ref-tab" onclick="showTab('standard', this)">Continuity Standard</button>
+        <button class="ref-tab" onclick="showTab('faq', this)">FAQ</button>
+      </div>
+
+      <!-- GLOSSARY -->
+      <div id="panel-glossary" class="ref-panel active">
+        <p style="margin-bottom:2rem;font-size:0.95rem;">Ten core terms that define the vocabulary of intellectual continuity infrastructure.</p>
+        <div class="glossary-list">
+
+          <div class="glossary-item">
+            <div class="glossary-term">Intellectual Continuity</div>
+            <div>
+              <p>The property of a body of knowledge that allows it to be extended, built upon, and cited over time without losing its lineage, definitions, or authorship trail. The opposite of documentation debt, concept drift, and knowledge fragmentation.</p>
+              <div class="glossary-related">Related: Version Lineage, Continuity Debt</div>
+            </div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">Node</div>
+            <div>
+              <p>A structured, citable unit of intellectual work on NodeRail. Each node has a type (Field, Framework, Measurement, or Project), a version history, a permanent DOI, and an explicit lineage back to its origin.</p>
+              <div class="glossary-related">Related: Field Infrastructure, Link Type</div>
+            </div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">Canonical Definition</div>
+            <div>
+              <p>The authoritative, versioned definition of a term or construct within a field. A canonical definition has an owner, a version number, and a change log. It is the single source of truth for that construct in the field.</p>
+              <div class="glossary-related">Related: Concept Drift, Stewardship</div>
+            </div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">Concept Drift</div>
+            <div>
+              <p>The gradual, untracked shift in the meaning of a term or construct across documents, teams, or time. One of the most common and costly forms of intellectual continuity failure. NodeRail prevents it through canonical definitions with version history.</p>
+              <div class="glossary-related">Related: Canonical Definition, Taxonomy Drift</div>
+            </div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">Version Lineage</div>
+            <div>
+              <p>The traceable chain of versions of a node, from its origin to its current state. Version lineage preserves the authorship trail and allows anyone to see how a concept evolved, who contributed, and when each change was made.</p>
+              <div class="glossary-related">Related: Node, Intellectual Continuity</div>
+            </div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">Field Infrastructure</div>
+            <div>
+              <p>The structured system of definitions, governance, contribution standards, and citation norms that allows a field of knowledge to grow coherently over time. A Field node on NodeRail is the primary unit of field infrastructure.</p>
+              <div class="glossary-related">Related: Node, Stewardship</div>
+            </div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">Taxonomy Drift</div>
+            <div>
+              <p>The gradual misalignment of a classification system as new terms are added without governance. Related to concept drift but applies to the structure of categories, not just individual terms.</p>
+              <div class="glossary-related">Related: Concept Drift, Canonical Definition</div>
+            </div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">Link Type</div>
+            <div>
+              <p>The explicit, typed relationship between two nodes. NodeRail supports four link types: <strong>supports</strong>, <strong>depends-on</strong>, <strong>conflicts-with</strong>, and <strong>supersedes</strong>. Links are directional, versioned, and part of the node's permanent record.</p>
+              <div class="glossary-related">Related: Node, Version Lineage</div>
+            </div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">Stewardship</div>
+            <div>
+              <p>The responsibility for maintaining, updating, and governing a node over time. A steward is not necessarily the original author, but is accountable for the node's continuity. Stewardship separates knowledge from its originator.</p>
+              <div class="glossary-related">Related: Field Infrastructure, Canonical Definition</div>
+            </div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">Continuity Debt</div>
+            <div>
+              <p>The accumulated gap between the intellectual work that has been done and the intellectual work that has been properly documented, versioned, and made citable. Like technical debt, continuity debt grows silently and becomes expensive to resolve.</p>
+              <div class="glossary-related">Related: Documentation Debt, Intellectual Continuity</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CONTINUITY STANDARD -->
+      <div id="panel-standard" class="ref-panel">
+        <p style="margin-bottom:0.5rem;font-size:0.95rem;">The minimum requirements for a node to be considered continuity-grade. Every node published on NodeRail must meet all six criteria.</p>
+        <p style="font-size:0.85rem;color:var(--nr-muted);margin-bottom:2rem;">NodeRail Continuity Standard v0.1 &nbsp;·&nbsp; Published 2026</p>
+        <div class="standard-list">
+          <div class="standard-row">
+            <div class="standard-check">01</div>
+            <div>
+              <h4>Structured</h4>
+              <p>The node uses the official NodeRail template for its type (Field, Framework, Measurement, or Project). Freeform documents are not accepted. Structure is what makes nodes connectable and comparable across the platform.</p>
+            </div>
+          </div>
+          <div class="standard-row">
+            <div class="standard-check">02</div>
+            <div>
+              <h4>Versioned</h4>
+              <p>The node has a semantic version number (e.g. v1.0.0) and a change log entry for every version increment. The version history is preserved in Git and is permanently accessible.</p>
+            </div>
+          </div>
+          <div class="standard-row">
+            <div class="standard-check">03</div>
+            <div>
+              <h4>Attributed</h4>
+              <p>The node has a named author and a named steward. Authorship is never anonymous. If the author and steward are different people, both are named and their roles are explicit.</p>
+            </div>
+          </div>
+          <div class="standard-row">
+            <div class="standard-check">04</div>
+            <div>
+              <h4>Citable</h4>
+              <p>The node has a permanent DOI issued via Zenodo on every stable release. The DOI resolves to the archived snapshot of the node at that version. The DOI is permanent and will resolve for decades.</p>
+            </div>
+          </div>
+          <div class="standard-row">
+            <div class="standard-check">05</div>
+            <div>
+              <h4>Linked</h4>
+              <p>The node has at least one typed link to another node in its field. Links use one of the four NodeRail link types: supports, depends-on, conflicts-with, or supersedes. Isolated nodes are not continuity-grade.</p>
+            </div>
+          </div>
+          <div class="standard-row">
+            <div class="standard-check">06</div>
+            <div>
+              <h4>Continuable</h4>
+              <p>The node has a Continuation Hook: a structured section that explicitly documents what was established, what remains unresolved, and what the next contributor should explore. This is required for all node types, not just Project nodes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div id="panel-faq" class="ref-panel">
+        <p style="margin-bottom:2rem;font-size:0.95rem;">Common questions about NodeRail, answered directly.</p>
+        <div class="nr-accordion">
+
+          <div class="nr-accordion-item">
+            <button class="nr-accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+              What is NodeRail? <span class="icon">+</span>
+            </button>
+            <div class="nr-accordion-body">
+              <p>NodeRail is versioned knowledge infrastructure. It is a system for publishing, linking, and preserving intellectual work in structured units called nodes, each with a permanent identifier, a version history, and an explicit lineage back to its origin. It is not a wiki, a note-taking app, a research database, or a CMS.</p>
+            </div>
+          </div>
+
+          <div class="nr-accordion-item">
+            <button class="nr-accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+              How is NodeRail different from a wiki or docs platform? <span class="icon">+</span>
+            </button>
+            <div class="nr-accordion-body">
+              <p>Wikis and docs platforms store text. NodeRail stores structured intellectual units (nodes) with version lineage, DOI citation, governance metadata, and explicit typed links between concepts. Every node is citable, forkable, and traceable to its origin. Wikis are designed for retrieval. NodeRail is designed for compounding.</p>
+            </div>
+          </div>
+
+          <div class="nr-accordion-item">
+            <button class="nr-accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+              How is NodeRail different from GitHub? <span class="icon">+</span>
+            </button>
+            <div class="nr-accordion-body">
+              <p>NodeRail uses Git as its version control backbone, but it is not a code repository. The node templates, DOI integration, governance model, and link types are all specific to intellectual work. GitHub stores code. NodeRail stores knowledge infrastructure with academic citation built in.</p>
+            </div>
+          </div>
+
+          <div class="nr-accordion-item">
+            <button class="nr-accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+              Who should use NodeRail? <span class="icon">+</span>
+            </button>
+            <div class="nr-accordion-body">
+              <p>NodeRail is built for researchers building new fields, practitioners documenting frameworks and methods, students publishing capstone and project work, universities that need research output to compound across cohorts, and organisations that need institutional knowledge to persist rather than reset.</p>
+            </div>
+          </div>
+
+          <div class="nr-accordion-item">
+            <button class="nr-accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+              What is a DOI and why does it matter? <span class="icon">+</span>
+            </button>
+            <div class="nr-accordion-body">
+              <p>A Digital Object Identifier (DOI) is a permanent identifier for a digital object. Unlike URLs, DOIs never break. They are indexed in academic databases, recognised by citation managers, and resolve permanently. When your node has a DOI, it can be cited in academic papers, grant applications, and other formal contexts — and that citation will always resolve to the correct version of your work.</p>
+            </div>
+          </div>
+
+          <div class="nr-accordion-item">
+            <button class="nr-accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+              What is a Continuation Hook? <span class="icon">+</span>
+            </button>
+            <div class="nr-accordion-body">
+              <p>A Continuation Hook is a required section in every NodeRail node. It explicitly documents what was established in this node, what remains unresolved, and what the next contributor should explore. It is the mechanism that turns every piece of work into a starting point for the next one, rather than an endpoint that gets archived and forgotten.</p>
+            </div>
+          </div>
+
+          <div class="nr-accordion-item">
+            <button class="nr-accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+              Is NodeRail open source? <span class="icon">+</span>
+            </button>
+            <div class="nr-accordion-body">
+              <p>The NodeRail platform infrastructure is publicly available on GitHub at <a href="https://github.com/Noderail/noderail" style="color:var(--nr-teal-dim);">github.com/Noderail/noderail</a>. The platform itself is in early access. The governance model, node templates, and contribution standards are all publicly documented.</p>
+            </div>
+          </div>
+
+          <div class="nr-accordion-item">
+            <button class="nr-accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+              How do I get access? <span class="icon">+</span>
+            </button>
+            <div class="nr-accordion-body">
+              <p>NodeRail is in early access. Submit a request at <a href="/access.html" style="color:var(--nr-teal-dim);">noderail.org/access</a> and Gao Kabubi will review it personally. Access is not a gate — it is a handshake. The process takes less than five minutes.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="nr-footer">
+    <div class="nr-footer-inner">
+      <div>
+        <div class="nr-footer-logo">NodeRail</div>
+        <p style="font-size:0.82rem;margin-top:0.25rem;">Infrastructure for Intellectual Continuity</p>
+        <p style="font-size:0.78rem;margin-top:1rem;color:#aaa;">v0.1 &nbsp;·&nbsp; &copy; 2026 NodeRail</p>
+      </div>
+      <div class="nr-footer-links">
+        <a href="/">Home</a>
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/access.html">Request Access</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showTab(id, btn) {
+      document.querySelectorAll('.ref-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.ref-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('panel-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+    function toggleAccordion(btn) {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+    }
+  </script>
+</body>
+</html>
