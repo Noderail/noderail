@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Request Access — NodeRail Early Access</title>
-  <meta name="description" content="NodeRail is in early access. Submit a request and Gao Kabubi will review it personally. Access is not a gate — it is a handshake.">
+  <title>Join NodeRail — Early Access</title>
+  <meta name="description" content="NodeRail is in early access. Submit your intellectual work and join the first cohort of researchers, students, and practitioners building on the platform.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://noderail.org/access.html">
   <link rel="stylesheet" href="/assets/nr.css">
@@ -12,9 +12,33 @@
       background: var(--nr-dark); color: var(--nr-white);
       padding: 5rem 0 4rem;
     }
-    .access-hero h1 { color: var(--nr-white); max-width: 640px; margin-bottom: 1rem; }
-    .access-hero p { color: #9ca3af; max-width: 520px; font-size: 1.05rem; }
+    .access-hero h1 { color: var(--nr-white); max-width: 680px; margin-bottom: 1rem; }
+    .access-hero p { color: #9ca3af; max-width: 560px; font-size: 1.05rem; line-height: 1.7; }
 
+    /* Invite strip */
+    .invite-strip {
+      background: linear-gradient(135deg, rgba(45,212,191,0.08) 0%, rgba(26,26,46,0.6) 100%);
+      border-top: 1px solid rgba(45,212,191,0.2);
+      border-bottom: 1px solid rgba(45,212,191,0.2);
+      padding: 2rem 0;
+    }
+    .invite-strip-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+    }
+    .invite-strip-text { flex: 1; min-width: 260px; }
+    .invite-strip-text h3 { color: var(--nr-white); margin-bottom: 0.4rem; font-size: 1.05rem; }
+    .invite-strip-text p { color: #9ca3af; font-size: 0.88rem; margin: 0; }
+    .invite-roles {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .invite-role {
+      padding: 0.35rem 0.85rem; border-radius: 20px;
+      font-size: 0.78rem; font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.15); color: #d1d5db;
+    }
+
+    /* Layout */
     .access-layout {
       display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
       align-items: start; padding: 4rem 0;
@@ -29,18 +53,17 @@
       padding: 0.75rem 1rem; border: 1.5px solid var(--nr-border);
       border-radius: var(--nr-radius-sm); font-family: var(--nr-font);
       font-size: 0.9rem; color: var(--nr-text); background: var(--nr-white);
-      transition: border-color 0.15s;
-      width: 100%;
+      transition: border-color 0.15s; width: 100%;
     }
     .form-input:focus, .form-select:focus, .form-textarea:focus {
       outline: none; border-color: var(--nr-dark);
     }
-    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-textarea { resize: vertical; min-height: 110px; }
     .form-hint { font-size: 0.78rem; color: var(--nr-muted); }
     .form-submit {
       background: var(--nr-dark); color: var(--nr-white);
-      padding: 0.85rem 2rem; border-radius: var(--nr-radius-sm);
-      font-weight: 700; font-size: 0.95rem; border: none;
+      padding: 0.9rem 2rem; border-radius: var(--nr-radius-sm);
+      font-weight: 700; font-size: 1rem; border: none;
       cursor: pointer; font-family: var(--nr-font);
       transition: background 0.15s, transform 0.15s;
       align-self: flex-start;
@@ -48,7 +71,7 @@
     .form-submit:hover { background: #2d2d4e; transform: translateY(-1px); }
 
     /* What to expect */
-    .expect-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .expect-list { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem; }
     .expect-item { display: flex; gap: 1rem; align-items: flex-start; }
     .expect-icon {
       width: 40px; height: 40px; border-radius: 50%;
@@ -58,16 +81,52 @@
     }
     .expect-icon svg { width: 18px; height: 18px; }
     .expect-item h4 { margin-bottom: 0.25rem; }
-    .expect-item p { font-size: 0.85rem; }
+    .expect-item p { font-size: 0.85rem; color: var(--nr-muted); }
 
-    /* Criteria */
-    .criteria-box {
+    /* Assessment criteria */
+    .assessment-box {
       background: var(--nr-off); border: 1px solid var(--nr-border);
-      border-radius: var(--nr-radius); padding: 1.5rem; margin-top: 2rem;
+      border-radius: var(--nr-radius); padding: 1.75rem; margin-bottom: 2rem;
     }
-    .criteria-box h4 { margin-bottom: 1rem; }
-    .criteria-item { display: flex; gap: 0.6rem; margin-bottom: 0.6rem; font-size: 0.85rem; color: var(--nr-muted); }
+    .assessment-box h4 { margin-bottom: 0.5rem; }
+    .assessment-box .sub { font-size: 0.82rem; color: var(--nr-muted); margin-bottom: 1.25rem; }
+    .criteria-item {
+      display: flex; gap: 0.75rem; margin-bottom: 0.9rem;
+      font-size: 0.85rem;
+    }
     .criteria-item:last-child { margin-bottom: 0; }
+    .criteria-check {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(45,212,191,0.12); border: 1px solid rgba(45,212,191,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 0.05rem;
+    }
+    .criteria-check svg { width: 10px; height: 10px; stroke: var(--nr-teal); }
+    .criteria-text strong { display: block; font-size: 0.85rem; color: var(--nr-text); }
+    .criteria-text span { font-size: 0.78rem; color: var(--nr-muted); }
+
+    /* Contact section */
+    .contact-section {
+      background: var(--nr-dark); padding: 4rem 0;
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--nr-radius); padding: 2rem;
+    }
+    .contact-card h3 { color: var(--nr-white); margin-bottom: 0.5rem; }
+    .contact-card p { color: #9ca3af; font-size: 0.88rem; margin-bottom: 1.25rem; }
+    .contact-card a.contact-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--nr-teal); font-size: 0.88rem; font-weight: 600;
+      text-decoration: none;
+    }
+    .contact-card a.contact-link:hover { text-decoration: underline; }
+    .contact-card a.contact-link svg { width: 14px; height: 14px; stroke: currentColor; }
   </style>
 </head>
 <body>
@@ -84,7 +143,8 @@
         <a href="/why-noderail.html">Why NodeRail</a>
         <a href="/use-cases.html">Use cases</a>
         <a href="/reference.html">Reference</a>
-        <a href="/access.html" class="nr-nav-cta active" style="background:#2d2d4e;">Request Access</a>
+        <a href="/about.html">About</a>
+        <a href="/access.html" class="nr-nav-cta active" style="background:#2d2d4e;">Join NodeRail</a>
       </div>
     </div>
   </nav>
@@ -93,10 +153,30 @@
   <section class="access-hero">
     <div class="nr-container">
       <div class="nr-eyebrow" style="color:var(--nr-teal);">Early Access</div>
-      <h1>Access is not a gate. It is a handshake.</h1>
-      <p>NodeRail is in early access. Tell us about your work and Gao Kabubi will review your request personally. The process takes less than five minutes.</p>
+      <h1>Your intellectual work deserves a permanent home.</h1>
+      <p>NodeRail is in early access. We are building the first cohort of researchers, students, and practitioners who will publish the platform's founding nodes. Tell us about your work and we will be in touch within 48 hours.</p>
     </div>
   </section>
+
+  <!-- WHO WE ARE INVITING -->
+  <div class="invite-strip" style="background:var(--nr-dark);">
+    <div class="invite-strip-inner">
+      <div class="invite-strip-text">
+        <h3>Who we are inviting to join</h3>
+        <p>NodeRail is for anyone with intellectual work that deserves to persist, compound, and be cited.</p>
+      </div>
+      <div class="invite-roles">
+        <span class="invite-role">Researchers</span>
+        <span class="invite-role">PhD Students</span>
+        <span class="invite-role">Postdocs</span>
+        <span class="invite-role">Practitioners</span>
+        <span class="invite-role">Field Founders</span>
+        <span class="invite-role">Universities</span>
+        <span class="invite-role">Research Centres</span>
+        <span class="invite-role">Policy Organisations</span>
+      </div>
+    </div>
+  </div>
 
   <!-- FORM + INFO -->
   <section class="nr-section">
@@ -105,8 +185,8 @@
 
         <!-- FORM -->
         <div>
-          <h2 style="margin-bottom:0.5rem;">Submit a request</h2>
-          <p style="margin-bottom:2rem;font-size:0.9rem;">We will respond within 48 hours.</p>
+          <h2 style="margin-bottom:0.5rem;">Submit your work</h2>
+          <p style="margin-bottom:2rem;font-size:0.9rem;color:var(--nr-muted);">Takes under five minutes. We respond within 48 hours.</p>
 
           <form class="access-form" action="https://formspree.io/f/noderail" method="POST">
             <div class="form-group">
@@ -123,7 +203,8 @@
                 <option value="" disabled selected>Select your role</option>
                 <option>Researcher / Academic</option>
                 <option>Student (Undergraduate)</option>
-                <option>Student (Postgraduate)</option>
+                <option>Student (Postgraduate / PhD)</option>
+                <option>Postdoctoral Researcher</option>
                 <option>Practitioner / Consultant</option>
                 <option>University / Research Centre</option>
                 <option>Policy Organisation</option>
@@ -132,62 +213,151 @@
               </select>
             </div>
             <div class="form-group">
+              <label class="form-label" for="institution">Institution or organisation (optional)</label>
+              <input class="form-input" type="text" id="institution" name="institution" placeholder="University, lab, or organisation name">
+            </div>
+            <div class="form-group">
               <label class="form-label" for="work">What intellectual work do you want to publish on NodeRail?</label>
-              <textarea class="form-textarea" id="work" name="work" placeholder="Describe the field, framework, project, or measurement you are working on..." required></textarea>
-              <span class="form-hint">Be specific. This helps us understand how NodeRail can best support your work.</span>
+              <textarea class="form-textarea" id="work" name="work" placeholder="Describe the field, framework, project, or measurement you are working on. What is it about? What problem does it address?" required></textarea>
+              <span class="form-hint">Be specific. This is the most important part of your application. The more clearly you describe your work, the better we can support you.</span>
             </div>
             <div class="form-group">
               <label class="form-label" for="hear">How did you hear about NodeRail?</label>
               <input class="form-input" type="text" id="hear" name="hear" placeholder="LinkedIn, colleague, search, etc.">
             </div>
-            <button type="submit" class="form-submit">Submit Request →</button>
+            <button type="submit" class="form-submit">Submit your work →</button>
           </form>
         </div>
 
-        <!-- WHAT TO EXPECT -->
+        <!-- WHAT TO EXPECT + CRITERIA -->
         <div>
-          <h2 style="margin-bottom:2rem;">What happens next</h2>
+          <h2 style="margin-bottom:2rem;">What happens after you submit</h2>
           <div class="expect-list">
             <div class="expect-item">
-              <div class="expect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div class="expect-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
               <div>
-                <h4>We review your request</h4>
-                <p>Gao Kabubi reviews every request personally. We respond within 48 hours.</p>
+                <h4>Your submission is assessed</h4>
+                <p>Every submission is reviewed against the criteria below. We respond within 48 hours with a clear next step.</p>
               </div>
             </div>
             <div class="expect-item">
-              <div class="expect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="expect-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
               <div>
-                <h4>A brief conversation</h4>
-                <p>For most requests, we schedule a 20-minute call to understand your work and help you structure your first node.</p>
+                <h4>A brief onboarding conversation</h4>
+                <p>For most applicants, we schedule a 20-minute call to understand your work and help you structure your first node correctly.</p>
               </div>
             </div>
             <div class="expect-item">
-              <div class="expect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+              <div class="expect-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
               <div>
                 <h4>You publish your first node</h4>
-                <p>We walk you through the node template and help you publish your first structured, citable piece of intellectual work.</p>
+                <p>We walk you through the node template. Your first structured, citable piece of intellectual work goes live on NodeRail.</p>
               </div>
             </div>
             <div class="expect-item">
-              <div class="expect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+              <div class="expect-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </div>
               <div>
                 <h4>Your DOI is issued</h4>
-                <p>On your first stable release, Zenodo issues a permanent DOI. Your work is now citable in academic contexts.</p>
+                <p>On your first stable release, Zenodo issues a permanent DOI. Your work is citable in academic papers and reports from that point forward.</p>
               </div>
             </div>
           </div>
 
-          <div class="criteria-box">
-            <h4>Who gets access first</h4>
-            <div class="criteria-item"><span>→</span> Researchers building new fields or sub-fields</div>
-            <div class="criteria-item"><span>→</span> Students with capstone or dissertation work ready to publish</div>
-            <div class="criteria-item"><span>→</span> Practitioners with frameworks they want to make citable</div>
-            <div class="criteria-item"><span>→</span> Universities or research centres with cohort-level research programmes</div>
-            <div class="criteria-item"><span>→</span> Anyone who has already identified a specific intellectual continuity problem in their work</div>
+          <!-- ASSESSMENT CRITERIA -->
+          <div class="assessment-box">
+            <h4>What we assess submissions for</h4>
+            <p class="sub">Submissions are assessed for fit with the NodeRail model, not prestige or institutional affiliation. The question is whether your work is the kind of intellectual work NodeRail is designed to support.</p>
+            <div class="criteria-item">
+              <div class="criteria-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div>
+              <div class="criteria-text">
+                <strong>Structured intellectual work</strong>
+                <span>A framework, model, measurement instrument, research project, or field definition — not a blog post or general opinion.</span>
+              </div>
+            </div>
+            <div class="criteria-item">
+              <div class="criteria-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div>
+              <div class="criteria-text">
+                <strong>Continuity intent</strong>
+                <span>You want your work to persist, be built upon, and be cited — not just shared once and forgotten.</span>
+              </div>
+            </div>
+            <div class="criteria-item">
+              <div class="criteria-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div>
+              <div class="criteria-text">
+                <strong>Willingness to use the node template</strong>
+                <span>NodeRail works because nodes follow a consistent structure. You need to be willing to structure your work using the provided templates.</span>
+              </div>
+            </div>
+            <div class="criteria-item">
+              <div class="criteria-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div>
+              <div class="criteria-text">
+                <strong>Open to contribution</strong>
+                <span>NodeRail is a shared infrastructure. Work published here is open for others to fork, extend, and build upon — with full attribution.</span>
+              </div>
+            </div>
+            <div class="criteria-item">
+              <div class="criteria-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div>
+              <div class="criteria-text">
+                <strong>Institutional affiliation is not required</strong>
+                <span>Independent researchers, practitioners, and students without institutional backing are equally welcome.</span>
+              </div>
+            </div>
           </div>
-        </div>
 
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section">
+    <div class="nr-container">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <div class="nr-eyebrow" style="color:var(--nr-teal);">Get in Touch</div>
+        <h2 style="color:var(--nr-white);">Other ways to connect</h2>
+        <p style="color:#9ca3af;max-width:480px;margin:0.75rem auto 0;">Not ready to submit yet? Have a question? Want to explore a partnership? We are open to all of it.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Institutional Partnerships</h3>
+          <p>If you represent a university, research centre, or programme and want to explore adopting NodeRail for a cohort of students or researchers, we want to hear from you.</p>
+          <a href="mailto:partnerships@noderail.org" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            partnerships@noderail.org
+          </a>
+        </div>
+        <div class="contact-card">
+          <h3>General Enquiries</h3>
+          <p>For questions about the platform, the Continuity Standard, or anything else — send us a message and we will respond within 48 hours.</p>
+          <a href="mailto:hello@noderail.org" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            hello@noderail.org
+          </a>
+        </div>
+        <div class="contact-card">
+          <h3>Follow the Build</h3>
+          <p>NodeRail is being built in public. Follow the founder on LinkedIn for platform updates, new node announcements, and the ongoing development of the Continuity Standard.</p>
+          <a href="https://www.linkedin.com/in/gaokabubi" target="_blank" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn: Gao Kabubi
+          </a>
+        </div>
+        <div class="contact-card">
+          <h3>GitHub Repository</h3>
+          <p>NodeRail is open source. Browse the code, raise issues, or contribute to the platform directly on GitHub.</p>
+          <a href="https://github.com/Noderail/noderail" target="_blank" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            github.com/Noderail/noderail
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -206,6 +376,7 @@
         <a href="/why-noderail.html">Why NodeRail</a>
         <a href="/use-cases.html">Use cases</a>
         <a href="/reference.html">Reference</a>
+        <a href="/about.html">About</a>
       </div>
     </div>
   </footer>

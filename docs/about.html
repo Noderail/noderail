@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About — NodeRail</title>
+  <meta name="description" content="NodeRail is versioned knowledge infrastructure for researchers, practitioners, and students. Learn about the mission, the founder, and the problem we are solving.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://noderail.org/about.html">
+  <link rel="stylesheet" href="/assets/nr.css">
+  <style>
+    .about-hero {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 5rem 0 4rem;
+    }
+    .about-hero h1 { color: var(--nr-white); max-width: 720px; margin-bottom: 1rem; }
+    .about-hero p { color: #9ca3af; max-width: 580px; font-size: 1.05rem; line-height: 1.75; }
+
+    .about-body { padding: 4rem 0; }
+    .about-grid {
+      display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: start;
+    }
+    @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .about-prose h2 { margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    .about-prose h2:first-child { margin-top: 0; }
+    .about-prose p { color: var(--nr-muted); line-height: 1.75; margin-bottom: 1rem; }
+    .about-prose p:last-child { margin-bottom: 0; }
+
+    /* Founder card */
+    .founder-sidebar {
+      position: sticky; top: 80px;
+    }
+    .founder-profile {
+      background: var(--nr-off); border: 1px solid var(--nr-border);
+      border-radius: var(--nr-radius); padding: 2rem; margin-bottom: 1.5rem;
+    }
+    .founder-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--nr-dark); border: 2px solid rgba(45,212,191,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem; color: var(--nr-teal);
+    }
+    .founder-avatar svg { width: 28px; height: 28px; }
+    .founder-profile h3 { margin-bottom: 0.2rem; }
+    .founder-profile .founder-title { font-size: 0.82rem; color: var(--nr-muted); margin-bottom: 1rem; }
+    .founder-profile p { font-size: 0.85rem; color: var(--nr-muted); line-height: 1.6; }
+    .founder-links { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.25rem; }
+    .founder-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; color: var(--nr-teal); text-decoration: none; font-weight: 600;
+    }
+    .founder-link:hover { text-decoration: underline; }
+    .founder-link svg { width: 13px; height: 13px; stroke: currentColor; }
+
+    /* Stats */
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .stat-box {
+      background: var(--nr-off); border: 1px solid var(--nr-border);
+      border-radius: var(--nr-radius-sm); padding: 1.25rem;
+      text-align: center;
+    }
+    .stat-box .stat-val { font-size: 1.6rem; font-weight: 800; color: var(--nr-dark); }
+    .stat-box .stat-label { font-size: 0.75rem; color: var(--nr-muted); margin-top: 0.25rem; }
+
+    /* Values */
+    .values-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 700px) { .values-grid { grid-template-columns: 1fr; } }
+    .value-card {
+      background: var(--nr-off); border: 1px solid var(--nr-border);
+      border-radius: var(--nr-radius); padding: 1.5rem;
+    }
+    .value-icon {
+      width: 36px; height: 36px; color: var(--nr-teal-dim);
+      margin-bottom: 0.75rem;
+    }
+    .value-icon svg { width: 24px; height: 24px; stroke: currentColor; }
+    .value-card h4 { margin-bottom: 0.4rem; }
+    .value-card p { font-size: 0.83rem; color: var(--nr-muted); line-height: 1.6; }
+
+    /* Timeline */
+    .timeline { margin-top: 1.5rem; }
+    .tl-item { display: flex; gap: 1.25rem; margin-bottom: 1.5rem; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--nr-teal); flex-shrink: 0; margin-top: 0.4rem;
+    }
+    .tl-content h5 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .tl-content p { font-size: 0.82rem; color: var(--nr-muted); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nr-nav">
+    <div class="nr-nav-inner">
+      <a href="/" class="nr-nav-logo">
+        <img src="/assets/logo.png" alt="NodeRail">
+        NodeRail
+      </a>
+      <div class="nr-nav-links">
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/about.html" style="font-weight:700;color:var(--nr-dark);">About</a>
+        <a href="/access.html" class="nr-nav-cta">Join NodeRail</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="about-hero">
+    <div class="nr-container">
+      <div class="nr-eyebrow" style="color:var(--nr-teal);">About NodeRail</div>
+      <h1>Built to solve the problem of intellectual work that disappears.</h1>
+      <p>Every year, millions of research projects, student dissertations, practitioner frameworks, and field-defining ideas are produced — and then lost. NodeRail is the infrastructure built to stop that from happening.</p>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section class="about-body">
+    <div class="nr-container">
+      <div class="about-grid">
+
+        <!-- PROSE -->
+        <div class="about-prose">
+
+          <h2>The problem NodeRail was built to solve</h2>
+          <p>Intellectual work has a continuity problem. A researcher builds a framework, publishes a paper, and moves on. The framework is never updated, never linked to the work that builds on it, and within five years it is effectively lost — even if the paper is still technically accessible. A student completes a dissertation that contains genuinely original thinking. It is submitted, graded, and filed. No one builds on it. It compounds nothing.</p>
+          <p>This is not a storage problem. It is a structural problem. The tools we use to produce and share intellectual work — documents, wikis, papers, slide decks — are not designed for continuity. They are designed for point-in-time communication. NodeRail is designed for something different: structured, versioned, citable intellectual infrastructure that compounds over time.</p>
+
+          <h2>What NodeRail is</h2>
+          <p>NodeRail is versioned knowledge infrastructure. It gives researchers, practitioners, and students a permanent, citable home for their intellectual work — with DOI versioning via Zenodo, Git-based lineage tracking, and academic citation built in from the start.</p>
+          <p>Work on NodeRail is organised into four structured units called nodes: Fields, Frameworks, Measurements, and Projects. Each node follows a consistent template, is version-controlled in Git, and receives a permanent DOI on its first stable release. Nodes can be forked, extended, and built upon by others — with full attribution and lineage preserved.</p>
+          <p>The result is an intellectual record that persists, compounds, and remains citable long after the original author has moved on.</p>
+
+          <h2>Where we are now</h2>
+          <p>NodeRail is at v0.1. The platform is live at noderail.org, the first Founder Field (Human Capacity Science) is in development, and the first DOI has been issued. We are in early access, onboarding the first cohort of researchers, students, and practitioners who will publish the platform's founding nodes.</p>
+          <p>This is a deliberate pace. NodeRail is infrastructure. Infrastructure needs to be built carefully, with the right people, before it scales. The early access period is how we ensure the first nodes set the right standard for everything that follows.</p>
+
+          <h2>Our principles</h2>
+          <div class="values-grid">
+            <div class="value-card">
+              <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <h4>Permanence over convenience</h4>
+              <p>We build for the 20-year view, not the 20-minute view. Every design decision prioritises the long-term integrity of the work over short-term ease of use.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></div>
+              <h4>Attribution as infrastructure</h4>
+              <p>Every fork, extension, and adoption preserves the full lineage back to the origin. Credit is structural, not optional.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+              <h4>Open by default</h4>
+              <p>NodeRail is open source and all nodes are open access. Knowledge infrastructure should not be locked behind paywalls.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <h4>No prestige filter</h4>
+              <p>A student's dissertation and a professor's framework are evaluated by the same standard: the quality and structure of the intellectual work, not the institution behind it.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+              <h4>Structure enables compounding</h4>
+              <p>Freeform text does not compound. Structured nodes do. The template is not a constraint — it is the mechanism that makes intellectual work reusable.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+              <h4>Built in public</h4>
+              <p>NodeRail is being built transparently. The code is open, the decisions are documented, and the platform itself is published on NodeRail.</p>
+            </div>
+          </div>
+
+          <h2>Milestones</h2>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>February 2026 — v0.1 launched</h5>
+                <p>NodeRail goes live at noderail.org. First Founder Field (HCS) in development. First DOI issued: 10.5281/zenodo.18764766.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background:#d1d5db;"></div>
+              <div class="tl-content">
+                <h5>Q2 2026 — v0.2 (planned)</h5>
+                <p>First external nodes published. DOI integration automated. University partnership programme launched.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background:#d1d5db;"></div>
+              <div class="tl-content">
+                <h5>Q4 2026 — v1.0 (planned)</h5>
+                <p>Public node registry. Continuity Standard v1.0 published. First institutional cohort onboarded.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="founder-sidebar">
+          <div class="founder-profile">
+            <div class="founder-avatar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3>Gao Kabubi</h3>
+            <div class="founder-title">Founder, NodeRail</div>
+            <p>Gao is the founder of NodeRail and the originator of Human Capacity Science (HCS), the first field being built on the platform. NodeRail was built to solve a problem Gao encountered directly: intellectual work that could not find a permanent, structured, citable home.</p>
+            <div class="founder-links">
+              <a href="https://www.linkedin.com/in/gaokabubi" target="_blank" class="founder-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+              <a href="https://github.com/Noderail/noderail" target="_blank" class="founder-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                GitHub
+              </a>
+              <a href="https://doi.org/10.5281/zenodo.18764766" target="_blank" class="founder-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                DOI: 10.5281/zenodo.18764766
+              </a>
+            </div>
+          </div>
+
+          <div class="about-stats">
+            <div class="stat-box">
+              <div class="stat-val">v0.1</div>
+              <div class="stat-label">Current version</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">1</div>
+              <div class="stat-label">Founder Field</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">1</div>
+              <div class="stat-label">DOI issued</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">Open</div>
+              <div class="stat-label">Access status</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="nr-container">
+      <h2>Join the first cohort</h2>
+      <p>NodeRail is in early access. If your work belongs here, submit it. The process takes under five minutes.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/access.html" class="btn btn-teal">Join NodeRail →</a>
+        <a href="/how-it-works.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.25);">How it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="nr-footer">
+    <div class="nr-footer-inner">
+      <div>
+        <div class="nr-footer-logo">NodeRail</div>
+        <p style="font-size:0.82rem;margin-top:0.25rem;">Infrastructure for Intellectual Continuity</p>
+        <p style="font-size:0.78rem;margin-top:1rem;color:#aaa;">v0.1 &nbsp;·&nbsp; &copy; 2026 NodeRail</p>
+      </div>
+      <div class="nr-footer-links">
+        <a href="/">Home</a>
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/access.html">Join NodeRail</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
