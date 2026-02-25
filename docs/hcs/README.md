@@ -2,7 +2,7 @@
 node_id: NR-20260224-HCS-001
 node_type: field
 title: "Human Capacity Science"
-status: published
+status: draft
 created_by: "Gao Kabubi"
 created_at: 2026-02-24
 maintainer: "Gao Kabubi"
