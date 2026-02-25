@@ -1,10 +1,18 @@
 - **NodeRail**
   - [Home](/)
+  - [What is NodeRail?](/what-is-noderail)
   - [How it Works](/how)
+  - [Use Cases](/use-cases)
+  - [FAQ](/faq)
   - [Rules](/rules)
   - [Request Access](/access)
 
-- **Founder Field: HCS**
+- **Reference**
+  - [Glossary](/glossary)
+  - [Problem Index](/problem-index)
+  - [Continuity Standard v0.1](/continuity-standard)
+
+- **Founder Field: HCS** *(Draft)*
   - [HCS Overview](/hcs/)
   - [Primer](/hcs/primer)
   - [The 10 Maxims](/hcs/maxims)
