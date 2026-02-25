@@ -57,6 +57,9 @@
       width: 36px; height: 36px;
       object-fit: contain;
       display: block; flex-shrink: 0;
+      background: #1a1a2e;
+      border-radius: 6px;
+      padding: 3px;
     }
     .nr-nav-links { display: flex; gap: 1.5rem; font-size: 0.9rem; align-items: center; }
     .nr-nav-links a { color: #555; transition: color 0.2s; white-space: nowrap; }
@@ -70,7 +73,15 @@
     /* Hero */
     .nr-hero {
       max-width: 860px; margin: 0 auto;
-      padding: 5rem 2rem 3rem; text-align: center;
+      padding: 3rem 2rem 3rem; text-align: center;
+    }
+    .nr-hero-banner {
+      margin-bottom: 2rem;
+    }
+    .nr-hero-banner img {
+      width: 100%; max-width: 560px;
+      border-radius: 12px;
+      display: block; margin: 0 auto;
     }
     .nr-hero-badge {
       display: inline-block; background: #f0f0f8; color: #1a1a2e;
@@ -199,6 +210,9 @@
   </nav>
 
   <section class="nr-hero">
+    <div class="nr-hero-banner">
+      <img src="assets/banner.png" alt="NodeRail — Infrastructure for intellectual work to compound">
+    </div>
     <div class="nr-hero-badge">v0.1 · Now Live</div>
     <h1>Infrastructure for<br>Intellectual Continuity</h1>
     <p>NodeRail gives researchers, practitioners, and students a permanent, citable home for their intellectual work. DOI versioning, Git-based lineage tracking, and academic citation built in.</p>
