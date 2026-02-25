@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Governance — NodeRail</title>
+  <meta name="description" content="NodeRail platform governance: how nodes are submitted, reviewed, canonicalised, and maintained. Open extension. Curated canon.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://noderail.org/governance.html">
+  <link rel="stylesheet" href="/assets/nr.css">
+  <style>
+    .gov-hero {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 5rem 0 4rem;
+    }
+    .gov-hero .eyebrow { color: var(--nr-teal); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+    .gov-hero h1 { color: var(--nr-white); max-width: 700px; margin-bottom: 1rem; }
+    .gov-hero p { color: #9ca3af; max-width: 580px; font-size: 1.05rem; line-height: 1.75; }
+    .gov-principle {
+      display: inline-block; margin-top: 1.5rem;
+      background: rgba(45,212,191,0.08); border: 1px solid rgba(45,212,191,0.25);
+      border-radius: 8px; padding: 0.75rem 1.25rem;
+      color: var(--nr-teal); font-size: 1rem; font-weight: 600; font-style: italic;
+    }
+    /* Section layout */
+    .gov-body { padding: 4rem 0; }
+    .gov-section { margin-bottom: 4rem; }
+    .gov-section:last-child { margin-bottom: 0; }
+    .gov-section-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--nr-teal); margin-bottom: 0.75rem;
+    }
+    .gov-section h2 { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .gov-section .section-lead { color: var(--nr-muted); font-size: 1rem; line-height: 1.75; max-width: 680px; margin-bottom: 2rem; }
+    /* Access matrix */
+    .access-matrix-wrap { overflow-x: auto; }
+    .access-matrix {
+      width: 100%; border-collapse: collapse; font-size: 0.88rem;
+    }
+    .access-matrix th {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 0.75rem 1rem; text-align: left; font-weight: 600;
+      border-bottom: 2px solid var(--nr-teal);
+    }
+    .access-matrix td {
+      padding: 0.75rem 1rem; border-bottom: 1px solid var(--nr-border);
+      color: var(--nr-muted); vertical-align: middle;
+    }
+    .access-matrix tr:last-child td { border-bottom: none; }
+    .access-matrix tr:hover td { background: var(--nr-off); }
+    .access-matrix .role-name { font-weight: 600; color: var(--nr-dark); }
+    .check { color: var(--nr-teal); font-size: 1rem; }
+    .cross { color: #9ca3af; font-size: 1rem; }
+    /* Publishing states */
+    .state-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
+      margin-top: 1rem;
+    }
+    .state-card {
+      background: var(--nr-off); border: 1px solid var(--nr-border);
+      border-radius: var(--nr-radius-sm); padding: 1.5rem;
+    }
+    .state-badge {
+      display: inline-block; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.75rem;
+    }
+    .state-badge.extension { background: rgba(45,212,191,0.1); color: var(--nr-teal); }
+    .state-badge.canonical { background: rgba(16,185,129,0.1); color: #10b981; }
+    .state-badge.draft { background: rgba(245,158,11,0.1); color: #f59e0b; }
+    .state-badge.deprecated { background: rgba(239,68,68,0.1); color: #ef4444; }
+    .state-card h4 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .state-card p { font-size: 0.82rem; color: var(--nr-muted); margin: 0; line-height: 1.55; }
+    /* Principles list */
+    .principle-list { list-style: none; padding: 0; margin: 0; }
+    .principle-list li {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.25rem 0; border-bottom: 1px solid var(--nr-border);
+    }
+    .principle-list li:last-child { border-bottom: none; }
+    .principle-num {
+      font-size: 0.75rem; font-weight: 700; color: var(--nr-teal);
+      background: rgba(45,212,191,0.08); border: 1px solid rgba(45,212,191,0.2);
+      border-radius: 6px; padding: 0.2rem 0.5rem; flex-shrink: 0; margin-top: 2px;
+    }
+    .principle-list h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .principle-list p { font-size: 0.85rem; color: var(--nr-muted); margin: 0; line-height: 1.6; }
+    /* Field creation */
+    .field-req-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem;
+    }
+    .field-req-card {
+      background: var(--nr-off); border: 1px solid var(--nr-border);
+      border-radius: var(--nr-radius-sm); padding: 1.25rem;
+      display: flex; align-items: flex-start; gap: 0.75rem;
+    }
+    .field-req-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(45,212,191,0.08); border: 1px solid rgba(45,212,191,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--nr-teal);
+    }
+    .field-req-icon svg { width: 16px; height: 16px; stroke: currentColor; }
+    .field-req-card h4 { font-size: 0.88rem; margin-bottom: 0.25rem; }
+    .field-req-card p { font-size: 0.8rem; color: var(--nr-muted); margin: 0; line-height: 1.5; }
+    /* Deletion policy */
+    .deletion-flow {
+      display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;
+    }
+    .deletion-step {
+      background: var(--nr-off); border: 1px solid var(--nr-border);
+      border-radius: 8px; padding: 0.6rem 1rem;
+      font-size: 0.82rem; font-weight: 600; color: var(--nr-dark);
+    }
+    .deletion-arrow { color: var(--nr-teal); font-size: 1rem; font-weight: 700; }
+    /* Maintainer apply section */
+    .apply-section {
+      background: var(--nr-dark); padding: 4rem 0;
+    }
+    .apply-section h2 { color: var(--nr-white); margin-bottom: 0.5rem; }
+    .apply-section p { color: #9ca3af; max-width: 560px; margin-bottom: 2rem; line-height: 1.75; }
+    .apply-cards {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;
+    }
+    .apply-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--nr-radius); padding: 1.75rem;
+    }
+    .apply-card h4 { color: var(--nr-white); font-size: 1rem; margin-bottom: 0.5rem; }
+    .apply-card p { color: #9ca3af; font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.25rem; }
+    .apply-card a {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.85rem; font-weight: 600; color: var(--nr-teal);
+      text-decoration: none;
+    }
+    .apply-card a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nr-nav">
+    <div class="nr-nav-inner">
+      <a href="/" class="nr-nav-logo">
+        <img src="/assets/logo.png" alt="NodeRail">
+        NodeRail
+      </a>
+      <div class="nr-nav-links">
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/roles.html">Roles</a>
+        <a href="/governance.html" style="font-weight:700;color:var(--nr-dark);">Governance</a>
+        <a href="/about.html">About</a>
+        <a href="/access.html" class="nr-nav-cta">Join NodeRail</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="gov-hero">
+    <div class="nr-container">
+      <div class="eyebrow">Platform Governance v0.1</div>
+      <h1>Open extension.<br>Curated canon.</h1>
+      <p>NodeRail is infrastructure for intellectual continuity. Anyone can contribute. Not everything becomes canonical. This document explains how that works.</p>
+      <div class="gov-principle">"Structural memory, not submission volume."</div>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <div class="gov-body">
+    <div class="nr-container">
+
+      <!-- ACCESS MODEL -->
+      <div class="gov-section">
+        <div class="gov-section-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          Access Model
+        </div>
+        <h2>Who can do what</h2>
+        <p class="section-lead">NodeRail has four roles. Access is determined by role, not by institution, affiliation, or seniority. The platform protects the ontology layer — Fields, Canon, and Lineage — while keeping everything else open.</p>
+        <div class="access-matrix-wrap">
+          <table class="access-matrix">
+            <thead>
+              <tr>
+                <th>Role</th>
+                <th>Read nodes</th>
+                <th>Submit nodes</th>
+                <th>Edit own nodes</th>
+                <th>Curate a field</th>
+                <th>Canonicalise</th>
+                <th>Create a field</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="role-name">Public Reader</td>
+                <td class="check">&#10003;</td>
+                <td class="cross">&#8212;</td>
+                <td class="cross">&#8212;</td>
+                <td class="cross">&#8212;</td>
+                <td class="cross">&#8212;</td>
+                <td class="cross">&#8212;</td>
+              </tr>
+              <tr>
+                <td class="role-name">Contributor</td>
+                <td class="check">&#10003;</td>
+                <td class="check">&#10003;</td>
+                <td class="check">&#10003;</td>
+                <td class="cross">&#8212;</td>
+                <td class="cross">&#8212;</td>
+                <td class="cross">&#8212;</td>
+              </tr>
+              <tr>
+                <td class="role-name">Field Maintainer</td>
+                <td class="check">&#10003;</td>
+                <td class="check">&#10003;</td>
+                <td class="check">&#10003;</td>
+                <td class="check">&#10003;</td>
+                <td class="check">&#10003;</td>
+                <td class="cross">&#8212;</td>
+              </tr>
+              <tr>
+                <td class="role-name">Platform Admin</td>
+                <td class="check">&#10003;</td>
+                <td class="check">&#10003;</td>
+                <td class="check">&#10003;</td>
+                <td class="check">&#10003;</td>
+                <td class="check">&#10003;</td>
+                <td class="check">&#10003;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PUBLISHING STATES -->
+      <div class="gov-section">
+        <div class="gov-section-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Publishing Model
+        </div>
+        <h2>Node publishing states</h2>
+        <p class="section-lead">Every node on NodeRail has a publishing state. Nodes publish immediately as Extensions. Maintainers may promote, draft, or deprecate them. All states remain visible and citable.</p>
+        <div class="state-grid">
+          <div class="state-card">
+            <div class="state-badge extension">Extension</div>
+            <h4>Default state</h4>
+            <p>All submitted nodes begin as Extensions. Publicly visible, citable, and extendable. Not part of the curated canon.</p>
+          </div>
+          <div class="state-card">
+            <div class="state-badge canonical">Canonical</div>
+            <h4>Curated core</h4>
+            <p>Promoted by a Field Maintainer. Structurally foundational, quality-vetted, and referenced in the field index.</p>
+          </div>
+          <div class="state-card">
+            <div class="state-badge draft">Draft</div>
+            <h4>In development</h4>
+            <p>Visible but clearly marked as incomplete or under active revision. Not yet ready for citation or extension.</p>
+          </div>
+          <div class="state-card">
+            <div class="state-badge deprecated">Deprecated</div>
+            <h4>Superseded</h4>
+            <p>Replaced by a newer version or a better framework. Preserved for lineage integrity. Not recommended for new citations.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CANON VS EXTENSION -->
+      <div class="gov-section">
+        <div class="gov-section-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          Core Principle
+        </div>
+        <h2>Canon vs Extension</h2>
+        <p class="section-lead">This is the structural heart of NodeRail. All submissions live publicly. Only some become Canonical Nodes. The distinction is not a quality judgment on the person — it is a structural judgment on the node's role in the field.</p>
+        <ul class="principle-list">
+          <li>
+            <span class="principle-num">01</span>
+            <div>
+              <h4>All nodes are visible</h4>
+              <p>Nothing is hidden. Every Extension, Draft, and Deprecated node remains publicly accessible, citable, and extendable. NodeRail does not delete intellectual work.</p>
+            </div>
+          </li>
+          <li>
+            <span class="principle-num">02</span>
+            <div>
+              <h4>Canon is curated, not gatekept</h4>
+              <p>A Canonical node is structurally foundational, field-aligned, and quality-vetted. Canonicalisation is a curation decision by the Field Maintainer, not a rejection of other work.</p>
+            </div>
+          </li>
+          <li>
+            <span class="principle-num">03</span>
+            <div>
+              <h4>Extensions cannot overwrite canon</h4>
+              <p>Contributors can fork, extend, and build on any node. They cannot overwrite canonical nodes or redefine a field's scope. Extensions are additions, not replacements.</p>
+            </div>
+          </li>
+          <li>
+            <span class="principle-num">04</span>
+            <div>
+              <h4>Lineage is always preserved</h4>
+              <p>Every node carries its lineage metadata: who created it, what it was forked from, who adopted it. This cannot be removed, even when a node is deprecated.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- FIELD CREATION -->
+      <div class="gov-section">
+        <div class="gov-section-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Field Creation
+        </div>
+        <h2>Creating a new field</h2>
+        <p class="section-lead">Field creation is not frictionless by design. NodeRail protects the ontology layer. A new Field must represent a genuine intellectual domain, not a topic, tag, or personal project. Every Field proposal requires a complete constitution before review.</p>
+        <div class="field-req-grid">
+          <div class="field-req-card">
+            <div class="field-req-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            </div>
+            <div>
+              <h4>Field Constitution</h4>
+              <p>A written document defining the field's purpose, scope, and intellectual boundaries.</p>
+            </div>
+          </div>
+          <div class="field-req-card">
+            <div class="field-req-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+            <div>
+              <h4>Core Definitions</h4>
+              <p>At least five foundational terms defined clearly and distinctly from adjacent fields.</p>
+            </div>
+          </div>
+          <div class="field-req-card">
+            <div class="field-req-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            </div>
+            <div>
+              <h4>Scope Statement</h4>
+              <p>What the field includes and what it explicitly excludes. Prevents overlap and tag-soup.</p>
+            </div>
+          </div>
+          <div class="field-req-card">
+            <div class="field-req-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <div>
+              <h4>Governance Model</h4>
+              <p>How the field will be maintained, who the proposed Maintainer is, and how canon will be curated.</p>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top:1.5rem; font-size:0.88rem; color:var(--nr-muted);">Field proposals are reviewed by the Platform Admin. At v0.1, this is the NodeRail founding team. Governance will evolve toward a council model as the platform matures.</p>
+      </div>
+
+      <!-- DELETION POLICY -->
+      <div class="gov-section">
+        <div class="gov-section-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path></svg>
+          Deletion Policy
+        </div>
+        <h2>Deletion is rare by design</h2>
+        <p class="section-lead">Intellectual infrastructure should preserve lineage, even for flawed or superseded work. NodeRail does not delete nodes. Instead, it uses a structured lifecycle that keeps all work accessible while clearly signalling its status.</p>
+        <div class="deletion-flow">
+          <div class="deletion-step">Active Extension</div>
+          <div class="deletion-arrow">&#8594;</div>
+          <div class="deletion-step">Deprecated</div>
+          <div class="deletion-arrow">&#8594;</div>
+          <div class="deletion-step">Marked Superseded</div>
+          <div class="deletion-arrow">&#8594;</div>
+          <div class="deletion-step">Preserved in Lineage</div>
+        </div>
+        <p style="margin-top:1.5rem; font-size:0.88rem; color:var(--nr-muted);">Deletion may be considered only in cases of plagiarism, harmful content, or legal obligation. In all other cases, deprecation and versioning are the correct tools.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- APPLY SECTION -->
+  <section class="apply-section">
+    <div class="nr-container">
+      <h2>Apply for a role</h2>
+      <p>NodeRail is currently in early access. All role applications are reviewed by the founding team. There is no institutional requirement for any role.</p>
+      <div class="apply-cards">
+        <div class="apply-card">
+          <h4>Become a Contributor</h4>
+          <p>Submit nodes, fork existing work, and build your intellectual lineage on NodeRail. Open to researchers, students, practitioners, and independent thinkers.</p>
+          <a href="/access.html">
+            Apply to contribute
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+        <div class="apply-card">
+          <h4>Become a Field Maintainer</h4>
+          <p>Curate the canon of an existing field. Review submissions, approve canonical status, and protect the field's intellectual integrity. Requires demonstrated expertise in the field.</p>
+          <a href="/access.html#maintainer">
+            Apply as Maintainer
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+        <div class="apply-card">
+          <h4>Propose a new Field</h4>
+          <p>Have a domain of knowledge that deserves structured, citable infrastructure? Submit a Field proposal with a full constitution, definitions, scope, and governance model.</p>
+          <a href="/access.html#field">
+            Propose a Field
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="nr-footer">
+    <div class="nr-container">
+      <div class="nr-footer-inner">
+        <div class="nr-footer-brand">
+          <a href="/" class="nr-nav-logo" style="margin-bottom:0.5rem;">
+            <img src="/assets/logo.png" alt="NodeRail">
+            NodeRail
+          </a>
+          <p>Infrastructure for intellectual continuity.</p>
+        </div>
+        <div class="nr-footer-links">
+          <a href="/governance.html">Governance</a>
+          <a href="/roles.html">Roles</a>
+          <a href="/reference.html">Reference</a>
+          <a href="/about.html">About</a>
+          <a href="/access.html">Join NodeRail</a>
+          <a href="https://github.com/Noderail/noderail" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="nr-footer-bottom">
+        <span>NodeRail v0.1 &middot; DOI: <a href="https://doi.org/10.5281/zenodo.18764766" target="_blank" rel="noopener">10.5281/zenodo.18764766</a></span>
+        <span>Open extension. Curated canon.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

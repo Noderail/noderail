@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>How NodeRail Works, From Idea to Citable Infrastructure</title>
+  <title>How NodeRail Works — From Idea to Citable Infrastructure</title>
   <meta name="description" content="A full walkthrough of the NodeRail system: how nodes are created, versioned, linked, and issued permanent DOIs via Zenodo.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://noderail.org/how-it-works.html">
@@ -91,12 +91,13 @@
         <img src="/assets/logo.png" alt="NodeRail">
         NodeRail
       </a>
-      <div class="nr-nav-links">
-        <a href="/how-it-works.html" class="active">How it works</a>
+            <div class="nr-nav-links">
+        <a href="/how-it-works.html">How it works</a>
         <a href="/why-noderail.html">Why NodeRail</a>
         <a href="/use-cases.html">Use cases</a>
         <a href="/reference.html">Reference</a>
         <a href="/roles.html">Roles</a>
+        <a href="/governance.html">Governance</a>
         <a href="/about.html">About</a>
         <a href="/access.html" class="nr-nav-cta">Join NodeRail</a>
       </div>
@@ -122,7 +123,7 @@
           <div class="step-big-num">01</div>
           <h2>Create a Field Node</h2>
           <p>A Field is the top-level unit in NodeRail. It defines the scope, core constructs, ethics, governance rules, and contribution standards for a domain of knowledge. Think of it as the constitution for a field.</p>
-          <p>Every Field has a Field Founder. The person responsible for its initial architecture. The Field Constitution template ensures every field is structured consistently and can be extended by others.</p>
+          <p>Every Field has a Field Founder — the person responsible for its initial architecture. The Field Constitution template ensures every field is structured consistently and can be extended by others.</p>
           <div class="step-detail">
             <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M4 7h16v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg><p>Field Constitution: scope, constructs, ethics, governance</p></div>
             <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><p>Canonical Construct Map: every term defined and versioned</p></div>
@@ -191,7 +192,7 @@
           <div class="step-label">Step 3</div>
           <div class="step-big-num">03</div>
           <h2>Version and Timestamp Every Change</h2>
-          <p>NodeRail uses Git as its version control backbone. Every change to every node is committed with a timestamp, author attribution, and a change log entry. Nothing is ever overwritten, only superseded.</p>
+          <p>NodeRail uses Git as its version control backbone. Every change to every node is committed with a timestamp, author attribution, and a change log entry. Nothing is ever overwritten — only superseded.</p>
           <p>This creates a complete, auditable lineage for every piece of intellectual work on the platform. You can always see what changed, when, and why.</p>
           <div class="step-detail">
             <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><p>Every commit is timestamped and attributed</p></div>
@@ -258,7 +259,7 @@
           <div class="step-big-num">05</div>
           <h2>Fork, Extend, and Continue</h2>
           <p>Any node on NodeRail can be forked by another researcher or practitioner. The fork preserves the full lineage back to the origin, so the original author always gets credit. The field grows without losing its roots.</p>
-          <p>Project nodes have a required Continuation Hook. A structured section that explicitly invites the next person to build on the work. This turns every project into a starting point, not an endpoint.</p>
+          <p>Project nodes have a required Continuation Hook — a structured section that explicitly invites the next person to build on the work. This turns every project into a starting point, not an endpoint.</p>
           <div class="step-detail">
             <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="6" y1="9" x2="6" y2="15"/><path d="M9 6h3a2 2 0 0 1 2 2v7"/></svg><p>Forks are first-class nodes with their own DOIs</p></div>
             <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><p>Continuation Hooks on Project nodes invite the next researcher</p></div>
