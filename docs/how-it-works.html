@@ -37,7 +37,7 @@
     .step-detail { background: var(--nr-off); border-radius: var(--nr-radius); padding: 1.5rem; }
     .step-detail-item { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; align-items: flex-start; }
     .step-detail-item:last-child { margin-bottom: 0; }
-    .step-detail-item .sd-icon { flex-shrink: 0; font-size: 0.9rem; margin-top: 0.15rem; }
+    .step-detail-item .sd-icon { flex-shrink: 0; width: 18px; height: 18px; margin-top: 0.1rem; color: var(--nr-teal-dim); }
     .step-detail-item p { font-size: 0.85rem; margin: 0; }
     @media (max-width: 760px) {
       .big-step { grid-template-columns: 1fr; gap: 2rem; }
@@ -122,9 +122,9 @@
           <p>A Field is the top-level unit in NodeRail. It defines the scope, core constructs, ethics, governance rules, and contribution standards for a domain of knowledge. Think of it as the constitution for a field.</p>
           <p>Every Field has a Field Founder — the person responsible for its initial architecture. The Field Constitution template ensures every field is structured consistently and can be extended by others.</p>
           <div class="step-detail">
-            <div class="step-detail-item"><span class="sd-icon">📋</span><p>Field Constitution: scope, constructs, ethics, governance</p></div>
-            <div class="step-detail-item"><span class="sd-icon">🔑</span><p>Canonical Construct Map: every term defined and versioned</p></div>
-            <div class="step-detail-item"><span class="sd-icon">⚖️</span><p>Contribution Standards: who can add nodes and how</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M4 7h16v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg><p>Field Constitution: scope, constructs, ethics, governance</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><p>Canonical Construct Map: every term defined and versioned</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><p>Contribution Standards: who can add nodes and how</p></div>
           </div>
         </div>
         <div>
@@ -157,9 +157,9 @@
           <h2>Publish Nodes Inside the Field</h2>
           <p>Once a Field exists, contributors can publish three types of nodes inside it: Frameworks, Measurements, and Projects. Each node type has a structured template that ensures consistency and citability.</p>
           <div class="step-detail">
-            <div class="step-detail-item"><span class="sd-icon">🔧</span><p><strong>Framework:</strong> A reusable method, model, or operational playbook</p></div>
-            <div class="step-detail-item"><span class="sd-icon">📏</span><p><strong>Measurement:</strong> An instrument, index, or scale for measuring a construct</p></div>
-            <div class="step-detail-item"><span class="sd-icon">🎓</span><p><strong>Project:</strong> A capstone, case study, or pilot with a Continuation Hook</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><p><strong>Framework:</strong> A reusable method, model, or operational playbook</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 6H3M21 12H3M21 18H3"/><line x1="8" y1="3" x2="8" y2="21"/></svg><p><strong>Measurement:</strong> An instrument, index, or scale for measuring a construct</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><p><strong>Project:</strong> A capstone, case study, or pilot with a Continuation Hook</p></div>
           </div>
         </div>
         <div>
@@ -192,9 +192,9 @@
           <p>NodeRail uses Git as its version control backbone. Every change to every node is committed with a timestamp, author attribution, and a change log entry. Nothing is ever overwritten — only superseded.</p>
           <p>This creates a complete, auditable lineage for every piece of intellectual work on the platform. You can always see what changed, when, and why.</p>
           <div class="step-detail">
-            <div class="step-detail-item"><span class="sd-icon">🕐</span><p>Every commit is timestamped and attributed</p></div>
-            <div class="step-detail-item"><span class="sd-icon">🔀</span><p>Forks preserve the full lineage back to the origin node</p></div>
-            <div class="step-detail-item"><span class="sd-icon">📜</span><p>Change logs are required for every version increment</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><p>Every commit is timestamped and attributed</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg><p>Forks preserve the full lineage back to the origin node</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg><p>Change logs are required for every version increment</p></div>
           </div>
         </div>
         <div>
@@ -225,9 +225,9 @@
           <p>When a node reaches a stable version, a GitHub Release is created and Zenodo automatically archives the snapshot and issues a permanent Digital Object Identifier (DOI). The node becomes a citable academic artifact.</p>
           <p>Two DOIs are issued: one for the specific version, and one that always points to the latest version. Both are permanent and will resolve for decades.</p>
           <div class="step-detail">
-            <div class="step-detail-item"><span class="sd-icon">🔗</span><p>Version DOI: cites this exact snapshot forever</p></div>
-            <div class="step-detail-item"><span class="sd-icon">🔄</span><p>Concept DOI: always points to the latest version</p></div>
-            <div class="step-detail-item"><span class="sd-icon">📚</span><p>Indexed in OpenAIRE, Crossref, and Google Scholar</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><p>Version DOI: cites this exact snapshot forever</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg><p>Concept DOI: always points to the latest version</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><p>Indexed in OpenAIRE, Crossref, and Google Scholar</p></div>
           </div>
         </div>
         <div>
@@ -258,9 +258,9 @@
           <p>Any node on NodeRail can be forked by another researcher or practitioner. The fork preserves the full lineage back to the origin, so the original author always gets credit. The field grows without losing its roots.</p>
           <p>Project nodes have a required Continuation Hook — a structured section that explicitly invites the next person to build on the work. This turns every project into a starting point, not an endpoint.</p>
           <div class="step-detail">
-            <div class="step-detail-item"><span class="sd-icon">🌿</span><p>Forks are first-class nodes with their own DOIs</p></div>
-            <div class="step-detail-item"><span class="sd-icon">🔁</span><p>Continuation Hooks on Project nodes invite the next researcher</p></div>
-            <div class="step-detail-item"><span class="sd-icon">🏆</span><p>Original authors receive attribution in all derivative work</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="6" y1="9" x2="6" y2="15"/><path d="M9 6h3a2 2 0 0 1 2 2v7"/></svg><p>Forks are first-class nodes with their own DOIs</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><p>Continuation Hooks on Project nodes invite the next researcher</p></div>
+            <div class="step-detail-item"><svg class="sd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg><p>Original authors receive attribution in all derivative work</p></div>
           </div>
         </div>
         <div>
