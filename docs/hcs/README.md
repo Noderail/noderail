@@ -10,44 +10,21 @@ version: 0.1
 license: CC-BY-4.0
 tags: [human-capacity, digital-fatigue, attention-residue, context-switching, cognition, emotional-residue, future-of-work]
 field: "Human Capacity Science"
-
 lineage:
   parents: []
   adopted_from: []
   forked_from: []
   children: []
-
 citation:
   cite_as: "Kabubi, G. (2026). Human Capacity Science (Founder Field v0.1). NodeRail. https://doi.org/10.5281/zenodo.18764766"
   doi: "https://doi.org/10.5281/zenodo.18764766"
   url: "https://noderail.org"
-
 scope:
   domain: "Human performance under modern work conditions"
-  focus_areas:
-    - "Capacity erosion from digital overload"
-    - "Attention residue / meeting carryover"
-    - "Cognitive load + task switching costs"
-    - "Recovery, regulation, and sustained performance"
-    - "Behavioral and environmental design for capacity protection"
-  audience:
-    - researchers
-    - builders
-    - students
-    - organizations
-  exclusions:
-    - "Clinical diagnosis or medical treatment claims (outside scope for v0.1)"
-    - "Surveillance-based productivity scoring (not aligned with field ethics)"
-
 governance:
   founder: "Gao Kabubi"
   contribution_mode: "open-with-standards"
   maintainer_policy: "Founder-maintained (v0.1)"
-  review_policy:
-    new_field_requests: "maintainer approval required"
-    node_publication: "open; must follow templates + ethics"
-  deprecation_policy: "Nodes can be marked deprecated; keep accessible for lineage"
-
 canonical:
   constructs: []
   frameworks: []
