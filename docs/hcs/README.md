@@ -18,7 +18,8 @@ lineage:
   children: []
 
 citation:
-  cite_as: "Kabubi, G. (2026). Human Capacity Science (Founder Field v0.1). NodeRail."
+  cite_as: "Kabubi, G. (2026). Human Capacity Science (Founder Field v0.1). NodeRail. https://doi.org/10.5281/zenodo.18764766"
+  doi: "https://doi.org/10.5281/zenodo.18764766"
   url: "https://noderail.org"
 
 scope:
@@ -57,6 +58,10 @@ canonical:
 # Human Capacity Science (HCS)
 
 **Founder Field on NodeRail** &nbsp;|&nbsp; Maintainer: **Gao Kabubi** &nbsp;|&nbsp; Version: **v0.1** &nbsp;|&nbsp; License: CC-BY-4.0
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18764766.svg)](https://doi.org/10.5281/zenodo.18764766)
+
+> **Cite as:** Kabubi, G. (2026). Human Capacity Science (Founder Field v0.1). NodeRail. https://doi.org/10.5281/zenodo.18764766
 
 ---
 
