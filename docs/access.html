@@ -2,136 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Join NodeRail — Early Access</title>
-  <meta name="description" content="NodeRail is in early access. Submit your intellectual work and join the first cohort of researchers, students, and practitioners building on the platform.">
+  <title>Join NodeRail</title>
+  <meta name="description" content="NodeRail is in early access. Apply as a Contributor, Field Maintainer, or propose a new Field. No institutional affiliation required.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://noderail.org/access.html">
   <link rel="stylesheet" href="/assets/nr.css">
   <style>
-    .access-hero {
-      background: var(--nr-dark); color: var(--nr-white);
-      padding: 5rem 0 4rem;
-    }
-    .access-hero h1 { color: var(--nr-white); max-width: 680px; margin-bottom: 1rem; }
-    .access-hero p { color: #9ca3af; max-width: 560px; font-size: 1.05rem; line-height: 1.7; }
-
-    /* Invite strip */
-    .invite-strip {
-      background: linear-gradient(135deg, rgba(45,212,191,0.08) 0%, rgba(26,26,46,0.6) 100%);
-      border-top: 1px solid rgba(45,212,191,0.2);
-      border-bottom: 1px solid rgba(45,212,191,0.2);
-      padding: 2rem 0;
-    }
-    .invite-strip-inner {
-      max-width: 1080px; margin: 0 auto; padding: 0 2rem;
-      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
-    }
-    .invite-strip-text { flex: 1; min-width: 260px; }
-    .invite-strip-text h3 { color: var(--nr-white); margin-bottom: 0.4rem; font-size: 1.05rem; }
-    .invite-strip-text p { color: #9ca3af; font-size: 0.88rem; margin: 0; }
-    .invite-roles {
-      display: flex; gap: 0.5rem; flex-wrap: wrap;
-    }
-    .invite-role {
-      padding: 0.35rem 0.85rem; border-radius: 20px;
-      font-size: 0.78rem; font-weight: 600;
-      border: 1px solid rgba(255,255,255,0.15); color: #d1d5db;
-    }
-
-    /* Layout */
-    .access-layout {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-      align-items: start; padding: 4rem 0;
-    }
-    @media (max-width: 760px) { .access-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
-
-    /* Form */
+    .access-hero { background: var(--nr-dark); color: var(--nr-white); padding: 4.5rem 0 3.5rem; }
+    .access-hero h1 { color: var(--nr-white); max-width: 640px; margin-bottom: 1rem; }
+    .access-hero p { color: #9ca3af; max-width: 540px; font-size: 1rem; line-height: 1.75; }
+    .invite-section { padding: 2.5rem 0; background: var(--nr-dark); border-top: 1px solid rgba(255,255,255,0.07); }
+    .invite-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6b7280; margin-bottom: 1rem; }
+    .invite-roles { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .invite-role { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.82rem; font-weight: 600; color: #d1d5db; }
+    .role-selector-section { padding: 4rem 0; }
+    .role-selector-section h2 { margin-bottom: 0.5rem; }
+    .role-selector-section .section-sub { color: var(--nr-muted); margin-bottom: 2.5rem; max-width: 560px; }
+    .role-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 3rem; }
+    @media (max-width: 700px) { .role-cards { grid-template-columns: 1fr; } }
+    .role-card { background: var(--nr-off); border: 2px solid var(--nr-border); border-radius: var(--nr-radius); padding: 1.75rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; display: flex; flex-direction: column; gap: 0.75rem; }
+    .role-card:hover { border-color: var(--nr-teal); }
+    .role-card.selected { border-color: var(--nr-teal); background: rgba(45,212,191,0.04); }
+    .role-card h3 { font-size: 1rem; margin-bottom: 0; }
+    .role-card p { font-size: 0.83rem; color: var(--nr-muted); line-height: 1.6; }
+    .role-select-btn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 700; color: var(--nr-teal); background: none; border: none; cursor: pointer; padding: 0; margin-top: auto; font-family: var(--nr-font); }
+    .role-select-btn svg { width: 12px; height: 12px; stroke: currentColor; }
+    .form-section { padding: 4rem 0; background: var(--nr-off); }
+    .form-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
+    @media (max-width: 760px) { .form-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .form-heading { margin-bottom: 0.5rem; }
+    .form-heading-sub { color: var(--nr-muted); font-size: 0.9rem; margin-bottom: 2rem; }
     .access-form { display: flex; flex-direction: column; gap: 1.25rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
     .form-label { font-size: 0.85rem; font-weight: 600; color: var(--nr-text); }
-    .form-input, .form-select, .form-textarea {
-      padding: 0.75rem 1rem; border: 1.5px solid var(--nr-border);
-      border-radius: var(--nr-radius-sm); font-family: var(--nr-font);
-      font-size: 0.9rem; color: var(--nr-text); background: var(--nr-white);
-      transition: border-color 0.15s; width: 100%;
-    }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      outline: none; border-color: var(--nr-dark);
-    }
+    .form-input, .form-select, .form-textarea { padding: 0.65rem 0.9rem; border: 1.5px solid var(--nr-border); border-radius: var(--nr-radius-sm); font-size: 0.9rem; background: #fff; color: var(--nr-dark); outline: none; transition: border-color 0.15s; font-family: var(--nr-font); width: 100%; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--nr-teal); }
     .form-textarea { resize: vertical; min-height: 110px; }
     .form-hint { font-size: 0.78rem; color: var(--nr-muted); }
-    .form-submit {
-      background: var(--nr-dark); color: var(--nr-white);
-      padding: 0.9rem 2rem; border-radius: var(--nr-radius-sm);
-      font-weight: 700; font-size: 1rem; border: none;
-      cursor: pointer; font-family: var(--nr-font);
-      transition: background 0.15s, transform 0.15s;
-      align-self: flex-start;
-    }
+    .form-submit { background: var(--nr-dark); color: #fff; border: none; padding: 0.85rem 1.75rem; border-radius: var(--nr-radius-sm); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: background 0.15s, transform 0.15s; align-self: flex-start; font-family: var(--nr-font); }
     .form-submit:hover { background: #2d2d4e; transform: translateY(-1px); }
-
-    /* What to expect */
-    .expect-list { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem; }
+    .form-section-block { display: none; }
+    .form-section-block.visible { display: contents; }
+    .expect-list { display: flex; flex-direction: column; gap: 1.5rem; }
     .expect-item { display: flex; gap: 1rem; align-items: flex-start; }
-    .expect-icon {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--nr-off); border: 1px solid var(--nr-border);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; color: var(--nr-teal-dim);
-    }
-    .expect-icon svg { width: 18px; height: 18px; }
-    .expect-item h4 { margin-bottom: 0.25rem; }
-    .expect-item p { font-size: 0.85rem; color: var(--nr-muted); }
-
-    /* Assessment criteria */
-    .assessment-box {
-      background: var(--nr-off); border: 1px solid var(--nr-border);
-      border-radius: var(--nr-radius); padding: 1.75rem; margin-bottom: 2rem;
-    }
-    .assessment-box h4 { margin-bottom: 0.5rem; }
-    .assessment-box .sub { font-size: 0.82rem; color: var(--nr-muted); margin-bottom: 1.25rem; }
-    .criteria-item {
-      display: flex; gap: 0.75rem; margin-bottom: 0.9rem;
-      font-size: 0.85rem;
-    }
+    .expect-icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(45,212,191,0.1); border: 1px solid rgba(45,212,191,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--nr-teal); }
+    .expect-icon svg { width: 16px; height: 16px; stroke: currentColor; }
+    .expect-item h4 { font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .expect-item p { font-size: 0.82rem; color: var(--nr-muted); line-height: 1.6; }
+    .criteria-box { background: #fff; border: 1px solid var(--nr-border); border-radius: var(--nr-radius); padding: 1.75rem; margin-top: 2rem; }
+    .criteria-box h4 { margin-bottom: 1.25rem; font-size: 0.9rem; }
+    .criteria-item { display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 1rem; }
     .criteria-item:last-child { margin-bottom: 0; }
-    .criteria-check {
-      width: 20px; height: 20px; border-radius: 50%;
-      background: rgba(45,212,191,0.12); border: 1px solid rgba(45,212,191,0.3);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; margin-top: 0.05rem;
-    }
-    .criteria-check svg { width: 10px; height: 10px; stroke: var(--nr-teal); }
-    .criteria-text strong { display: block; font-size: 0.85rem; color: var(--nr-text); }
-    .criteria-text span { font-size: 0.78rem; color: var(--nr-muted); }
-
-    /* Contact section */
-    .contact-section {
-      background: var(--nr-dark); padding: 4rem 0;
-    }
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
-      align-items: start;
-    }
-    @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
-    .contact-card {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--nr-radius); padding: 2rem;
-    }
-    .contact-card h3 { color: var(--nr-white); margin-bottom: 0.5rem; }
-    .contact-card p { color: #9ca3af; font-size: 0.88rem; margin-bottom: 1.25rem; }
-    .contact-card a.contact-link {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      color: var(--nr-teal); font-size: 0.88rem; font-weight: 600;
-      text-decoration: none;
-    }
-    .contact-card a.contact-link:hover { text-decoration: underline; }
-    .contact-card a.contact-link svg { width: 14px; height: 14px; stroke: currentColor; }
+    .criteria-check { width: 18px; height: 18px; border-radius: 50%; background: rgba(45,212,191,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; color: #0d9488; }
+    .criteria-check svg { width: 10px; height: 10px; stroke: currentColor; }
+    .criteria-text strong { font-size: 0.85rem; display: block; margin-bottom: 0.15rem; }
+    .criteria-text span { font-size: 0.8rem; color: var(--nr-muted); line-height: 1.5; }
+    .contact-section { padding: 4rem 0; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+    .contact-card { background: var(--nr-off); border: 1px solid var(--nr-border); border-radius: var(--nr-radius); padding: 1.5rem; }
+    .contact-card h3 { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .contact-card p { font-size: 0.82rem; color: var(--nr-muted); line-height: 1.6; margin-bottom: 1rem; }
+    .contact-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 700; color: var(--nr-teal); text-decoration: none; }
+    .contact-link svg { width: 13px; height: 13px; stroke: currentColor; }
+    .contact-link:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
   <nav class="nr-nav">
     <div class="nr-nav-inner">
       <a href="/" class="nr-nav-logo">
@@ -143,6 +79,7 @@
         <a href="/why-noderail.html">Why NodeRail</a>
         <a href="/use-cases.html">Use cases</a>
         <a href="/reference.html">Reference</a>
+        <a href="/roles.html">Roles</a>
         <a href="/governance.html">Governance</a>
         <a href="/about.html">About</a>
         <a href="/access.html" class="nr-nav-cta active" style="background:#2d2d4e;">Join NodeRail</a>
@@ -150,57 +87,83 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="access-hero">
     <div class="nr-container">
       <div class="nr-eyebrow" style="color:var(--nr-teal);">Early Access</div>
       <h1>Your intellectual work deserves a permanent home.</h1>
-      <p>NodeRail is in early access. We are building the first cohort of researchers, students, and practitioners who will publish the platform's founding nodes. Tell us about your work and we will be in touch within 48 hours.</p>
+      <p>NodeRail is building the first cohort of researchers, students, practitioners, and field founders who will publish the platform's founding nodes. Choose your role and apply below.</p>
     </div>
   </section>
 
-  <!-- WHO WE ARE INVITING -->
-  <div class="invite-strip" style="background:var(--nr-dark);">
-    <div class="invite-strip-inner">
-      <div class="invite-strip-text">
-        <h3>Who we are inviting to join</h3>
-        <p>NodeRail is for anyone with intellectual work that deserves to persist, compound, and be cited.</p>
-      </div>
+  <section class="invite-section">
+    <div class="nr-container">
+      <div class="invite-label">Who we are inviting</div>
       <div class="invite-roles">
         <span class="invite-role">Researchers</span>
         <span class="invite-role">PhD Students</span>
         <span class="invite-role">Postdocs</span>
         <span class="invite-role">Practitioners</span>
         <span class="invite-role">Field Founders</span>
+        <span class="invite-role">Field Maintainers</span>
         <span class="invite-role">Universities</span>
         <span class="invite-role">Research Centres</span>
         <span class="invite-role">Policy Organisations</span>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- FORM + INFO -->
-  <section class="nr-section">
+  <section class="role-selector-section">
     <div class="nr-container">
-      <div class="access-layout">
+      <h2>Choose how you want to participate</h2>
+      <p class="section-sub">Select a role below. The application form will adapt to what we need to know for that role.</p>
+      <div class="role-cards">
+        <div class="role-card" id="card-contributor" onclick="selectRole('contributor')">
+          <h3>Become a Contributor</h3>
+          <p>Submit nodes, fork existing work, and build your intellectual lineage on NodeRail. Open to researchers, students, practitioners, and independent thinkers.</p>
+          <button class="role-select-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            Apply to contribute
+          </button>
+        </div>
+        <div class="role-card" id="card-maintainer" onclick="selectRole('maintainer')">
+          <h3>Become a Field Maintainer</h3>
+          <p>Curate the canon of an existing field. Review submissions, approve canonical status, and protect the field's intellectual integrity. Requires demonstrated expertise.</p>
+          <button class="role-select-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            Apply as Maintainer
+          </button>
+        </div>
+        <div class="role-card" id="card-field" onclick="selectRole('field')">
+          <h3>Propose a new Field</h3>
+          <p>Have a domain of knowledge that deserves structured, citable infrastructure? Submit a Field proposal with a constitution, definitions, scope, and governance model.</p>
+          <button class="role-select-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            Propose a Field
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- FORM -->
+  <section class="form-section" id="form-section" style="display:none;">
+    <div class="nr-container">
+      <div class="form-grid">
         <div>
-          <h2 style="margin-bottom:0.5rem;">Submit your work</h2>
-          <p style="margin-bottom:2rem;font-size:0.9rem;color:var(--nr-muted);">Takes under five minutes. We respond within 48 hours.</p>
-
-          <form class="access-form" action="https://formspree.io/f/noderail" method="POST">
+          <h2 class="form-heading" id="form-heading">Application</h2>
+          <p class="form-heading-sub" id="form-subheading">Takes under five minutes. We respond within 48 hours.</p>
+          <form class="access-form" id="access-form" action="https://formspree.io/f/noderail" method="POST">
+            <input type="hidden" name="application_type" id="application_type" value="">
             <div class="form-group">
               <label class="form-label" for="name">Full name</label>
               <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="email">Email address</label>
-              <input class="form-input" type="email" id="email" name="email" placeholder="you@institution.edu" required>
+              <input class="form-input" type="email" id="email" name="email" placeholder="you@example.com" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="role">Your role</label>
-              <select class="form-select" id="role" name="role" required>
+              <label class="form-label" for="occupation">Your current role or occupation</label>
+              <select class="form-select" id="occupation" name="occupation" required>
                 <option value="" disabled selected>Select your role</option>
                 <option>Researcher / Academic</option>
                 <option>Student (Undergraduate)</option>
@@ -209,7 +172,7 @@
                 <option>Practitioner / Consultant</option>
                 <option>University / Research Centre</option>
                 <option>Policy Organisation</option>
-                <option>Field Founder</option>
+                <option>Independent Thinker / Field Founder</option>
                 <option>Other</option>
               </select>
             </div>
@@ -217,26 +180,81 @@
               <label class="form-label" for="institution">Institution or organisation (optional)</label>
               <input class="form-input" type="text" id="institution" name="institution" placeholder="University, lab, or organisation name">
             </div>
-            <div class="form-group">
-              <label class="form-label" for="work">What intellectual work do you want to publish on NodeRail?</label>
-              <textarea class="form-textarea" id="work" name="work" placeholder="Describe the field, framework, project, or measurement you are working on. What is it about? What problem does it address?" required></textarea>
-              <span class="form-hint">Be specific. This is the most important part of your application. The more clearly you describe your work, the better we can support you.</span>
+
+            <div class="form-section-block" id="fields-contributor">
+              <div class="form-group">
+                <label class="form-label" for="work">What intellectual work do you want to publish on NodeRail?</label>
+                <textarea class="form-textarea" id="work" name="work" placeholder="Describe the field, framework, project, or measurement you are working on. What is it about? What problem does it address?"></textarea>
+                <span class="form-hint">Be specific. This is the most important part of your application. The more clearly you describe your work, the better we can support you.</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="node_type">What type of node are you submitting?</label>
+                <select class="form-select" id="node_type" name="node_type">
+                  <option value="" disabled selected>Select node type</option>
+                  <option>Field</option>
+                  <option>Framework</option>
+                  <option>Measurement</option>
+                  <option>Project</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
             </div>
+
+            <div class="form-section-block" id="fields-maintainer">
+              <div class="form-group">
+                <label class="form-label" for="field_interest">Which field do you want to maintain?</label>
+                <input class="form-input" type="text" id="field_interest" name="field_interest" placeholder="e.g. Human Capacity Science, or describe a field you would like to propose maintaining">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="expertise">Describe your expertise in this field</label>
+                <textarea class="form-textarea" id="expertise" name="expertise" placeholder="What is your background in this domain? What qualifies you to review and canonicalise submissions? Include any relevant publications, projects, or experience."></textarea>
+                <span class="form-hint">Field Maintainers are assessed on demonstrated domain expertise, not institutional affiliation. Independent experts are welcome.</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="governance_approach">How would you approach governance of this field?</label>
+                <textarea class="form-textarea" id="governance_approach" name="governance_approach" placeholder="How would you decide what gets canonical status? How would you handle disputes or edge cases? What is your philosophy on intellectual integrity in this domain?"></textarea>
+              </div>
+            </div>
+
+            <div class="form-section-block" id="fields-field">
+              <div class="form-group">
+                <label class="form-label" for="field_name">Proposed field name</label>
+                <input class="form-input" type="text" id="field_name" name="field_name" placeholder="e.g. Regenerative Learning Science">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="field_definition">Define the field in one paragraph</label>
+                <textarea class="form-textarea" id="field_definition" name="field_definition" placeholder="What is this field? What does it study or design? What problem does it address? What makes it distinct from existing fields?"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="field_scope">What is the scope and boundary of this field?</label>
+                <textarea class="form-textarea" id="field_scope" name="field_scope" placeholder="What is inside this field? What is explicitly outside it? What adjacent fields does it relate to?"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="field_founder_role">Will you be the Field Founder?</label>
+                <select class="form-select" id="field_founder_role" name="field_founder_role">
+                  <option value="" disabled selected>Select an option</option>
+                  <option>Yes, I will be the Field Founder</option>
+                  <option>I am proposing this on behalf of a team</option>
+                  <option>I am proposing this and open to co-founding</option>
+                  <option>I want to propose but not be the Founder</option>
+                </select>
+              </div>
+            </div>
+
             <div class="form-group">
               <label class="form-label" for="hear">How did you hear about NodeRail?</label>
               <input class="form-input" type="text" id="hear" name="hear" placeholder="LinkedIn, colleague, search, etc.">
             </div>
-            <button type="submit" class="form-submit">Submit your work →</button>
+            <button type="submit" class="form-submit" id="form-submit-btn">Submit application</button>
           </form>
         </div>
 
-        <!-- WHAT TO EXPECT + CRITERIA -->
         <div>
           <h2 style="margin-bottom:2rem;">What happens after you submit</h2>
           <div class="expect-list">
             <div class="expect-item">
               <div class="expect-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               </div>
               <div>
                 <h4>Your submission is assessed</h4>
@@ -245,7 +263,7 @@
             </div>
             <div class="expect-item">
               <div class="expect-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               </div>
               <div>
                 <h4>A brief onboarding conversation</h4>
@@ -254,54 +272,52 @@
             </div>
             <div class="expect-item">
               <div class="expect-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               </div>
               <div>
                 <h4>You publish your first node</h4>
-                <p>We walk you through the node template. Your first structured, citable piece of intellectual work goes live on NodeRail.</p>
+                <p>Once onboarded, you publish your first node with a DOI, full lineage metadata, and a citable citation block.</p>
               </div>
             </div>
             <div class="expect-item">
               <div class="expect-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
               </div>
               <div>
-                <h4>Your DOI is issued</h4>
-                <p>On your first stable release, Zenodo issues a permanent DOI. Your work is citable in academic papers and reports from that point forward.</p>
+                <h4>Your work is permanently citable</h4>
+                <p>From that point forward, your node is a permanent, versioned, citable academic artifact.</p>
               </div>
             </div>
           </div>
 
-          <!-- ASSESSMENT CRITERIA -->
-          <div class="assessment-box">
+          <div class="criteria-box">
             <h4>What we assess submissions for</h4>
-            <p class="sub">Submissions are assessed for fit with the NodeRail model, not prestige or institutional affiliation. The question is whether your work is the kind of intellectual work NodeRail is designed to support.</p>
             <div class="criteria-item">
               <div class="criteria-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div>
               <div class="criteria-text">
-                <strong>Structured intellectual work</strong>
-                <span>A framework, model, measurement instrument, research project, or field definition — not a blog post or general opinion.</span>
+                <strong>Intellectual substance</strong>
+                <span>Does the work represent genuine thinking, not just a summary of existing ideas?</span>
+              </div>
+            </div>
+            <div class="criteria-item">
+              <div class="criteria-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div>
+              <div class="criteria-text">
+                <strong>Structurability</strong>
+                <span>Can the work be structured as a node with clear scope, definitions, and lineage?</span>
               </div>
             </div>
             <div class="criteria-item">
               <div class="criteria-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div>
               <div class="criteria-text">
                 <strong>Continuity intent</strong>
-                <span>You want your work to persist, be built upon, and be cited — not just shared once and forgotten.</span>
-              </div>
-            </div>
-            <div class="criteria-item">
-              <div class="criteria-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div>
-              <div class="criteria-text">
-                <strong>Willingness to use the node template</strong>
-                <span>NodeRail works because nodes follow a consistent structure. You need to be willing to structure your work using the provided templates.</span>
+                <span>Is the applicant committed to maintaining and developing the work over time?</span>
               </div>
             </div>
             <div class="criteria-item">
               <div class="criteria-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div>
               <div class="criteria-text">
                 <strong>Open to contribution</strong>
-                <span>NodeRail is a shared infrastructure. Work published here is open for others to fork, extend, and build upon — with full attribution.</span>
+                <span>NodeRail is shared infrastructure. Work published here is open for others to fork and extend with full attribution.</span>
               </div>
             </div>
             <div class="criteria-item">
@@ -312,19 +328,17 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
   <section class="contact-section">
     <div class="nr-container">
       <div style="text-align:center;margin-bottom:3rem;">
         <div class="nr-eyebrow" style="color:var(--nr-teal);">Get in Touch</div>
-        <h2 style="color:var(--nr-white);">Other ways to connect</h2>
-        <p style="color:#9ca3af;max-width:480px;margin:0.75rem auto 0;">Not ready to submit yet? Have a question? Want to explore a partnership? We are open to all of it.</p>
+        <h2>Other ways to connect</h2>
+        <p style="color:var(--nr-muted);max-width:480px;margin:0.75rem auto 0;">Not ready to submit yet? Have a question? Want to explore a partnership? We are open to all of it.</p>
       </div>
       <div class="contact-grid">
         <div class="contact-card">
@@ -337,7 +351,7 @@
         </div>
         <div class="contact-card">
           <h3>General Enquiries</h3>
-          <p>For questions about the platform, the Continuity Standard, or anything else — send us a message and we will respond within 48 hours.</p>
+          <p>For questions about the platform, the Continuity Standard, or anything else, send us a message and we will respond within 48 hours.</p>
           <a href="mailto:hello@noderail.org" class="contact-link">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             hello@noderail.org
@@ -363,24 +377,54 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="nr-footer">
     <div class="nr-footer-inner">
       <div>
         <div class="nr-footer-logo">NodeRail</div>
         <p style="font-size:0.82rem;margin-top:0.25rem;">Infrastructure for Intellectual Continuity</p>
-        <p style="font-size:0.78rem;margin-top:1rem;color:#aaa;">v0.1 &nbsp;·&nbsp; &copy; 2026 NodeRail</p>
+        <p style="font-size:0.78rem;margin-top:1rem;color:#aaa;">v0.1 &nbsp;&middot;&nbsp; &copy; 2026 NodeRail</p>
       </div>
       <div class="nr-footer-links">
         <a href="/">Home</a>
         <a href="/how-it-works.html">How it works</a>
         <a href="/why-noderail.html">Why NodeRail</a>
-        <a href="/use-cases.html">Use cases</a>
-        <a href="/reference.html">Reference</a>
+        <a href="/governance.html">Governance</a>
         <a href="/about.html">About</a>
+        <a href="/access.html">Join NodeRail</a>
       </div>
     </div>
   </footer>
 
+  <script>
+    function selectRole(role) {
+      document.querySelectorAll('.role-card').forEach(function(c) { c.classList.remove('selected'); });
+      document.getElementById('card-' + role).classList.add('selected');
+      document.getElementById('application_type').value = role;
+      document.querySelectorAll('.form-section-block').forEach(function(b) { b.classList.remove('visible'); });
+      document.getElementById('fields-' + role).classList.add('visible');
+      var headings = {
+        contributor: { h: 'Apply as a Contributor', sub: 'Tell us about the intellectual work you want to publish. Takes under five minutes.' },
+        maintainer: { h: 'Apply as a Field Maintainer', sub: 'Tell us about your expertise and how you would govern a field. We review all Maintainer applications carefully.' },
+        field: { h: 'Propose a new Field', sub: 'Describe the field you want to establish. A Field proposal requires a clear definition, scope, and governance intent.' }
+      };
+      document.getElementById('form-heading').textContent = headings[role].h;
+      document.getElementById('form-subheading').textContent = headings[role].sub;
+      var btnLabels = {
+        contributor: 'Submit your work \u2192',
+        maintainer: 'Apply as Field Maintainer \u2192',
+        field: 'Submit Field Proposal \u2192'
+      };
+      document.getElementById('form-submit-btn').textContent = btnLabels[role];
+      document.getElementById('form-section').style.display = 'block';
+      setTimeout(function() {
+        document.getElementById('form-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+    var params = new URLSearchParams(window.location.search);
+    var roleParam = params.get('role');
+    if (roleParam && ['contributor', 'maintainer', 'field'].includes(roleParam)) {
+      selectRole(roleParam);
+    }
+  </script>
 </body>
 </html>

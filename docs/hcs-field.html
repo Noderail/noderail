@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Human Capacity Science — NodeRail</title>
+  <meta name="description" content="Human Capacity Science (HCS) is the first Founder Field on NodeRail. Currently in development — field constitution, construct map, and measurement philosophy coming soon.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://noderail.org/hcs-field.html">
+  <link rel="stylesheet" href="/assets/nr.css">
+  <style>
+    .hcs-hero {
+      background: var(--nr-dark); color: var(--nr-white);
+      padding: 5rem 0 4rem; min-height: 60vh;
+      display: flex; align-items: center;
+    }
+    .hcs-hero-inner { max-width: 680px; }
+    .draft-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.3);
+      color: #fbbf24; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.35rem 0.85rem; border-radius: 999px; margin-bottom: 1.75rem;
+    }
+    .draft-badge svg { width: 12px; height: 12px; stroke: currentColor; }
+    .hcs-hero h1 { color: var(--nr-white); font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1.25rem; }
+    .hcs-hero p { color: #9ca3af; font-size: 1.05rem; line-height: 1.75; margin-bottom: 2rem; }
+    .hcs-meta {
+      display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2.5rem;
+      padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hcs-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+    .hcs-meta-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6b7280; }
+    .hcs-meta-value { font-size: 0.88rem; color: #d1d5db; }
+    .hcs-meta-value a { color: var(--nr-teal); text-decoration: none; }
+    .hcs-meta-value a:hover { text-decoration: underline; }
+
+    /* Progress section */
+    .hcs-progress { padding: 4rem 0; background: var(--nr-off); }
+    .hcs-progress h2 { margin-bottom: 0.5rem; }
+    .hcs-progress .section-sub { color: var(--nr-muted); margin-bottom: 3rem; max-width: 560px; }
+    .progress-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem;
+    }
+    .progress-card {
+      background: #fff; border: 1px solid var(--nr-border);
+      border-radius: var(--nr-radius); padding: 1.5rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .progress-card-header { display: flex; align-items: center; justify-content: space-between; }
+    .progress-card-title { font-size: 0.9rem; font-weight: 700; color: var(--nr-dark); }
+    .status-pill {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 999px;
+    }
+    .status-done { background: rgba(45,212,191,0.12); color: #0d9488; }
+    .status-progress { background: rgba(251,191,36,0.12); color: #d97706; }
+    .status-planned { background: rgba(107,114,128,0.1); color: #6b7280; }
+    .progress-card p { font-size: 0.82rem; color: var(--nr-muted); line-height: 1.6; }
+    .progress-bar-track {
+      height: 4px; background: #e5e7eb; border-radius: 2px; overflow: hidden;
+    }
+    .progress-bar-fill { height: 100%; border-radius: 2px; background: var(--nr-teal); }
+
+    /* About the field */
+    .hcs-about { padding: 4rem 0; }
+    .hcs-about-grid {
+      display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start;
+    }
+    @media (max-width: 760px) { .hcs-about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .hcs-about h2 { margin-bottom: 1rem; }
+    .hcs-about p { color: var(--nr-muted); line-height: 1.75; margin-bottom: 1rem; }
+    .hcs-sidebar-card {
+      background: var(--nr-off); border: 1px solid var(--nr-border);
+      border-radius: var(--nr-radius); padding: 1.75rem;
+    }
+    .hcs-sidebar-card h4 { margin-bottom: 1rem; font-size: 0.9rem; }
+    .hcs-sidebar-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+    .hcs-sidebar-list li {
+      font-size: 0.83rem; color: var(--nr-muted); display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.5;
+    }
+    .hcs-sidebar-list li::before { content: "·"; color: var(--nr-teal); font-weight: 900; flex-shrink: 0; }
+
+    /* Notify section */
+    .hcs-notify {
+      background: var(--nr-dark); color: var(--nr-white); padding: 4rem 0; text-align: center;
+    }
+    .hcs-notify h2 { color: var(--nr-white); margin-bottom: 0.75rem; }
+    .hcs-notify p { color: #9ca3af; max-width: 480px; margin: 0 auto 2rem; line-height: 1.75; }
+    .notify-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nr-nav">
+    <div class="nr-nav-inner">
+      <a href="/" class="nr-nav-logo">
+        <img src="/assets/logo.png" alt="NodeRail">
+        NodeRail
+      </a>
+      <div class="nr-nav-links">
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/use-cases.html">Use cases</a>
+        <a href="/reference.html">Reference</a>
+        <a href="/roles.html">Roles</a>
+        <a href="/governance.html">Governance</a>
+        <a href="/about.html">About</a>
+        <a href="/access.html" class="nr-nav-cta">Join NodeRail</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hcs-hero">
+    <div class="nr-container">
+      <div class="hcs-hero-inner">
+        <div class="draft-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Field in Development
+        </div>
+        <h1>Human Capacity Science</h1>
+        <p>The measurement and design of cognitive, emotional, and digital load so that human capacity does not silently degrade into burnout, errors, or disengagement. The first Founder Field on NodeRail, currently under active development.</p>
+        <div class="notify-actions" style="justify-content:flex-start;">
+          <a href="/access.html" class="btn btn-primary">Follow this field</a>
+          <a href="/about.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.2);">Meet the founder</a>
+        </div>
+        <div class="hcs-meta">
+          <div class="hcs-meta-item">
+            <span class="hcs-meta-label">Node type</span>
+            <span class="hcs-meta-value">Founder Field</span>
+          </div>
+          <div class="hcs-meta-item">
+            <span class="hcs-meta-label">Status</span>
+            <span class="hcs-meta-value">Draft — v0.1</span>
+          </div>
+          <div class="hcs-meta-item">
+            <span class="hcs-meta-label">Field founder</span>
+            <span class="hcs-meta-value"><a href="/about.html">Gaofenngwe Kabubi</a></span>
+          </div>
+          <div class="hcs-meta-item">
+            <span class="hcs-meta-label">DOI</span>
+            <span class="hcs-meta-value"><a href="https://doi.org/10.5281/zenodo.18764766" target="_blank">10.5281/zenodo.18764766</a></span>
+          </div>
+          <div class="hcs-meta-item">
+            <span class="hcs-meta-label">License</span>
+            <span class="hcs-meta-value">CC BY 4.0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRESS -->
+  <section class="hcs-progress">
+    <div class="nr-container">
+      <h2>Field development progress</h2>
+      <p class="section-sub">HCS is being built in public. Each component below is a distinct node in the field's architecture. Components marked complete are citable via DOI.</p>
+      <div class="progress-grid">
+        <div class="progress-card">
+          <div class="progress-card-header">
+            <span class="progress-card-title">Field Constitution</span>
+            <span class="status-pill status-done">Complete</span>
+          </div>
+          <p>The governing document of the HCS field. Defines scope, purpose, epistemological stance, and the rights and responsibilities of contributors.</p>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:100%"></div></div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-card-header">
+            <span class="progress-card-title">Core Definitions</span>
+            <span class="status-pill status-done">Complete</span>
+          </div>
+          <p>Formal definitions of Human Capacity, Cognitive Load, Digital Load, Emotional Load, and Capacity Degradation as used within the HCS field.</p>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:100%"></div></div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-card-header">
+            <span class="progress-card-title">Construct Map</span>
+            <span class="status-pill status-progress">In Progress</span>
+          </div>
+          <p>A structured map of all measurable constructs within HCS, their relationships, and their measurement philosophy. Currently being formalised.</p>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:60%"></div></div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-card-header">
+            <span class="progress-card-title">Measurement Philosophy</span>
+            <span class="status-pill status-progress">In Progress</span>
+          </div>
+          <p>The epistemological and methodological framework guiding how HCS constructs are measured, validated, and reported.</p>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:40%"></div></div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-card-header">
+            <span class="progress-card-title">Ethics Charter</span>
+            <span class="status-pill status-progress">In Progress</span>
+          </div>
+          <p>Ethical principles governing research conducted under the HCS field, including data collection, participant rights, and responsible reporting.</p>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:35%"></div></div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-card-header">
+            <span class="progress-card-title">First Measurement Node</span>
+            <span class="status-pill status-planned">Planned</span>
+          </div>
+          <p>The first empirical measurement node within HCS, applying the Construct Map and Measurement Philosophy to a real-world dataset.</p>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:5%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT THE FIELD -->
+  <section class="hcs-about">
+    <div class="nr-container">
+      <div class="hcs-about-grid">
+        <div>
+          <h2>What is Human Capacity Science?</h2>
+          <p>Human Capacity Science is the systematic study of how cognitive, emotional, and digital demands interact to either sustain or erode a person's ability to think, decide, and act effectively over time.</p>
+          <p>Unlike productivity science, which focuses on output, HCS focuses on the conditions under which human capacity is maintained, depleted, or restored. It treats burnout not as a personal failure but as a system failure — a predictable outcome of environments that exceed biological limits without providing adequate recovery.</p>
+          <p>HCS draws from cognitive load theory, occupational health science, digital wellbeing research, and systems thinking. Its goal is to produce a measurement infrastructure rigorous enough to inform both individual practice and institutional design.</p>
+          <p>The field was founded by Gaofenngwe Kabubi, whose applied work on digital overload through <a href="https://www.dustoffreset.com" style="color:var(--nr-teal);text-decoration:none;">Dustoff Reset</a> provided the empirical grounding for the field's core constructs.</p>
+        </div>
+        <div>
+          <div class="hcs-sidebar-card" style="margin-bottom:1.25rem;">
+            <h4>Core constructs</h4>
+            <ul class="hcs-sidebar-list">
+              <li>Human Capacity</li>
+              <li>Cognitive Load</li>
+              <li>Digital Load</li>
+              <li>Emotional Load</li>
+              <li>Capacity Degradation</li>
+              <li>Recovery Infrastructure</li>
+              <li>Regenerative Practice</li>
+            </ul>
+          </div>
+          <div class="hcs-sidebar-card">
+            <h4>Related fields</h4>
+            <ul class="hcs-sidebar-list">
+              <li>Cognitive Load Theory</li>
+              <li>Occupational Health Science</li>
+              <li>Digital Wellbeing Research</li>
+              <li>Systems Thinking</li>
+              <li>Positive Psychology</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTIFY -->
+  <section class="hcs-notify">
+    <div class="nr-container">
+      <h2>Stay close to this field</h2>
+      <p>HCS is being built in public. Submit your interest to be notified when the field opens for contributions, or apply to become a Field Maintainer when it reaches canonical status.</p>
+      <div class="notify-actions">
+        <a href="/access.html" class="btn btn-primary">Follow this field</a>
+        <a href="/access.html?role=maintainer" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.2);">Apply as Field Maintainer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="nr-footer">
+    <div class="nr-footer-inner">
+      <div>
+        <div class="nr-footer-logo">NodeRail</div>
+        <p style="font-size:0.82rem;margin-top:0.25rem;">Infrastructure for Intellectual Continuity</p>
+        <p style="font-size:0.78rem;margin-top:1rem;color:#aaa;">v0.1 &nbsp;·&nbsp; &copy; 2026 NodeRail</p>
+      </div>
+      <div class="nr-footer-links">
+        <a href="/">Home</a>
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/why-noderail.html">Why NodeRail</a>
+        <a href="/governance.html">Governance</a>
+        <a href="/about.html">About</a>
+        <a href="/access.html">Join NodeRail</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
