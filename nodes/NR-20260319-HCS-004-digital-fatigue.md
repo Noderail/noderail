@@ -137,7 +137,7 @@ This cross-system nature means that traditional single-domain recovery (e.g., co
 |---|---|
 | **Cognitive Load** | Digital Fatigue degrades the working memory systems that manage Cognitive Load — high fatigue lowers the load ceiling |
 | **Emotional Residue** | Digital environments (especially video calls and asynchronous messaging) generate Emotional Residue at higher rates than in-person interaction |
-| **Capacity Windows** | Digital Fatigue is a primary driver of Narrow and Closed Capacity Windows, particularly in the afternoon |
+| **Capacity Windows** | Digital Fatigue is a primary driver of Narrow, Closed, and Critical Capacity Windows, particularly in the afternoon |
 | **Human Bandwidth Index (HBI)** | Digital Fatigue is a core HBI pillar |
 | **Capacity-Relative Time** | High Digital Fatigue compresses effective time — a 60-minute block under high fatigue produces significantly less than a 60-minute block at baseline |
 

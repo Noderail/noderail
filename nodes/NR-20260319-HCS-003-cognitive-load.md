@@ -99,7 +99,7 @@ The key HCS insight: individuals often cannot accurately self-assess when they h
 |---|---|
 | **Emotional Residue** | Residue adds to effective cognitive load; the two compounds are additive, not independent |
 | **Digital Fatigue** | Digital Fatigue degrades the capacity to manage cognitive load efficiently |
-| **Capacity Windows** | Cognitive Load is a primary determinant of whether a Capacity Window is Open, Narrow, or Closed |
+| **Capacity Windows** | Cognitive Load is a primary determinant of whether a Capacity Window is Open, Narrow, Closed, or Critical |
 | **Human Bandwidth Index (HBI)** | Cognitive Load is a core HBI pillar |
 | **Capacity-Relative Time** | High cognitive load renders clock time functionally compressed — less gets processed per unit |
 

@@ -4,7 +4,8 @@ node_type: construct
 title: Emotional Residue
 field: NR-20260224-HCS-001
 field_name: Human Capacity Science
-version: 0.1.0
+version: 0.1.1
+updated_at: 2026-07-11
 status: draft
 created_by: Gao Kabubi
 created_at: 2026-03-19
@@ -26,7 +27,7 @@ lineage:
   forked_from: []
   children: []
 citation:
-  cite_as: "Kabubi, G. (2026). Emotional Residue (HCS Measurement Node v0.1.0). NodeRail. NR-20260319-HCS-002."
+  cite_as: "Kabubi, G. (2026). Emotional Residue (HCS Measurement Node v0.1.1). NodeRail. NR-20260319-HCS-002."
   url: https://noderail.org
 ---
 
@@ -34,7 +35,7 @@ citation:
 
 **Construct Type:** Measurement Node  
 **Field:** Human Capacity Science  
-**Version:** v0.1.0 · Draft  
+**Version:** v0.1.1 · Draft  
 **Evidence Level:** Practitioner-Derived  
 **Permitted Use:** Open Exploration  
 
@@ -127,7 +128,7 @@ When Emotional Residue is detected at moderate to high levels, the following res
 
 ## Validity Notes (v0.1)
 
-This construct is practitioner-derived, grounded in 108+ customer discovery interviews conducted by the field founder. It draws on adjacent constructs in cognitive psychology (attention residue, ego depletion, affect-as-information) but has not yet undergone formal empirical validation as a standalone HCS measurement.
+This construct is practitioner-derived, grounded in 108+ customer discovery interviews conducted by the field founder. It draws on adjacent constructs in cognitive psychology (attention residue, affect-as-information) but has not yet undergone formal empirical validation as a standalone HCS measurement. Ego-depletion research is noted as adjacent lineage only — it is replication-contested and HCS does not rest on it.
 
 **Evidence base:** Practitioner observation, qualitative interview synthesis, adjacent peer-reviewed literature  
 **Validation status:** Pre-empirical (v0.1 roadmap includes pilot validation study design)
@@ -145,4 +146,11 @@ This construct is practitioner-derived, grounded in 108+ customer discovery inte
 
 ## Citation
 
-> Kabubi, G. (2026). *Emotional Residue* (HCS Measurement Node v0.1.0). NodeRail. NR-20260319-HCS-002. https://noderail.org
+> Kabubi, G. (2026). *Emotional Residue* (HCS Measurement Node v0.1.1). NodeRail. NR-20260319-HCS-002. https://noderail.org
+
+---
+
+## Version history
+
+- **v0.1.1 (2026-07-11)** — Reconciliation pass: ego-depletion citation annotated as replication-contested adjacent lineage (HCS does not rest on it).
+- **v0.1.0 (2026-03-19)** — Initial node.

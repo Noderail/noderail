@@ -4,7 +4,8 @@ node_type: construct-original
 title: Capacity-Relative Time
 field: NR-20260224-HCS-001
 field_name: Human Capacity Science
-version: 0.1.0
+version: 0.1.1
+updated_at: 2026-07-11
 status: draft
 created_by: Gao Kabubi
 created_at: 2026-03-19
@@ -28,7 +29,7 @@ lineage:
   forked_from: []
   children: []
 citation:
-  cite_as: "Kabubi, G. (2026). Capacity-Relative Time (HCS Measurement Node v0.1.0). NodeRail. NR-20260319-HCS-006."
+  cite_as: "Kabubi, G. (2026). Capacity-Relative Time (HCS Measurement Node v0.1.1). NodeRail. NR-20260319-HCS-006."
   url: https://noderail.org
 ---
 
@@ -36,7 +37,7 @@ citation:
 
 **Construct Type:** Measurement Node  
 **Field:** Human Capacity Science  
-**Version:** v0.1.0 · Draft  
+**Version:** v0.1.1 · Draft  
 **Evidence Level:** Practitioner-Derived  
 **Permitted Use:** Open Exploration  
 
@@ -151,7 +152,7 @@ This reframes "time management" as **capacity management** — the central appli
 
 ## Validity Notes (v0.1)
 
-Capacity-Relative Time is an original HCS construct. Adjacent empirical support exists in research on ultradian performance cycles (Kleitman; Peretz Lavie), time-of-day effects on cognitive performance (Anderson et al.), ego depletion and decision fatigue (Baumeister; Danziger et al.), and chronobiology. The effective time coefficient model is practitioner-derived and requires empirical calibration.
+Capacity-Relative Time is an original HCS construct. Adjacent empirical support exists in research on ultradian performance cycles (Kleitman; Peretz Lavie), time-of-day effects on cognitive performance (Anderson et al.), decision fatigue (Danziger et al.), and chronobiology. Ego-depletion research (Baumeister) is noted as adjacent lineage only — it is replication-contested and HCS does not rest on it. The effective time coefficient model is practitioner-derived and requires empirical calibration.
 
 **Evidence base:** Adjacent peer-reviewed literature, practitioner observation, qualitative interview synthesis  
 **Validation status:** Original HCS construct — pre-empirical; coefficient calibration is a pilot roadmap item
@@ -169,4 +170,11 @@ Capacity-Relative Time is an original HCS construct. Adjacent empirical support 
 
 ## Citation
 
-> Kabubi, G. (2026). *Capacity-Relative Time* (HCS Measurement Node v0.1.0). NodeRail. NR-20260319-HCS-006. https://noderail.org
+> Kabubi, G. (2026). *Capacity-Relative Time* (HCS Measurement Node v0.1.1). NodeRail. NR-20260319-HCS-006. https://noderail.org
+
+---
+
+## Version history
+
+- **v0.1.1 (2026-07-11)** — Reconciliation pass: ego-depletion citation annotated as replication-contested adjacent lineage (HCS does not rest on it).
+- **v0.1.0 (2026-03-19)** — Initial node.

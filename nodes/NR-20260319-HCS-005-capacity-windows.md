@@ -4,10 +4,11 @@ node_type: construct
 title: Capacity Windows
 field: NR-20260224-HCS-001
 field_name: Human Capacity Science
-version: 0.1.0
+version: 0.2.0
 status: draft
 created_by: Gao Kabubi
 created_at: 2026-03-19
+updated_at: 2026-07-11
 maintainer: Gao Kabubi
 license: CC-BY-4.0
 evidence_level: practitioner-derived
@@ -28,7 +29,7 @@ lineage:
   forked_from: []
   children: []
 citation:
-  cite_as: "Kabubi, G. (2026). Capacity Windows (HCS Measurement Node v0.1.0). NodeRail. NR-20260319-HCS-005."
+  cite_as: "Kabubi, G. (2026). Capacity Windows (HCS Measurement Node v0.2.0). NodeRail. NR-20260319-HCS-005."
   url: https://noderail.org
 ---
 
@@ -36,7 +37,7 @@ citation:
 
 **Construct Type:** Measurement Node  
 **Field:** Human Capacity Science  
-**Version:** v0.1.0 · Draft  
+**Version:** v0.2.0 · Draft  
 **Evidence Level:** Practitioner-Derived  
 **Permitted Use:** Open Exploration  
 
@@ -44,11 +45,14 @@ citation:
 
 ## Definition
 
-The available state of a person's ability to perform at any given moment — shaped by the combined influence of Digital Fatigue, Emotional Residue, Cognitive Load, and interpersonal friction. Three states exist:
+The available state of a person's ability to perform at any given moment — shaped by the combined influence of Digital Fatigue, Emotional Residue, Cognitive Load, and interpersonal friction. Four zones exist:
 
 - **Open:** Optimal output is available
 - **Narrow:** Reduced output; the individual is functioning below potential
-- **Closed:** Minimal or no productive output available
+- **Closed:** Minimal productive output available
+- **Critical:** Severely depleted; recovery is the only appropriate mode
+
+*(v0.2.0 note: earlier drafts used a three-window scheme; some HCS working documents used a Protected / Stable / Strained / Overdrawn state scheme. Both are retired into the four-zone scheme above — read Protected≈Open, Stable≈Narrow, Strained≈Closed, Overdrawn≈Critical. "Overdrawn" survives in HCS vocabulary as a construct/narrative term for the depleted end, not as a zone label.)*
 
 **Key insight:** Performance failure is often not a skill or motivation problem — it is a timing problem.
 
@@ -62,7 +66,7 @@ The Capacity Windows construct reframes underperformance from a character questi
 
 ---
 
-## The Three States
+## The Four Zones
 
 ### Open Window
 - HBI reflects low composite load across Cognitive Load, Emotional Residue, and Digital Fatigue
@@ -84,28 +88,27 @@ The Capacity Windows construct reframes underperformance from a character questi
 - Macro reset indicated; productive forcing is counterproductive and capacity-damaging
 - Appropriate response: recovery, not demand
 
+### Critical Window
+- HBI reflects severe depletion — capacity is effectively unavailable
+- No high-demand work; full recovery mode
+- Escalate if organisational support is needed; continuing to push at this state converts strain into harm
+
 ---
 
-## Measurement Approach (v0.1)
+## Measurement Approach (v0.2)
 
 ### Method: Composite Scoring from HBI Pillars
 
 Capacity Window state is derived from the Human Bandwidth Index (HBI) composite score, which aggregates Cognitive Load, Emotional Residue, and Digital Fatigue ratings.
 
-**Window State Thresholds (v0.1 — subject to pilot calibration):**
-
-| HBI Composite | Window State |
-|---|---|
-| 0–1.5 | Open |
-| 1.6–3.0 | Narrow |
-| 3.1–5.0 | Closed |
+**Zone determination (v0.2):** Zone state is derived from the HBI composite (0–100, capacity-side — see NR-20260319-HCS-007 v0.2.0). **Numeric zone boundaries are internal implementation parameters**, interpreted **within-person against the individual's own adaptive baseline** ("low for you") — never as universal cut-scores or between-person comparisons.
 
 ### Method: Direct State Self-Assessment
 
 As a stand-alone check-in alternative:
 
 **Single-item prompt:**
-> "Right now, my capacity to do my best work feels: [Open / Narrow / Closed]"
+> "Right now, my capacity to do my best work feels: [Open / Narrow / Closed / Critical]"
 
 Followed by optional: "What's most contributing to that?"
 
@@ -114,7 +117,7 @@ Followed by optional: "What's most contributing to that?"
 - "My energy for this task matches what the task requires." (1–5)
 - "I feel ready to bring my full capability to this right now." (1–5)
 
-Average ≤ 2 = Open · 2.1–3.5 = Narrow · > 3.5 = Closed
+Item-to-zone mapping is an internal implementation parameter (within-person calibration).
 
 ---
 
@@ -175,16 +178,16 @@ This dimension is not yet formally scored in HBI v0.1 but is tracked qualitative
 
 ## Validity Notes (v0.1)
 
-Capacity Windows is an original HCS construct without direct precedent in the literature. Adjacent theoretical support comes from research on ego depletion (Baumeister et al., 1998), ultradian rhythms and performance cycles (Kleitman; Peretz Lavie), and human factors research on decision degradation under load. The three-state model (Open / Narrow / Closed) is practitioner-derived, grounded in 108+ customer discovery interviews.
+Capacity Windows is an original HCS construct without direct precedent in the literature. Adjacent theoretical support comes from research on ultradian rhythms and performance cycles (Kleitman; Peretz Lavie) and human factors research on decision degradation under load. Ego-depletion research (Baumeister et al., 1998) is noted as adjacent lineage only — it is replication-contested and HCS does not rest on it. The four-zone model (Open / Narrow / Closed / Critical) is practitioner-derived, grounded in 108+ customer discovery interviews.
 
 **Evidence base:** Practitioner observation, qualitative interview synthesis, adjacent peer-reviewed literature  
 **Validation status:** Original HCS construct — pre-empirical; pilot study design is a roadmap item
 
 ---
 
-## v0.1 Roadmap
+## v0.2 Roadmap
 
-- [ ] Calibrate HBI composite thresholds for Window state through pilot data
+- [ ] Calibrate within-person zone baselines through pilot data
 - [ ] Validate single-item self-assessment against HBI composite
 - [ ] Develop interpersonal friction measurement for Window state integration
 - [ ] Publish Window state × task-type matching framework
@@ -193,4 +196,11 @@ Capacity Windows is an original HCS construct without direct precedent in the li
 
 ## Citation
 
-> Kabubi, G. (2026). *Capacity Windows* (HCS Measurement Node v0.1.0). NodeRail. NR-20260319-HCS-005. https://noderail.org
+> Kabubi, G. (2026). *Capacity Windows* (HCS Measurement Node v0.2.0). NodeRail. NR-20260319-HCS-005. https://noderail.org
+
+---
+
+## Version history
+
+- **v0.2.0 (2026-07-11)** — Reconciliation release: four zones (adds Critical); zone boundaries internal + within-person baselines; HBI input now 0–100 capacity-side; Protected/Stable/Strained/Overdrawn scheme retired-with-merge-note; ego-depletion citation annotated as contested adjacent lineage.
+- **v0.1.0 (2026-03-19)** — Initial node: three windows with load-side thresholds.
